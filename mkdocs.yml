@@ -13,6 +13,10 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true
+  - admonition
+  - pymdownx.details
+  - toc:
+      title: On this page
 
 plugins:
   - glightbox
