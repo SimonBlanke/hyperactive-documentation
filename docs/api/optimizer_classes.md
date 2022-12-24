@@ -1,17 +1,41 @@
-# Welcome to MkDocs
+# Optimizer Classes
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Each of the following optimizer classes can be initialized and passed to the "add_search"-method via the "optimizer"-argument. During this initialization the optimizer class accepts only optimizer-specific-paramters (no random_state, initialize, ... ):
 
-## Commands
+!!! example 
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+    ```python
+    optimizer = HillClimbingOptimizer(epsilon=0.1, distribution="laplace", n_neighbours=4)
 
-## Project layout
+    # for the default parameters you can just write:
+    optimizer = HillClimbingOptimizer()
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+    hyper = Hyperactive()
+    # and pass it to Hyperactive:
+    hyper.add_search(model, search_space, optimizer=optimizer, n_iter=100)
+    hyper.run()
+    ```
+
+So the optimizer-classes are different from Gradient-Free-Optimizers. A more detailed explanation of the optimization-algorithms and the optimizer-specific-paramters can be found in the Optimization Tutorial.
+
+- HillClimbingOptimizer
+- StochasticHillClimbingOptimizer
+- RepulsingHillClimbingOptimizer
+- SimulatedAnnealingOptimizer
+- DownhillSimplexOptimizer
+- RandomSearchOptimizer
+- GridSearchOptimizer
+- RandomRestartHillClimbingOptimizer
+- RandomAnnealingOptimizer
+- PowellsMethod
+- PatternSearch
+- ParallelTemperingOptimizer
+- ParticleSwarmOptimizer
+- SpiralOptimization
+- EvolutionStrategyOptimizer
+- BayesianOptimizer
+- LipschitzOptimizer
+- DirectAlgorithm
+- TreeStructuredParzenEstimators
+- ForestOptimizer
+
