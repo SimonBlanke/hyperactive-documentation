@@ -1,17 +1,19 @@
-# Welcome to MkDocs
+# Hyperactive
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## Introduction
 
-## Commands
+An optimization and data collection toolbox for convenient and fast prototyping of computationally expensive models.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
 
-## Project layout
+## Installation
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+The most recent version of Hyperactive is available on PyPi:
+
+```console
+pip install hyperactive
+```
+
+
+## License
+
+[![LICENSE](https://img.shields.io/github/license/SimonBlanke/Hyperactive?style=for-the-badge)](https://github.com/SimonBlanke/Hyperactive/blob/master/LICENSE)
