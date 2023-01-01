@@ -4,7 +4,6 @@
 
 An optimization and data collection toolbox for convenient and fast prototyping of computationally expensive models.
 
-
 ## Installation
 
 The most recent version of Hyperactive is available on PyPi:
@@ -12,7 +11,6 @@ The most recent version of Hyperactive is available on PyPi:
 ```console
 pip install hyperactive
 ```
-
 
 ## License
 
