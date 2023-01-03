@@ -30,21 +30,27 @@ theme:
     primary: indigo
     accent: deep purple
 
-  palette: 
+  palette:
     # Palette toggle for light mode
     - scheme: default
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/brightness-5
         name: Switch to dark mode
 
     # Palette toggle for dark mode
     - scheme: slate
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/brightness-3
         name: Switch to light mode
+        
   features:
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.indexes 
 
 extra_css:
   - css/extra.css
@@ -79,4 +85,24 @@ nav:
     - Optimizer classes: api/optimizer_classes.md
 
   - Optimization Algorithms:
-    - Optimizers: optimizers.md
+      - optimizers/index.md
+      - Hill Climbing: optimizers/hill_climbing.md
+      - Stochastic Hill Climbing: optimizers/stochastic_hill_climbing.md
+      - Simulated Annealing: optimizers/simulated_annealing.md
+      - Repulsing Hill Climbing: optimizers/repulsing_hill_climbing.md
+      - Downhill Simplex Optimization: optimizers/downhill_simplex.md
+      - Pattern Search: optimizers/pattern_search.md
+      - Powell's Method: optimizers/powells_method.md
+      - Random Restart Hill Climbing: optimizers/random_restart_hill_climbing.md
+      - Random Search: optimizers/random_search.md
+      - Random Annealing: optimizers/random_annealing.md
+      - Grid Search: optimizers/grid_search.md
+      - Parallel Tempering: optimizers/parallel_tempering.md
+      - Particle Swarm Optimization: optimizers/particle_swarm_optimization.md
+      - Spiral Optimization: optimizers/spiral_optimization.md
+      - Evolution Strategy: optimizers/evolution_strategy.md
+      - Bayesian Optimization: optimizers/bayesian_optimization.md
+      - Lipschitz Optimization: optimizers/lipschitz_optimization.md
+      - DIRECT Algorithm: optimizers/direct_algorithm.md
+      - Tree Structured Parzen Estimators: optimizers/tree_structured_parzen_estimators.md
+      - Forest Optimization: optimizers/forest_optimization.md
