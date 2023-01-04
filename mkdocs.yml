@@ -2,7 +2,6 @@ site_name: Hyperactive
 repo_url: https://github.com/SimonBlanke/Hyperactive
 edit_uri: ""
 
-
 markdown_extensions:
   - attr_list
   - md_in_html
@@ -26,14 +25,11 @@ theme:
   name: material
   icon:
     repo: fontawesome/brands/github-square
-  palette:
-    primary: indigo
-    accent: deep purple
 
   palette:
     # Palette toggle for light mode
     - scheme: default
-      primary: deep purple
+      primary: indigo
       accent: deep purple
       toggle:
         icon: material/brightness-5
@@ -41,16 +37,16 @@ theme:
 
     # Palette toggle for dark mode
     - scheme: slate
-      primary: deep purple
+      primary: indigo
       accent: deep purple
       toggle:
         icon: material/brightness-3
         name: Switch to light mode
-        
+
   features:
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.indexes 
+    - navigation.indexes
 
 extra_css:
   - css/extra.css
@@ -60,29 +56,27 @@ extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
-
 extra:
   version:
     provider: mike
   social:
-    - icon: fontawesome/brands/twitter 
+    - icon: fontawesome/brands/twitter
       link: https://twitter.com/blanke_simon
-    - icon: fontawesome/brands/github 
+    - icon: fontawesome/brands/github
       link: https://github.com/SimonBlanke/
-    - icon: fontawesome/brands/linkedin 
+    - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/simon-blanke/
-
 
 nav:
   - Home:
-    - Introduction: index.md
+      - Hyperactive: index.md
 
   - API Reference:
-    - Basic Usage: api/basic_usage.md
-    - Result Attributes: api/result_attributes.md
-    - The objective function: api/objective_function.md
-    - The search space: api/search_space.md
-    - Optimizer classes: api/optimizer_classes.md
+      - Basic Usage: api/basic_usage.md
+      - Result Attributes: api/result_attributes.md
+      - The objective function: api/objective_function.md
+      - The search space: api/search_space.md
+      - Optimizer classes: api/optimizer_classes.md
 
   - Optimization Algorithms:
       - optimizers/index.md
