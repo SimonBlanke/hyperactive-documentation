@@ -2,6 +2,9 @@
 
 The search space defines what values the optimizer can select during the search. These selected values will be inside the objective function argument and can be accessed like in a dictionary. The values in each search space dimension should always be in a list. If you use np.arange you should put it in a list afterwards:
 
+
+## Numerical dimensions
+
 !!! example 
     ```python
     search_space = {
@@ -31,6 +34,10 @@ A special feature of Hyperactive is shown in the next example. You can put not j
     }
     ```
 
+## Categorical dimensions
+
+
+
 If you want to put other types of variables (like numpy arrays, pandas dataframes, lists, ...) into the search space you can do that via functions:
 
 !!! example 
@@ -51,3 +58,5 @@ If you want to put other types of variables (like numpy arrays, pandas dataframe
     ```
 
 The functions contain the numpy arrays and returns them. This way you can use them inside the objective function.
+
+
