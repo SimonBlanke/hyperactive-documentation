@@ -79,11 +79,6 @@ nav:
       - The objective function: tutorials/objective_function.md
       - The search space: tutorials/search_space.md
       - Optimizer classes: tutorials/optimizer_classes.md
-      - Memory: tutorials/memory.md
-      - Parallel Computing: tutorials/parallel_computing.md
-      - Optimization Strategies: tutorials/optimization_strategies.md
-      - Multiple Objectives: tutorials/multiple_objectives.md
-      - Optimizer classes: tutorials/optimizer_classes.md
 
   - Optimization Algorithms:
       - optimizers/index.md
