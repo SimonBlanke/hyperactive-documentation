@@ -22,6 +22,8 @@ The objective function has one argument that is often called "para", "params", "
     ```
 
 
+## Multiple Objectives
+
 The objective function always needs a score, which shows how "good" or "bad" the current parameter set is. But you can also return some additional information with a dictionary:
 
 !!! example 
@@ -33,11 +35,12 @@ The objective function always needs a score, which shows how "good" or "bad" the
         score = -(x1 * x1 + x2 * x2)
 
         other_info = {
-        "x1 squared" : x1**2,
-        "x2 squared" : x2**2,
+            "x1 squared" : x1**2,
+            "x2 squared" : x2**2,
         }
 
         return score, other_info
     ```
 
 When you take a look at the results (a pandas dataframe with all iteration information) after the run has ended you will see the additional information in it. The reason we need a dictionary for this is because Hyperactive needs to know the names of the additonal parameters. The score does not need that, because it is always called "score" in the results.
+
