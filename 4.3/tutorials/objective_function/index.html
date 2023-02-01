@@ -7,7 +7,7 @@
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.3.1, mkdocs-material-8.3.9" name="generator"/>
-<title>Xi - Hyperactive</title>
+<title>The objective function - Hyperactive</title>
 <link href="../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -22,7 +22,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#xi">
+<a class="md-skip" href="#objective-function">
           Skip to content
         </a>
 </div>
@@ -50,7 +50,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Xi
+              The objective function
             
           </span>
 </div>
@@ -91,7 +91,7 @@
       </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../tutorials/objective_function/">
+<a class="md-tabs__link md-tabs__link--active" href="./">
         Tutorials
       </a>
 </li>
@@ -167,8 +167,8 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
 <label class="md-nav__link" for="__nav_3">
           Tutorials
           <span class="md-nav__icon md-icon"></span>
@@ -179,18 +179,36 @@
           Tutorials
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../tutorials/objective_function/">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          The objective function
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
         The objective function
       </a>
+<nav aria-label="On this page" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multiple-objectives">
+    Multiple Objectives
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../tutorials/search_space/">
+<a class="md-nav__link" href="../search_space/">
         The search space
       </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../tutorials/optimizer_classes/">
+<a class="md-nav__link" href="../optimizer_classes/">
         Optimizer classes
       </a>
 </li>
@@ -329,8 +347,8 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#xi">
-    xi
+<a class="md-nav__link" href="#multiple-objectives">
+    Multiple Objectives
   </a>
 </li>
 </ul>
@@ -340,20 +358,79 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1>Xi</h1>
-<h3 id="xi"><code>xi</code></h3>
-<p>Parameter for the expected uncertainty of the estimation. It is a parameter that belongs to the expected-improvement acquisition-function.</p>
+<h1 id="objective-function">Objective Function</h1>
+<p>Each iteration consists of two steps:</p>
 <ul>
-<li><strong>type</strong>: float</li>
-<li><strong>default</strong>: 0.3</li>
-<li><strong>typical range</strong>: 0.1 ... 0.9</li>
+<li>The optimization step: decides what position in the search space (parameter set) to evaluate next</li>
+<li>The evaluation step: calls the objective function, which returns the score for the given position in the search space</li>
 </ul>
-<hr/>
+<p>The objective function has one argument that is often called "para", "params", "opt" or "access". This argument is your access to the parameter set that the optimizer has selected in the corresponding iteration.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">opt</span><span class="p">):</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="c1"># get x1 and x2 from the argument "opt"</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">x1</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[</span><span class="s2">"x1"</span><span class="p">]</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="n">x2</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[</span><span class="s2">"x2"</span><span class="p">]</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="c1"># calculate the score with the parameter set</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a>    <span class="n">score</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">x1</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">*</span> <span class="n">x2</span><span class="p">)</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="c1"># return the score</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="k">return</span> <span class="n">score</span>
+</code></pre></div>
+</div>
+<h2 id="multiple-objectives">Multiple Objectives</h2>
+<p>The objective function always needs a score, which shows how "good" or "bad" the current parameter set is. But you can also return some additional information with a dictionary:</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">opt</span><span class="p">):</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="n">x1</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[</span><span class="s2">"x1"</span><span class="p">]</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="n">x2</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[</span><span class="s2">"x2"</span><span class="p">]</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>    <span class="n">score</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">x1</span> <span class="o">*</span> <span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span> <span class="o">*</span> <span class="n">x2</span><span class="p">)</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="n">other_info</span> <span class="o">=</span> <span class="p">{</span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a>        <span class="s2">"x1 squared"</span> <span class="p">:</span> <span class="n">x1</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a>        <span class="s2">"x2 squared"</span> <span class="p">:</span> <span class="n">x2</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="p">}</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a>    <span class="k">return</span> <span class="n">score</span><span class="p">,</span> <span class="n">other_info</span>
+</code></pre></div>
+</div>
+<p>When you take a look at the results (a pandas dataframe with all iteration information) after the run has ended you will see the additional information in it. The reason we need a dictionary for this is because Hyperactive needs to know the names of the additonal parameters. The score does not need that, because it is always called "score" in the results.</p>
 </article>
 </div>
 </div>
 </main>
 <footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Result Attributes" class="md-footer__link md-footer__link--prev" href="../../api/result_attributes/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              Result Attributes
+            </div>
+</div>
+</a>
+<a aria-label="Next: The search space" class="md-footer__link md-footer__link--next" href="../search_space/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              The search space
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">
