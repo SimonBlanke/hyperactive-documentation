@@ -2,6 +2,20 @@
 
 ## Hyperactive
 
+The `Hyperactive`-class is the main component to run the optimization. You can import it directly from the `hyperactive`-package, then add one or more searches and run it. This would look as follows:
+
+??? example "Import and use Hyperactive"
+    ```python
+    from hyperactive import Hyperactive
+
+    ...
+
+    hyper = Hyperactive()
+    hyper.add_search(objective_function, search_space, n_iter=100)
+    hyper.run()
+    ```
+
+
 The `Hyperactive`-class can receive the following parameters:
 
 ### `verbosity`
@@ -58,7 +72,11 @@ The number of iterations that will be performed during the optimization run. The
 
 - **type:** `object`
 
-Instance of optimization class that can be imported from Hyperactive. "default" corresponds to the random search optimizer. The imported optimization classes from hyperactive are different from gfo. They only accept optimizer-specific-parameters. The following classes can be imported and used:
+The 'optimizer'-argument accepts an instance of an optimization class or an optimization strategy that can be imported from Hyperactive. The "default" corresponds to the random search optimizer. The optimization classes are imported from `hyperactive.optimizers`, while the optimization strategies are imported from `hyperactive.optimizers.strategies`.
+
+The imported optimization classes from hyperactive are different from the [optimization backend](https://github.com/SimonBlanke/Gradient-Free-Optimizers). They only accept optimizer-specific-parameters (no `search-space` or `initialize`). 
+
+The following optimization classes can be imported and used:
 
 - HillClimbingOptimizer
 - StochasticHillClimbingOptimizer
@@ -81,13 +99,43 @@ Instance of optimization class that can be imported from Hyperactive. "default" 
 - TreeStructuredParzenEstimators
 - ForestOptimizer
 
-!!! example 
+The following optimization strategy can be imported and used:
+
+- CustomOptimizationStrategy
+
+
+??? example "Using an optimization algorithm"
     ```python
     ...
 
+    from hyperactive.optimizers import HillClimbingOptimizer
+
+    ...
+
     opt_hco = HillClimbingOptimizer(epsilon=0.08)
+
     hyper = Hyperactive()
     hyper.add_search(..., optimizer=opt_hco)
+    hyper.run()
+
+    ...
+    ```
+
+
+??? example "Using an optimization strategy"
+    ```python
+    ...
+
+    from hyperactive.optimizers.strategies import CustomOptimizationStrategy
+
+    ...
+
+    opt_strat = CustomOptimizationStrategy()
+    opt_strat.add_optimizer(RandomSearchOptimizer(), duration=0.5)
+    opt_strat.add_optimizer(BayesianOptimizer(), duration=0.5)
+    
+    hyper = Hyperactive()
+    hyper.add_search(..., optimizer=opt_strat)
     hyper.run()
 
     ...
@@ -119,7 +167,7 @@ The initialization dictionary automatically determines a number of parameters th
 - `warm_start`:
     List of parameter dictionaries that marks additional start points for the optimization run.
 
-!!! example 
+??? example "Use the `initialize`-parameter"
     ```python
     ... 
     search_space = {
@@ -146,7 +194,7 @@ The initialization dictionary automatically determines a number of parameters th
 
 The pass_through accepts a dictionary that contains information that will be passed to the objective-function argument. This information will not change during the optimization run, unless the user does so by himself (within the objective-function).
 
-!!! example 
+??? example "Use the `pass_through`-parameter"
     ```python
     ... 
     def objective_function(para):
@@ -177,7 +225,7 @@ The pass_through accepts a dictionary that contains information that will be pas
 
 The callbacks enables you to pass functions to hyperactive that are called every iteration during the optimization run. The function has access to the same argument as the objective-function. You can decide if the functions are called before or after the objective-function is evaluated via the keys of the callbacks-dictionary. The values of the dictionary are lists of the callback-functions. The following example should show they way to use callbacks:
 
-!!! example 
+??? example "Use the `callbacks`-parameter"
     ```python
     ...
 
@@ -209,7 +257,7 @@ The callbacks enables you to pass functions to hyperactive that are called every
 
 The catch parameter provides a way to handle exceptions that occur during the evaluation of the objective-function or the callbacks. It is a dictionary that accepts the exception class as a key and the score that is returned instead as the value. This way you can handle multiple types of exceptions and return different scores for each. In the case of an exception it often makes sense to return np.nan as a score. You can see an example of this in the following code-snippet:
 
-!!! example 
+??? example "Use the `catch`-parameter"
     ```python
     ...
 
