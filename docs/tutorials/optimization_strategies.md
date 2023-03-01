@@ -14,3 +14,23 @@ Optimization strategies are designed to automatically pass useful data from one 
 
 Without optimization strategies the steps above can be manually done, but by chaining together the algorithms into strategies it is automatically done for you.
 
+
+
+!!! example 
+    ```python
+    ...
+
+    from hyperactive.optimizers.strategies import CustomOptimizationStrategy
+
+    ...
+
+    opt_strat = CustomOptimizationStrategy()
+    opt_strat.add_optimizer(RandomSearchOptimizer(), duration=0.5)
+    opt_strat.add_optimizer(BayesianOptimizer(), duration=0.5)
+    
+    hyper = Hyperactive()
+    hyper.add_search(..., optimizer=opt_strat)
+    hyper.run()
+
+    ...
+    ```
