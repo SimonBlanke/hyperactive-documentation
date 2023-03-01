@@ -77,7 +77,6 @@ nav:
       - The objective function: tutorials/objective_function.md
       - The search space: tutorials/search_space.md
       - Optimizer classes: tutorials/optimizer_classes.md
-      - Optimization Strategies: tutorials/optimization_strategies.md
 
   - Optimization Algorithms:
       - optimizers/index.md

@@ -72,7 +72,7 @@ The number of iterations that will be performed during the optimization run. The
 
 - **type:** `object`
 
-The 'optimizer'-argument accepts an instance of an optimization class or an optimization strategy that can be imported from Hyperactive. The "default" corresponds to the random search optimizer. The optimization classes are imported from `hyperactive.optimizers`, while the optimization strategies are imported from `hyperactive.optimizers.strategies`.
+The 'optimizer'-argument accepts an instance of an optimization class that can be imported from Hyperactive. The "default" corresponds to the random search optimizer. The optimization classes are imported from `hyperactive.optimizers`.
 
 The imported optimization classes from hyperactive are different from the [optimization backend](https://github.com/SimonBlanke/Gradient-Free-Optimizers). They only accept optimizer-specific-parameters (no `search-space` or `initialize`). 
 
@@ -99,10 +99,6 @@ The following optimization classes can be imported and used:
 - TreeStructuredParzenEstimators
 - ForestOptimizer
 
-The following optimization strategy can be imported and used:
-
-- CustomOptimizationStrategy
-
 
 ??? example "Using an optimization algorithm"
     ```python
@@ -121,25 +117,6 @@ The following optimization strategy can be imported and used:
     ...
     ```
 
-
-??? example "Using an optimization strategy"
-    ```python
-    ...
-
-    from hyperactive.optimizers.strategies import CustomOptimizationStrategy
-
-    ...
-
-    opt_strat = CustomOptimizationStrategy()
-    opt_strat.add_optimizer(RandomSearchOptimizer(), duration=0.5)
-    opt_strat.add_optimizer(BayesianOptimizer(), duration=0.5)
-    
-    hyper = Hyperactive()
-    hyper.add_search(..., optimizer=opt_strat)
-    hyper.run()
-
-    ...
-    ```
 
 
 ### `n_jobs`
