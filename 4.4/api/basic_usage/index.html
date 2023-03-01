@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.3.1, mkdocs-material-8.3.9" name="generator"/>
+<title>Basic Usage - Hyperactive</title>
+<link href="../../assets/stylesheets/main.1d29e8d0.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.cbb835fc.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../../css/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>html.glightbox-open { overflow: initial; height: 100%; }</style><script src="../../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="deep-purple" data-md-color-primary="indigo" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#basic-usage">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<div data-md-component="outdated" hidden="">
+<aside class="md-banner md-banner--warning">
+</aside>
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Hyperactive" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Hyperactive">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Hyperactive
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Basic Usage
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="deep-purple" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-2.69L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69Z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="deep-purple" data-md-color-media="" data-md-color-primary="indigo" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.04 7 9.54 0 4.5-2.94 8.27-7 9.54.95.3 1.95.46 3 .46a10 10 0 0 0 10-10A10 10 0 0 0 9 2Z"></path></svg>
+</label>
+</form>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/SimonBlanke/Hyperactive" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM277.3 415.7c-8.4 1.5-11.5-3.7-11.5-8 0-5.4.2-33 .2-55.3 0-15.6-5.2-25.5-11.3-30.7 37-4.1 76-9.2 76-73.1 0-18.2-6.5-27.3-17.1-39 1.7-4.3 7.4-22-1.7-45-13.9-4.3-45.7 17.9-45.7 17.9-13.2-3.7-27.5-5.6-41.6-5.6-14.1 0-28.4 1.9-41.6 5.6 0 0-31.8-22.2-45.7-17.9-9.1 22.9-3.5 40.6-1.7 45-10.6 11.7-15.6 20.8-15.6 39 0 63.6 37.3 69 74.3 73.1-4.8 4.3-9.1 11.7-10.6 22.3-9.5 4.3-33.8 11.7-48.3-13.9-9.1-15.8-25.5-17.1-25.5-17.1-16.2-.2-1.1 10.2-1.1 10.2 10.8 5 18.4 24.2 18.4 24.2 9.7 29.7 56.1 19.7 56.1 19.7 0 13.9.2 36.5.2 40.6 0 4.3-3 9.5-11.5 8-66-22.1-112.2-84.9-112.2-158.3 0-91.8 70.2-161.5 162-161.5S388 165.6 388 257.4c.1 73.4-44.7 136.3-110.7 158.3zm-98.1-61.1c-1.9.4-3.7-.4-3.9-1.7-.2-1.5 1.1-2.8 3-3.2 1.9-.2 3.7.6 3.9 1.9.3 1.3-1 2.6-3 3zm-9.5-.9c0 1.3-1.5 2.4-3.5 2.4-2.2.2-3.7-.9-3.7-2.4 0-1.3 1.5-2.4 3.5-2.4 1.9-.2 3.7.9 3.7 2.4zm-13.7-1.1c-.4 1.3-2.4 1.9-4.1 1.3-1.9-.4-3.2-1.9-2.8-3.2.4-1.3 2.4-1.9 4.1-1.5 2 .6 3.3 2.1 2.8 3.4zm-12.3-5.4c-.9 1.1-2.8.9-4.3-.6-1.5-1.3-1.9-3.2-.9-4.1.9-1.1 2.8-.9 4.3.6 1.3 1.3 1.8 3.3.9 4.1zm-9.1-9.1c-.9.6-2.6 0-3.7-1.5s-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3 1.1 1.5 1.1 3.3 0 4.1zm-6.5-9.7c-.9.9-2.4.4-3.5-.6-1.1-1.3-1.3-2.8-.4-3.5.9-.9 2.4-.4 3.5.6 1.1 1.3 1.3 2.8.4 3.5zm-6.7-7.4c-.4.9-1.7 1.1-2.8.4-1.3-.6-1.9-1.7-1.5-2.6.4-.6 1.5-.9 2.8-.4 1.3.7 1.9 1.8 1.5 2.6z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Hyperactive" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Hyperactive">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    Hyperactive
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/SimonBlanke/Hyperactive" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM277.3 415.7c-8.4 1.5-11.5-3.7-11.5-8 0-5.4.2-33 .2-55.3 0-15.6-5.2-25.5-11.3-30.7 37-4.1 76-9.2 76-73.1 0-18.2-6.5-27.3-17.1-39 1.7-4.3 7.4-22-1.7-45-13.9-4.3-45.7 17.9-45.7 17.9-13.2-3.7-27.5-5.6-41.6-5.6-14.1 0-28.4 1.9-41.6 5.6 0 0-31.8-22.2-45.7-17.9-9.1 22.9-3.5 40.6-1.7 45-10.6 11.7-15.6 20.8-15.6 39 0 63.6 37.3 69 74.3 73.1-4.8 4.3-9.1 11.7-10.6 22.3-9.5 4.3-33.8 11.7-48.3-13.9-9.1-15.8-25.5-17.1-25.5-17.1-16.2-.2-1.1 10.2-1.1 10.2 10.8 5 18.4 24.2 18.4 24.2 9.7 29.7 56.1 19.7 56.1 19.7 0 13.9.2 36.5.2 40.6 0 4.3-3 9.5-11.5 8-66-22.1-112.2-84.9-112.2-158.3 0-91.8 70.2-161.5 162-161.5S388 165.6 388 257.4c.1 73.4-44.7 136.3-110.7 158.3zm-98.1-61.1c-1.9.4-3.7-.4-3.9-1.7-.2-1.5 1.1-2.8 3-3.2 1.9-.2 3.7.6 3.9 1.9.3 1.3-1 2.6-3 3zm-9.5-.9c0 1.3-1.5 2.4-3.5 2.4-2.2.2-3.7-.9-3.7-2.4 0-1.3 1.5-2.4 3.5-2.4 1.9-.2 3.7.9 3.7 2.4zm-13.7-1.1c-.4 1.3-2.4 1.9-4.1 1.3-1.9-.4-3.2-1.9-2.8-3.2.4-1.3 2.4-1.9 4.1-1.5 2 .6 3.3 2.1 2.8 3.4zm-12.3-5.4c-.9 1.1-2.8.9-4.3-.6-1.5-1.3-1.9-3.2-.9-4.1.9-1.1 2.8-.9 4.3.6 1.3 1.3 1.8 3.3.9 4.1zm-9.1-9.1c-.9.6-2.6 0-3.7-1.5s-1.1-3.2 0-3.9c1.1-.9 2.8-.2 3.7 1.3 1.1 1.5 1.1 3.3 0 4.1zm-6.5-9.7c-.9.9-2.4.4-3.5-.6-1.1-1.3-1.3-2.8-.4-3.5.9-.9 2.4-.4 3.5.6 1.1 1.3 1.3 2.8.4 3.5zm-6.7-7.4c-.4.9-1.7 1.1-2.8.4-1.3-.6-1.9-1.7-1.5-2.6.4-.6 1.5-.9 2.8-.4 1.3.7 1.9 1.8 1.5 2.6z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" id="__nav_1" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../..">Home</a>
+</div>
+<nav aria-label="Home" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_1">
+<span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2">
+          API Reference
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="API Reference" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          API Reference
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Basic Usage
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Basic Usage
+      </a>
+<nav aria-label="On this page" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hyperactive">
+    Hyperactive
+  </a>
+<nav aria-label="Hyperactive" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#verbosity">
+    verbosity
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#distribution">
+    distribution
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#n_processes">
+    n_processes
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#add_search">
+    add_search
+  </a>
+<nav aria-label="add_search" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#objective_function">
+    objective_function
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#search_space">
+    search_space
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#n_iter">
+    n_iter
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optimizer">
+    optimizer
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#n_jobs">
+    n_jobs
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#initialize">
+    initialize
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pass_through">
+    pass_through
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#callbacks">
+    callbacks
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#catch">
+    catch
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#max_score">
+    max_score
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#early_stopping">
+    early_stopping
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#random_state">
+    random_state
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#memory">
+    memory
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#memory_warm_start">
+    memory_warm_start
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#run">
+    run
+  </a>
+<nav aria-label="run" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#max_time">
+    max_time
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../result_attributes/">
+        Result Attributes
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
+          Tutorials
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Tutorials" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          Tutorials
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/objective_function/">
+        The objective function
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/search_space/">
+        The search space
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/optimizer_classes/">
+        Optimizer classes
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../tutorials/optimization_strategies/">
+        Optimization Strategies
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<div class="md-nav__link md-nav__link--index">
+<a href="../../optimizers/">Optimization Algorithms</a>
+<label for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-label="Optimization Algorithms" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Optimization Algorithms
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/hill_climbing/">
+        Hill Climbing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/stochastic_hill_climbing/">
+        Stochastic Hill Climbing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/simulated_annealing/">
+        Simulated Annealing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/repulsing_hill_climbing/">
+        Repulsing Hill Climbing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/downhill_simplex/">
+        Downhill Simplex Optimization
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/pattern_search/">
+        Pattern Search
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/powells_method/">
+        Powell's Method
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/random_restart_hill_climbing/">
+        Random Restart Hill Climbing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/random_search/">
+        Random Search
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/random_annealing/">
+        Random Annealing
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/grid_search/">
+        Grid Search
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/parallel_tempering/">
+        Parallel Tempering
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/particle_swarm_optimization/">
+        Particle Swarm Optimization
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/spiral_optimization/">
+        Spiral Optimization
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/evolution_strategy/">
+        Evolution Strategy
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/bayesian_optimization/">
+        Bayesian Optimization
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/lipschitz_optimization/">
+        Lipschitz Optimization
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/direct_algorithm/">
+        DIRECT Algorithm
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/tree_structured_parzen_estimators/">
+        Tree Structured Parzen Estimators
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../optimizers/forest_optimization/">
+        Forest Optimization
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="On this page" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#hyperactive">
+    Hyperactive
+  </a>
+<nav aria-label="Hyperactive" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#verbosity">
+    verbosity
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#distribution">
+    distribution
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#n_processes">
+    n_processes
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#add_search">
+    add_search
+  </a>
+<nav aria-label="add_search" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#objective_function">
+    objective_function
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#search_space">
+    search_space
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#n_iter">
+    n_iter
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optimizer">
+    optimizer
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#n_jobs">
+    n_jobs
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#initialize">
+    initialize
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pass_through">
+    pass_through
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#callbacks">
+    callbacks
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#catch">
+    catch
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#max_score">
+    max_score
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#early_stopping">
+    early_stopping
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#random_state">
+    random_state
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#memory">
+    memory
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#memory_warm_start">
+    memory_warm_start
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#run">
+    run
+  </a>
+<nav aria-label="run" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#max_time">
+    max_time
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="basic-usage">Basic Usage</h1>
+<h2 id="hyperactive">Hyperactive</h2>
+<p>The <code>Hyperactive</code>-class is the main component to run the optimization. You can import it directly from the <code>hyperactive</code>-package, then add one or more searches and run it. This would look as follows:</p>
+<details class="example"><summary>Import and use Hyperactive</summary><div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">hyperactive</span> <span class="kn">import</span> <span class="n">Hyperactive</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="o">...</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="n">hyper</span> <span class="o">=</span> <span class="n">Hyperactive</span><span class="p">()</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="n">hyper</span><span class="o">.</span><span class="n">add_search</span><span class="p">(</span><span class="n">objective_function</span><span class="p">,</span> <span class="n">search_space</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="n">hyper</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+</details>
+<p>The <code>Hyperactive</code>-class can receive the following parameters:</p>
+<h3 id="verbosity"><code>verbosity</code></h3>
+<ul>
+<li><strong>type:</strong> <code>list</code></li>
+</ul>
+<p>The verbosity list determines what part of the optimization information will be printed in the command line.</p>
+<ul>
+<li><code>progress_bar</code></li>
+<li><code>print_results</code></li>
+<li><code>print_times</code></li>
+</ul>
+<h3 id="distribution"><code>distribution</code></h3>
+<ul>
+<li><strong>type:</strong> <code>str</code></li>
+</ul>
+<p>Determine, which distribution service you want to use. Each library uses different packages to pickle objects:</p>
+<ul>
+<li><code>multiprocessing</code> uses pickle</li>
+<li><code>joblib</code> uses dill</li>
+<li><code>pathos</code> uses cloudpickle</li>
+</ul>
+<h3 id="n_processes"><code>n_processes</code></h3>
+<ul>
+<li><strong>type:</strong> <code>str</code>, <code>int</code></li>
+</ul>
+<p>The maximum number of processes that are allowed to run simultaneously. If n_processes is of int-type there will only run n_processes-number of jobs simultaneously instead of all at once. So if n_processes=10 and n_jobs_total=35, then the schedule would look like this 10 - 10 - 10 - 5. This saves computational resources if there is a large number of n_jobs. If "auto", then n_processes is the sum of all n_jobs (from .add_search(...)).</p>
+<h2 id="add_search">add_search</h2>
+<p>The <code>add_search</code>-method contains the following arguments:</p>
+<h3 id="objective_function"><code>objective_function</code></h3>
+<ul>
+<li><strong>type:</strong> <code>callable</code></li>
+</ul>
+<p>The objective function defines the optimization problem. The optimization algorithm will try to maximize the numerical value that is returned by the objective function by trying out different parameters from the search space.</p>
+<h3 id="search_space"><code>search_space</code></h3>
+<ul>
+<li><strong>type:</strong> <code>dict</code></li>
+</ul>
+<p>Defines the space were the optimization algorithm can search for the best parameters for the given objective function.</p>
+<h3 id="n_iter"><code>n_iter</code></h3>
+<ul>
+<li><strong>type:</strong> <code>int</code></li>
+</ul>
+<p>The number of iterations that will be performed during the optimization run. The entire iteration consists of the optimization-step, which decides the next parameter that will be evaluated and the evaluation-step, which will run the objective function with the chosen parameter and return the score.</p>
+<h3 id="optimizer"><code>optimizer</code></h3>
+<ul>
+<li><strong>type:</strong> <code>object</code></li>
+</ul>
+<p>The 'optimizer'-argument accepts an instance of an optimization class or an optimization strategy that can be imported from Hyperactive. The "default" corresponds to the random search optimizer. The optimization classes are imported from <code>hyperactive.optimizers</code>, while the optimization strategies are imported from <code>hyperactive.optimizers.strategies</code>.</p>
+<p>The imported optimization classes from hyperactive are different from the <a href="https://github.com/SimonBlanke/Gradient-Free-Optimizers">optimization backend</a>. They only accept optimizer-specific-parameters (no <code>search-space</code> or <code>initialize</code>). </p>
+<p>The following optimization classes can be imported and used:</p>
+<ul>
+<li>HillClimbingOptimizer</li>
+<li>StochasticHillClimbingOptimizer</li>
+<li>RepulsingHillClimbingOptimizer</li>
+<li>SimulatedAnnealingOptimizer</li>
+<li>DownhillSimplexOptimizer</li>
+<li>RandomSearchOptimizer</li>
+<li>GridSearchOptimizer</li>
+<li>RandomRestartHillClimbingOptimizer</li>
+<li>RandomAnnealingOptimizer</li>
+<li>PowellsMethod</li>
+<li>PatternSearch</li>
+<li>ParallelTemperingOptimizer</li>
+<li>ParticleSwarmOptimizer</li>
+<li>SpiralOptimization</li>
+<li>EvolutionStrategyOptimizer</li>
+<li>BayesianOptimizer</li>
+<li>LipschitzOptimizer</li>
+<li>DirectAlgorithm</li>
+<li>TreeStructuredParzenEstimators</li>
+<li>ForestOptimizer</li>
+</ul>
+<p>The following optimization strategy can be imported and used:</p>
+<ul>
+<li>CustomOptimizationStrategy</li>
+</ul>
+<details class="example"><summary>Using an optimization algorithm</summary><div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="o">...</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers</span> <span class="kn">import</span> <span class="n">HillClimbingOptimizer</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="o">...</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="n">opt_hco</span> <span class="o">=</span> <span class="n">HillClimbingOptimizer</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.08</span><span class="p">)</span>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="n">hyper</span> <span class="o">=</span> <span class="n">Hyperactive</span><span class="p">()</span>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="n">hyper</span><span class="o">.</span><span class="n">add_search</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">opt_hco</span><span class="p">)</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="n">hyper</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="o">...</span>
+</code></pre></div>
+</details>
+<details class="example"><summary>Using an optimization strategy</summary><div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="o">...</span>
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers.strategies</span> <span class="kn">import</span> <span class="n">CustomOptimizationStrategy</span>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="o">...</span>
+<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a>
+<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="n">opt_strat</span> <span class="o">=</span> <span class="n">CustomOptimizationStrategy</span><span class="p">()</span>
+<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">RandomSearchOptimizer</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">BayesianOptimizer</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a>
+<a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="n">hyper</span> <span class="o">=</span> <span class="n">Hyperactive</span><span class="p">()</span>
+<a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="n">hyper</span><span class="o">.</span><span class="n">add_search</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">opt_strat</span><span class="p">)</span>
+<a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="n">hyper</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<a href="#__codelineno-2-14" id="__codelineno-2-14" name="__codelineno-2-14"></a>
+<a href="#__codelineno-2-15" id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="o">...</span>
+</code></pre></div>
+</details>
+<h3 id="n_jobs"><code>n_jobs</code></h3>
+<ul>
+<li><strong>type:</strong> <code>int</code></li>
+</ul>
+<p>Number of jobs to run in parallel. Those jobs are optimization runs that work independent from another (no information sharing). If n_jobs == -1 the maximum available number of cpu cores is used.</p>
+<h3 id="initialize"><code>initialize</code></h3>
+<ul>
+<li><strong>type:</strong> <code>dict</code></li>
+</ul>
+<p>The initialization dictionary automatically determines a number of parameters that will be evaluated in the first n iterations (n is the sum of the values in initialize). The initialize keywords are the following:</p>
+<ul>
+<li>
+<p><code>grid</code>:
+    Initializes positions in a grid like pattern. Positions that cannot be put into a grid are randomly positioned. For very high dimensional search spaces (&gt;30) this pattern becomes random.</p>
+</li>
+<li>
+<p><code>vertices</code>:
+    Initializes positions at the vertices of the search space. Positions that cannot be put into a new vertex are randomly positioned.</p>
+</li>
+<li>
+<p><code>random</code>:
+    Number of random initialized positions</p>
+</li>
+<li>
+<p><code>warm_start</code>:
+    List of parameter dictionaries that marks additional start points for the optimization run.</p>
+</li>
+</ul>
+<details class="example"><summary>Use the <code>initialize</code>-parameter</summary><div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="o">...</span> 
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">search_space</span> <span class="o">=</span> <span class="p">{</span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="s2">"x1"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="s2">"x2"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">)),</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="p">}</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a>
+<a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="n">ws1</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"x1"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"x2"</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="n">ws2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"x1"</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">"x2"</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+<a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a>
+<a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="n">hyper</span> <span class="o">=</span> <span class="n">Hyperactive</span><span class="p">()</span>
+<a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="n">hyper</span><span class="o">.</span><span class="n">add_search</span><span class="p">(</span>
+<a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="n">model</span><span class="p">,</span>
+<a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a>    <span class="n">search_space</span><span class="p">,</span>
+<a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a>    <span class="n">n_iter</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+<a href="#__codelineno-3-15" id="__codelineno-3-15" name="__codelineno-3-15"></a>    <span class="n">initialize</span><span class="o">=</span><span class="p">{</span><span class="s2">"grid"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"random"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">"vertices"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"warm_start"</span><span class="p">:</span> <span class="p">[</span><span class="n">ws1</span><span class="p">,</span> <span class="n">ws2</span><span class="p">]},</span>
+<a href="#__codelineno-3-16" id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="p">)</span>
+<a href="#__codelineno-3-17" id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="n">hyper</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+</details>
+<h3 id="pass_through"><code>pass_through</code></h3>
+<ul>
+<li><strong>type:</strong> <code>dict</code></li>
+</ul>
+<p>The pass_through accepts a dictionary that contains information that will be passed to the objective-function argument. This information will not change during the optimization run, unless the user does so by himself (within the objective-function).</p>
+<details class="example"><summary>Use the <code>pass_through</code>-parameter</summary><div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="o">...</span> 
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">para</span><span class="p">):</span>
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="n">para</span><span class="o">.</span><span class="n">pass_through</span><span class="p">[</span><span class="s2">"stuff1"</span><span class="p">]</span> <span class="c1"># &lt;--- this variable is 1</span>
+<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="n">para</span><span class="o">.</span><span class="n">pass_through</span><span class="p">[</span><span class="s2">"stuff2"</span><span class="p">]</span> <span class="c1"># &lt;--- this variable is 2</span>
+<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>
+<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>    <span class="n">score</span> <span class="o">=</span> <span class="o">-</span><span class="n">para</span><span class="p">[</span><span class="s2">"x1"</span><span class="p">]</span> <span class="o">*</span> <span class="n">para</span><span class="p">[</span><span class="s2">"x1"</span><span class="p">]</span>
+<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a>    <span class="k">return</span> <span class="n">score</span>
+<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a>
+<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="n">pass_through</span> <span class="o">=</span> <span class="p">{</span>
+<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="s2">"stuff1"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="s2">"stuff2"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="p">}</span>
+<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a>
+<a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="n">hyper</span> <span class="o">=</span> <span class="n">Hyperactive</span><span class="p">()</span>
+<a href="#__codelineno-4-15" id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="n">hyper</span><span class="o">.</span><span class="n">add_search</span><span class="p">(</span>
+<a href="#__codelineno-4-16" id="__codelineno-4-16" name="__codelineno-4-16"></a>    <span class="n">model</span><span class="p">,</span>
+<a href="#__codelineno-4-17" id="__codelineno-4-17" name="__codelineno-4-17"></a>    <span class="n">search_space</span><span class="p">,</span>
+<a href="#__codelineno-4-18" id="__codelineno-4-18" name="__codelineno-4-18"></a>    <span class="n">n_iter</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+<a href="#__codelineno-4-19" id="__codelineno-4-19" name="__codelineno-4-19"></a>    <span class="n">pass_through</span><span class="o">=</span><span class="n">pass_through</span><span class="p">,</span>
+<a href="#__codelineno-4-20" id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="p">)</span>
+<a href="#__codelineno-4-21" id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="n">hyper</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+</details>
+<h3 id="callbacks"><code>callbacks</code></h3>
+<ul>
+<li><strong>type:</strong> <code>dict</code></li>
+</ul>
+<p>The callbacks enables you to pass functions to hyperactive that are called every iteration during the optimization run. The function has access to the same argument as the objective-function. You can decide if the functions are called before or after the objective-function is evaluated via the keys of the callbacks-dictionary. The values of the dictionary are lists of the callback-functions. The following example should show they way to use callbacks:</p>
+<details class="example"><summary>Use the <code>callbacks</code>-parameter</summary><div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="o">...</span>
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">def</span> <span class="nf">callback_1</span><span class="p">(</span><span class="n">access</span><span class="p">):</span>
+<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># do some stuff</span>
+<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a>
+<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="k">def</span> <span class="nf">callback_2</span><span class="p">(</span><span class="n">access</span><span class="p">):</span>
+<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="c1"># do some stuff</span>
+<a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a>
+<a href="#__codelineno-5-9" id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="k">def</span> <span class="nf">callback_3</span><span class="p">(</span><span class="n">access</span><span class="p">):</span>
+<a href="#__codelineno-5-10" id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="c1"># do some stuff</span>
+<a href="#__codelineno-5-11" id="__codelineno-5-11" name="__codelineno-5-11"></a>
+<a href="#__codelineno-5-12" id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="n">hyper</span> <span class="o">=</span> <span class="n">Hyperactive</span><span class="p">()</span>
+<a href="#__codelineno-5-13" id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="n">hyper</span><span class="o">.</span><span class="n">add_search</span><span class="p">(</span>
+<a href="#__codelineno-5-14" id="__codelineno-5-14" name="__codelineno-5-14"></a>    <span class="n">objective_function</span><span class="p">,</span>
+<a href="#__codelineno-5-15" id="__codelineno-5-15" name="__codelineno-5-15"></a>    <span class="n">search_space</span><span class="p">,</span>
+<a href="#__codelineno-5-16" id="__codelineno-5-16" name="__codelineno-5-16"></a>    <span class="n">n_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<a href="#__codelineno-5-17" id="__codelineno-5-17" name="__codelineno-5-17"></a>    <span class="n">callbacks</span><span class="o">=</span><span class="p">{</span>
+<a href="#__codelineno-5-18" id="__codelineno-5-18" name="__codelineno-5-18"></a>    <span class="s2">"after"</span><span class="p">:</span> <span class="p">[</span><span class="n">callback_1</span><span class="p">,</span> <span class="n">callback_2</span><span class="p">],</span>
+<a href="#__codelineno-5-19" id="__codelineno-5-19" name="__codelineno-5-19"></a>    <span class="s2">"before"</span><span class="p">:</span> <span class="p">[</span><span class="n">callback_3</span><span class="p">]</span>
+<a href="#__codelineno-5-20" id="__codelineno-5-20" name="__codelineno-5-20"></a>    <span class="p">},</span>
+<a href="#__codelineno-5-21" id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="p">)</span>
+<a href="#__codelineno-5-22" id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="n">hyper</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+</details>
+<h3 id="catch"><code>catch</code></h3>
+<ul>
+<li><strong>type:</strong> <code>dict</code></li>
+</ul>
+<p>The catch parameter provides a way to handle exceptions that occur during the evaluation of the objective-function or the callbacks. It is a dictionary that accepts the exception class as a key and the score that is returned instead as the value. This way you can handle multiple types of exceptions and return different scores for each. In the case of an exception it often makes sense to return np.nan as a score. You can see an example of this in the following code-snippet:</p>
+<details class="example"><summary>Use the <code>catch</code>-parameter</summary><div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="o">...</span>
+<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a>
+<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">hyper</span> <span class="o">=</span> <span class="n">Hyperactive</span><span class="p">()</span>
+<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="n">hyper</span><span class="o">.</span><span class="n">add_search</span><span class="p">(</span>
+<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>    <span class="n">objective_function</span><span class="p">,</span>
+<a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a>    <span class="n">search_space</span><span class="p">,</span>
+<a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a>    <span class="n">n_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a>    <span class="n">catch</span><span class="o">=</span><span class="p">{</span>
+<a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a>    <span class="ne">ValueError</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span>
+<a href="#__codelineno-6-10" id="__codelineno-6-10" name="__codelineno-6-10"></a>    <span class="p">},</span>
+<a href="#__codelineno-6-11" id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="p">)</span>
+<a href="#__codelineno-6-12" id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="n">hyper</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre></div>
+</details>
+<h3 id="max_score"><code>max_score</code></h3>
+<ul>
+<li><strong>type:</strong> <code>float</code></li>
+</ul>
+<p>Maximum score until the optimization stops. The score will be checked after each completed iteration.</p>
+<h3 id="early_stopping"><code>early_stopping</code></h3>
+<ul>
+<li><strong>type:</strong> <code>dict</code></li>
+</ul>
+<p>Stops the optimization run early if it did not achive any score-improvement within the last iterations. The early_stopping-parameter enables to set three parameters:</p>
+<ul>
+<li>
+<p><code>n_iter_no_change</code>: Non-optional int-parameter. This marks the last n iterations to look for an improvement over the iterations that came before n. If the best score of the entire run is within those last n iterations the run will continue (until other stopping criteria are met), otherwise the run will stop.</p>
+</li>
+<li>
+<p><code>tol_abs</code>: Optional float-paramter. The score must have improved at least this absolute tolerance in the last n iterations over the best score in the iterations before n. This is an absolute value, so 0.1 means an imporvement of 0.8 -&gt; 0.9 is acceptable but 0.81 -&gt; 0.9 would stop the run.</p>
+</li>
+<li>
+<p><code>tol_rel</code>: Optional float-paramter. The score must have imporved at least this relative tolerance (in percentage) in the last n iterations over the best score in the iterations before n. This is a relative value, so 10 means an imporvement of 0.8 -&gt; 0.88 is acceptable but 0.8 -&gt; 0.87 would stop the run.</p>
+</li>
+</ul>
+<h3 id="random_state"><code>random_state</code></h3>
+<ul>
+<li><strong>type:</strong> <code>int</code></li>
+</ul>
+<p>Random state for random processes in the random, numpy and scipy module.</p>
+<h3 id="memory"><code>memory</code></h3>
+<ul>
+<li><strong>type:</strong> <code>bool</code>, <code>str</code></li>
+</ul>
+<p>Whether or not to use the "memory"-feature. The memory is a dictionary, which gets filled with parameters and scores during the optimization run. If the optimizer encounters a parameter that is already in the dictionary it just extracts the score instead of reevaluating the objective function (which can take a long time). If memory is set to "share" and there are multiple jobs for the same objective function then the memory dictionary is automatically shared between the different processes.</p>
+<h3 id="memory_warm_start"><code>memory_warm_start</code></h3>
+<ul>
+<li><strong>type:</strong> <code>pandas dataframe</code></li>
+</ul>
+<p>Pandas dataframe that contains score and parameter information that will be automatically loaded into the memory-dictionary.</p>
+<h2 id="run">run</h2>
+<p>The <code>run</code>-method has the following arguments:</p>
+<h3 id="max_time"><code>max_time</code></h3>
+<ul>
+<li><strong>type:</strong> <code>float</code></li>
+</ul>
+<p>Maximum number of seconds until the optimization stops. The time will be checked after each completed iteration.</p>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Hyperactive" class="md-footer__link md-footer__link--prev" href="../.." rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              Hyperactive
+            </div>
+</div>
+</a>
+<a aria-label="Next: Result Attributes" class="md-footer__link md-footer__link--next" href="../result_attributes/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              Result Attributes
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+<div class="md-social">
+<a class="md-social__link" href="https://twitter.com/blanke_simon" rel="noopener" target="_blank" title="twitter.com">
+<svg viewbox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path></svg>
+</a>
+<a class="md-social__link" href="https://github.com/SimonBlanke/" rel="noopener" target="_blank" title="github.com">
+<svg viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+</a>
+<a class="md-social__link" href="https://www.linkedin.com/in/simon-blanke/" rel="noopener" target="_blank" title="www.linkedin.com">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": ["navigation.indexes"], "search": "../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": {"provider": "mike"}}</script>
+<script src="../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+<script src="../../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "width": "100%", "height": "auto", "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom"});})</script></body>
+</html>
