@@ -22,7 +22,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#optimization-strategies">
+<a class="md-skip" href="#custom-optimization-strategy">
           Skip to content
         </a>
 </div>
@@ -184,14 +184,39 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#custom-optimization-strategy">
-    Custom Optimization Strategy
-  </a>
-<nav aria-label="Custom Optimization Strategy" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
 <a class="md-nav__link" href="#how-it-works">
     How it works
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#templates">
+    Templates
+  </a>
+<nav aria-label="Templates" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#random-search-hill-climbing">
+    Random search, hill climbing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#particle-swarm-optimizer-random-search">
+    Particle swarm optimizer, random search
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct-algorithm-hill-climbing">
+    Direct algorithm, hill climbing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#random-search-bayesian-optimization-hill-climbing">
+    Random search, bayesian optimization, hill climbing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct-algorithm-lipschitz-optimizer-bayesian-optimization-random-annealing">
+    Direct algorithm, lipschitz optimizer, bayesian optimization, random annealing
   </a>
 </li>
 </ul>
@@ -335,14 +360,39 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#custom-optimization-strategy">
-    Custom Optimization Strategy
-  </a>
-<nav aria-label="Custom Optimization Strategy" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
 <a class="md-nav__link" href="#how-it-works">
     How it works
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#templates">
+    Templates
+  </a>
+<nav aria-label="Templates" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#random-search-hill-climbing">
+    Random search, hill climbing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#particle-swarm-optimizer-random-search">
+    Particle swarm optimizer, random search
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct-algorithm-hill-climbing">
+    Direct algorithm, hill climbing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#random-search-bayesian-optimization-hill-climbing">
+    Random search, bayesian optimization, hill climbing
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#direct-algorithm-lipschitz-optimizer-bayesian-optimization-random-annealing">
+    Direct algorithm, lipschitz optimizer, bayesian optimization, random annealing
   </a>
 </li>
 </ul>
@@ -355,9 +405,8 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="optimization-strategies">Optimization Strategies</h1>
-<h2 id="custom-optimization-strategy">Custom Optimization Strategy</h2>
-<h3 id="how-it-works">How it works</h3>
+<h1 id="custom-optimization-strategy">Custom Optimization Strategy</h1>
+<h2 id="how-it-works">How it works</h2>
 <p>Optimization strategies are designed to automatically pass useful data from one optimization algorithm to the next:</p>
 <ul>
 <li>The best parameter found in one optimization run ist automatically passed to the next. </li>
@@ -382,6 +431,72 @@
 <a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="n">hyper</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 <a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a>
 <a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="o">...</span>
+</code></pre></div>
+</div>
+<h2 id="templates">Templates</h2>
+<h3 id="random-search-hill-climbing">Random search, hill climbing</h3>
+<p>This strategy starts with a long random search to explore the search-space and continues with hill climbing to locally find the best optimum and continues tuning it with a smaller step size.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers</span> <span class="kn">import</span> <span class="n">RandomSearchOptimizer</span><span class="p">,</span> <span class="n">HillClimbingOptimizer</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers.strategies</span> <span class="kn">import</span> <span class="n">CustomOptimizationStrategy</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="n">opt_strat</span> <span class="o">=</span> <span class="n">CustomOptimizationStrategy</span><span class="p">()</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">RandomSearchOptimizer</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">HillClimbingOptimizer</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">HillClimbingOptimizer</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="particle-swarm-optimizer-random-search">Particle swarm optimizer, random search</h3>
+<p>In this strategy we try to resolve a shortcoming of the particle swarm optimization by resetting it with a random search. This helps the particles find new positions after they converge in the previous attempt.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers</span> <span class="kn">import</span> <span class="n">ParticleSwarmOptimizer</span><span class="p">,</span> <span class="n">RandomSearchOptimizer</span>
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers.strategies</span> <span class="kn">import</span> <span class="n">CustomOptimizationStrategy</span>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="n">opt_strat</span> <span class="o">=</span> <span class="n">CustomOptimizationStrategy</span><span class="p">()</span>
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">ParticleSwarmOptimizer</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">RandomSearchOptimizer</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">ParticleSwarmOptimizer</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="direct-algorithm-hill-climbing">Direct algorithm, hill climbing</h3>
+<p>This strategy is simple and uses light weight algorithms. The direct search is the computationally least expensive of the sequence-model-based algorithms. After the initial step the hill climbing will continue searching locally to get an even better result, while keeping the computational cost low.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers</span> <span class="kn">import</span> <span class="n">DirectAlgorithm</span><span class="p">,</span> <span class="n">HillClimbingOptimizer</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers.strategies</span> <span class="kn">import</span> <span class="n">CustomOptimizationStrategy</span>
+<a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>
+<a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="n">opt_strat</span> <span class="o">=</span> <span class="n">CustomOptimizationStrategy</span><span class="p">()</span>
+<a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">DirectAlgorithm</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">HillClimbingOptimizer</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="random-search-bayesian-optimization-hill-climbing">Random search, bayesian optimization, hill climbing</h3>
+<p>This strategy attempts to save computational time, while still getting the benefit of bayesian optimization. The random search will to most of the exploration that would normally be done by bayesian optimization in its first iterations. After the bayesian optimization step the strategy will continue tuning the best position with a hill climbing with small step size.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers</span> <span class="kn">import</span> <span class="n">RandomSearchOptimizer</span><span class="p">,</span> <span class="n">BayesianOptimizer</span><span class="p">,</span> <span class="n">HillClimbingOptimizer</span>
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers.strategies</span> <span class="kn">import</span> <span class="n">CustomOptimizationStrategy</span>
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>
+<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="n">opt_strat</span> <span class="o">=</span> <span class="n">CustomOptimizationStrategy</span><span class="p">()</span>
+<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">RandomSearchOptimizer</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">BayesianOptimizer</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">HillClimbingOptimizer</span><span class="p">(</span><span class="n">epsilon</span><span class="o">=</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<h3 id="direct-algorithm-lipschitz-optimizer-bayesian-optimization-random-annealing">Direct algorithm, lipschitz optimizer, bayesian optimization, random annealing</h3>
+<p>This strategy starts with a direct search and fills the positions that the bayesian optimization would normally explore with the lipschitz optimizer. The bayesian optimization will use the known positions to find a good solution, while the random annealing will tune this position with a low step size, that decreases further over time.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers</span> <span class="kn">import</span> <span class="n">DirectAlgorithm</span><span class="p">,</span> <span class="n">LipschitzOptimizer</span><span class="p">,</span> <span class="n">BayesianOptimizer</span><span class="p">,</span> <span class="n">RandomAnnealingOptimizer</span>
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">from</span> <span class="nn">hyperactive.optimizers.strategies</span> <span class="kn">import</span> <span class="n">CustomOptimizationStrategy</span>
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a>
+<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="n">opt_strat</span> <span class="o">=</span> <span class="n">CustomOptimizationStrategy</span><span class="p">()</span>
+<a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">DirectAlgorithm</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">LipschitzOptimizer</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+<a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">BayesianOptimizer</span><span class="p">(),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+<a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="n">opt_strat</span><span class="o">.</span><span class="n">add_optimizer</span><span class="p">(</span><span class="n">RandomAnnealingOptimizer</span><span class="p">(</span><span class="n">start_temp</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 </code></pre></div>
 </div>
 </article>
