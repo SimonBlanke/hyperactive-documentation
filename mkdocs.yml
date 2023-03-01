@@ -44,8 +44,6 @@ theme:
         name: Switch to light mode
 
   features:
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.indexes
 
 extra_css:
