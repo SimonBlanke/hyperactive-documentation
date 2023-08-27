@@ -38,7 +38,7 @@ Without optimization strategies the steps above can be manually done, but by cha
 
 ### Random search, hill climbing
 
-This strategy starts with a long random search to explore the search-space and continues with hill climbing to locally find the best optimum and continues tuning it with a smaller step size.
+This strategy starts with a long random search to explore the search-space and continues with hill climbing to locally find the best optimum. If there are no improvements during the first hill-climbing run the strategy will early stop and continue tuning the best results with a hill-climbing algorithm with smaller step size (small epsilon).
 
 !!! example
     ```python
@@ -47,7 +47,7 @@ This strategy starts with a long random search to explore the search-space and c
 
     opt_strat = CustomOptimizationStrategy()
     opt_strat.add_optimizer(RandomSearchOptimizer(), duration=0.5)
-    opt_strat.add_optimizer(HillClimbingOptimizer(), duration=0.5)
+    opt_strat.add_optimizer(HillClimbingOptimizer(), duration=0.5, early_stopping={"n_iter_no_change": 5})
     opt_strat.add_optimizer(HillClimbingOptimizer(epsilon=0.01), duration=0.5)
     ```
 
@@ -62,8 +62,8 @@ In this strategy we try to resolve a shortcoming of the particle swarm optimizat
     from hyperactive.optimizers.strategies import CustomOptimizationStrategy
 
     opt_strat = CustomOptimizationStrategy()
-    opt_strat.add_optimizer(ParticleSwarmOptimizer(), duration=0.3)
-    opt_strat.add_optimizer(RandomSearchOptimizer(), duration=0.3)
+    opt_strat.add_optimizer(ParticleSwarmOptimizer(), duration=0.4, early_stopping={"n_iter_no_change": 5})
+    opt_strat.add_optimizer(RandomSearchOptimizer(), duration=0.2)
     opt_strat.add_optimizer(ParticleSwarmOptimizer(), duration=0.4)
     ```
 
