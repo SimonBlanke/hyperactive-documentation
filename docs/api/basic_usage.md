@@ -188,6 +188,41 @@ The initialization dictionary automatically determines a number of parameters th
     hyper.run()
     ```
 
+### `constraints`
+
+- **type:** `list`, `None`
+- **default:** `None`
+
+The constraints-argument accepts a list of functions. These functions contain the same argument as the objective-function to access the parameters from the search-space and returns a boolean value. With these parameters you can set new conditions and boundries for the search-space by returning `True` or `False` depending on the parameters from the argument. If the returning value is true the position in the search-space is valid, but if it is false the position is **not** inside the "valid area" of the search-space.
+
+Optimization algorithms will never select a position inside the constrained area of the search-space to be evaluated inside the objective-function.
+
+
+!!! example
+    ```python
+    ...
+
+    search_space = {
+        "x1": list(np.arange(-10, 31, 0.3)),
+        "x2": list(np.arange(-10, 31, 0.3)),
+    }
+
+    def constraint_1(para):
+        # only values in 'x1' higher than -5 are valid
+        return para["x1"] > -5
+
+    constraints_list = [constraint_1]
+
+    hyper = Hyperactive()
+    hyper.add_search(
+        objective_function, search_space, n_iter=50, constraints=constraints_list
+    )
+    hyper.run()
+
+    ...
+    ```
+
+
 ### `pass_through`
 
 - **type:** `dict`
