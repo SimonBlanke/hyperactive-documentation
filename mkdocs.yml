@@ -95,7 +95,9 @@ nav:
       - Parallel Tempering: optimizers/parallel_tempering.md
       - Particle Swarm Optimization: optimizers/particle_swarm_optimization.md
       - Spiral Optimization: optimizers/spiral_optimization.md
+      - Genetic Algorithm: optimizers/genetic_algorithm/main_page.md
       - Evolution Strategy: optimizers/evolution_strategy.md
+      - Differential Evolution: optimizers/differential_evolution/main_page.md
       - Bayesian Optimization: optimizers/bayesian_optimization.md
       - Lipschitz Optimization: optimizers/lipschitz_optimization.md
       - DIRECT Algorithm: optimizers/direct_algorithm.md
