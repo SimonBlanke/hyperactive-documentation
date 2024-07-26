@@ -30,6 +30,8 @@ The equation above results in an upper bound that looks like the known positions
 
 {% include 'parameters/max_sample_size.md' %}
 
+{% include 'parameters/replacement.md' %}
+
 {% include 'parameters/sampling.md' %}
 
 {% include 'parameters/warm_start_smbo.md' %}

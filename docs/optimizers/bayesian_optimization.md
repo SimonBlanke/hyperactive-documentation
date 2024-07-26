@@ -46,6 +46,8 @@ The surrogate model used in bayesian optimization is the gassian process regress
 
 {% include 'parameters/xi.md' %}
 
+{% include 'parameters/replacement.md' %}
+
 {% include 'parameters/gpr.md' %}
 
 {% include 'parameters/max_sample_size.md' %}

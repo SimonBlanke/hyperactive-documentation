@@ -32,6 +32,8 @@ where:
 
 {% include 'parameters/gamma_tpe.md' %}
 
+{% include 'parameters/replacement.md' %}
+
 {% include 'parameters/max_sample_size.md' %}
 
 {% include 'parameters/sampling.md' %}

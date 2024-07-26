@@ -22,6 +22,8 @@ standard deviation from the impurity of the trees in the ensemble. This modifica
 
 {% include 'parameters/xi.md' %}
 
+{% include 'parameters/replacement.md' %}
+
 {% include 'parameters/tree_regressor.md' %}
 
 {% include 'parameters/max_sample_size.md' %}
