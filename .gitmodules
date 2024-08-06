@@ -1,0 +1,3 @@
+[submodule "docs/common-optimization-documentation"]
+	path = docs/common-optimization-documentation
+	url = https://github.com/SimonBlanke/common-optimization-documentation
