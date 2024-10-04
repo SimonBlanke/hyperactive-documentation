@@ -72,6 +72,8 @@ nav:
   - API Reference:
       - Basic Usage: api/basic_usage.md
       - Result Attributes: api/result_attributes.md
+      - Integrations: 
+        - integrations/sklearn.md
 
   - Tutorials:
       - The objective function: tutorials/objective_function.md
