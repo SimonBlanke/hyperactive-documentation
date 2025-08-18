@@ -133,7 +133,7 @@ nav:
       - Advanced Patterns: examples/advanced_patterns.md
 
   - Advanced Topics:
-      - Multi-Objective Optimization: advanced/multi_objective.md
-      - Custom Algorithm Development: advanced/custom_algorithms.md
-      - Performance Optimization: advanced/performance_tips.md
-      - Extension Development: advanced/extensions.md
+      - Multi-Objective Optimization: advanced_topics/multi_objective.md
+      - Custom Algorithm Development: advanced_topics/custom_algorithms.md
+      - Performance Optimization: advanced_topics/performance_tips.md
+      - Extension Development: advanced_topics/extensions.md
