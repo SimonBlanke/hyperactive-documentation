@@ -69,39 +69,71 @@ nav:
   - Home:
       - Hyperactive: index.md
 
-  - API Reference:
-      - Basic Usage: api/basic_usage.md
-      - Result Attributes: api/result_attributes.md
-      - Integrations: 
-        - integrations/sklearn.md
+  - Getting Started:
+      - Quick Start Guide: tutorials/quickstart_v5.md
+      - Migration Guide: tutorials/migration_guide.md
 
-  - Tutorials:
-      - The objective function: tutorials/objective_function.md
-      - The search space: tutorials/search_space.md
-      - Optimizer classes: tutorials/optimizer_classes.md
-      - Optimization Strategies: tutorials/optimization_strategies.md
+  - API Reference:
+      - Base Classes: api/base_classes.md
+      - Optimization Algorithms: api/optimizers.md
+      - Experiments & Integrations: api/experiments.md
 
   - Optimization Algorithms:
-      - optimizers/index.md
-      - Hill Climbing: optimizers/hill_climbing.md
-      - Stochastic Hill Climbing: optimizers/stochastic_hill_climbing.md
-      - Simulated Annealing: optimizers/simulated_annealing.md
-      - Repulsing Hill Climbing: optimizers/repulsing_hill_climbing.md
-      - Downhill Simplex Optimization: optimizers/downhill_simplex.md
-      - Pattern Search: optimizers/pattern_search.md
-      - Powell's Method: optimizers/powells_method.md
-      - Random Restart Hill Climbing: optimizers/random_restart_hill_climbing.md
-      - Random Search: optimizers/random_search.md
-      - Random Annealing: optimizers/random_annealing.md
-      - Grid Search: optimizers/grid_search.md
-      - Parallel Tempering: optimizers/parallel_tempering.md
-      - Particle Swarm Optimization: optimizers/particle_swarm_optimization.md
-      - Spiral Optimization: optimizers/spiral_optimization.md
-      - Genetic Algorithm: optimizers/genetic_algorithm/main_page.md
-      - Evolution Strategy: optimizers/evolution_strategy.md
-      - Differential Evolution: optimizers/differential_evolution/main_page.md
-      - Bayesian Optimization: optimizers/bayesian_optimization.md
-      - Lipschitz Optimization: optimizers/lipschitz_optimization.md
-      - DIRECT Algorithm: optimizers/direct_algorithm.md
-      - Tree Structured Parzen Estimators: optimizers/tree_structured_parzen_estimators.md
-      - Forest Optimization: optimizers/forest_optimization.md
+      - GFO Backend:
+        - Hill Climbing: optimizers/gfo/hill_climbing.md
+        - Stochastic Hill Climbing: optimizers/gfo/stochastic_hill_climbing.md
+        - Repulsing Hill Climbing: optimizers/gfo/repulsing_hill_climbing.md
+        - Random Restart Hill Climbing: optimizers/gfo/random_restart_hill_climbing.md
+        - Simulated Annealing: optimizers/gfo/simulated_annealing.md
+        - Downhill Simplex: optimizers/gfo/downhill_simplex.md
+        - Random Search: optimizers/gfo/random_search.md
+        - Grid Search: optimizers/gfo/grid_search.md
+        - Powell's Method: optimizers/gfo/powells_method.md
+        - Pattern Search: optimizers/gfo/pattern_search.md
+        - Lipschitz Optimizer: optimizers/gfo/lipschitz_optimizer.md
+        - DIRECT Algorithm: optimizers/gfo/direct_algorithm.md
+        - Parallel Tempering: optimizers/gfo/parallel_tempering.md
+        - Particle Swarm Optimization: optimizers/gfo/particle_swarm_optimization.md
+        - Spiral Optimization: optimizers/gfo/spiral_optimization.md
+        - Genetic Algorithm: optimizers/gfo/genetic_algorithm/main_page.md
+        - Evolution Strategy: optimizers/gfo/evolution_strategy.md
+        - Differential Evolution: optimizers/gfo/differential_evolution/main_page.md
+        - Bayesian Optimization: optimizers/gfo/bayesian_optimization.md
+        - Tree Structured Parzen Estimators: optimizers/gfo/tree_structured_parzen_estimators.md
+        - Forest Optimization: optimizers/gfo/forest_optimization.md
+      - Optuna Backend:
+        - TPE Optimizer: optimizers/optuna/tpe_optimizer.md
+        - Random Optimizer: optimizers/optuna/random_optimizer.md
+        - CMA-ES Optimizer: optimizers/optuna/cmaes_optimizer.md
+        - GP Optimizer: optimizers/optuna/gp_optimizer.md
+        - Grid Optimizer: optimizers/optuna/grid_optimizer.md
+        - NSGA-II Optimizer: optimizers/optuna/nsga_ii_optimizer.md
+        - NSGA-III Optimizer: optimizers/optuna/nsga_iii_optimizer.md
+        - QMC Optimizer: optimizers/optuna/qmc_optimizer.md
+      - Scikit-learn Backend:
+        - Grid Search SK: optimizers/sklearn/grid_search_sk.md
+        - Random Search SK: optimizers/sklearn/random_search_sk.md
+
+  - Experiments:
+      - Built-in Benchmarks:
+        - Ackley Function: experiments/benchmarks/ackley.md
+        - Sphere Function: experiments/benchmarks/sphere.md
+        - Parabola Function: experiments/benchmarks/parabola.md
+      - Integrations:
+        - Scikit-learn CV: experiments/integrations/sklearn_cv.md
+        - OptCV Interface: experiments/integrations/opt_cv.md
+        - Sktime Forecasting: experiments/integrations/sktime_forecasting.md
+      - Custom Experiments: experiments/custom_experiments.md
+
+  - Examples:
+      - Basic Usage Examples: examples/basic_usage.md
+      - Machine Learning Examples: examples/machine_learning.md
+      - Custom Objective Functions: examples/custom_objectives.md
+      - Multi-Backend Comparison: examples/backend_comparison.md
+      - Advanced Patterns: examples/advanced_patterns.md
+
+  - Advanced Topics:
+      - Multi-Objective Optimization: advanced/multi_objective.md
+      - Custom Algorithm Development: advanced/custom_algorithms.md
+      - Performance Optimization: advanced/performance_tips.md
+      - Extension Development: advanced/extensions.md
