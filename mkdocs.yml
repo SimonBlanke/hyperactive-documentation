@@ -90,7 +90,7 @@ nav:
         - Grid Search: optimizers/gfo/grid_search.md
         - Powell's Method: optimizers/gfo/powells_method.md
         - Pattern Search: optimizers/gfo/pattern_search.md
-        - Lipschitz Optimizer: optimizers/gfo/lipschitz_optimizer.md
+        - Lipschitz Optimizer: optimizers/gfo/lipschitz_optimization.md
         - DIRECT Algorithm: optimizers/gfo/direct_algorithm.md
         - Parallel Tempering: optimizers/gfo/parallel_tempering.md
         - Particle Swarm Optimization: optimizers/gfo/particle_swarm_optimization.md
