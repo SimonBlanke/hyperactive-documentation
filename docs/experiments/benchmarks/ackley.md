@@ -8,7 +8,9 @@ The Ackley function is a widely used multimodal benchmark function for testing o
 
 The Ackley function is defined as:
 
-$$f(x) = -a \exp\left(-b\sqrt{rac{1}{d}\sum_{i=1}^d x_i^2}ight) - \exp\left(rac{1}{d}\sum_{i=1}^d \cos(c x_i)ight) + a + e$$
+$$f(x) = -a \exp\left(-b\sqrt{rac{1}{d}\sum_{i=1}^d x_i^2}
+ight) - \exp\left(rac{1}{d}\sum_{i=1}^d \cos(c x_i)
+ight) + a + e$$
 
 Where:
 - $a = 20$ (amplitude of exponential term)
@@ -29,21 +31,7 @@ Where:
 ## Usage Example
 
 ```python
-from hyperactive.experiment.bench import Ackley
-from hyperactive.opt.gfo import BayesianOptimizer
-
-# Create 2D Ackley function
-experiment = Ackley(dimensions=2, bounds=(-5, 5))
-
-# Create optimizer
-optimizer = BayesianOptimizer(experiment=experiment)
-
-# Run optimization
-best_params = optimizer.solve()
-print("Best parameters:", best_params)
-print("Best score:", experiment.score(best_params)[0])
-
-# The best score should be close to 0 (global minimum)
+--8<-- "experiments_benchmarks_ackley_example.py"
 ```
 
 ## Characteristics for Algorithm Testing
@@ -66,17 +54,7 @@ print("Best score:", experiment.score(best_params)[0])
 ## Multi-Dimensional Usage
 
 ```python
-# Test scalability
-dimensions = [2, 5, 10, 20]
-results = {}
-
-for dim in dimensions:
-    experiment = Ackley(dimensions=dim, bounds=(-5, 5))
-    optimizer = BayesianOptimizer(experiment=experiment)
-    best_params = optimizer.solve()
-    best_score = experiment.score(best_params)[0]
-    results[dim] = best_score
-    print(f"{dim}D: Best score = {best_score}")
+--8<-- "experiments_benchmarks_ackley_example_2.py"
 ```
 
 ## Visualization
@@ -90,33 +68,7 @@ The Ackley function in 2D shows:
 ## Algorithm Comparison Example
 
 ```python
-from hyperactive.opt.gfo import (
-    RandomSearch, HillClimbing, SimulatedAnnealing, 
-    BayesianOptimizer, ParticleSwarmOptimizer
-)
-
-# Create experiment
-experiment = Ackley(dimensions=5, bounds=(-5, 5))
-
-# Test multiple algorithms
-algorithms = {
-    "Random Search": RandomSearch(experiment=experiment),
-    "Hill Climbing": HillClimbing(experiment=experiment),
-    "Simulated Annealing": SimulatedAnnealing(experiment=experiment),
-    "Bayesian Optimization": BayesianOptimizer(experiment=experiment),
-    "Particle Swarm": ParticleSwarmOptimizer(experiment=experiment, population=20)
-}
-
-results = {}
-for name, optimizer in algorithms.items():
-    best_params = optimizer.solve()
-    best_score = experiment.score(best_params)[0]
-    results[name] = best_score
-    print(f"{name}: {best_score:.6f}")
-
-# Best performing algorithm
-best_algorithm = max(results.items(), key=lambda x: x[1])
-print(f"\nBest: {best_algorithm[0]} with score {best_algorithm[1]:.6f}")
+--8<-- "experiments_benchmarks_ackley_example_3.py"
 ```
 
 ## Parameter Sensitivity
@@ -124,14 +76,7 @@ print(f"\nBest: {best_algorithm[0]} with score {best_algorithm[1]:.6f}")
 The Ackley function parameters affect difficulty:
 
 ```python
-# Standard Ackley (easier)
-experiment_easy = Ackley(dimensions=2, bounds=(-5, 5))
-
-# Larger search space (harder)  
-experiment_hard = Ackley(dimensions=2, bounds=(-32, 32))
-
-# Higher dimensions (much harder)
-experiment_very_hard = Ackley(dimensions=20, bounds=(-5, 5))
+--8<-- "experiments_benchmarks_ackley_example_4.py"
 ```
 
 ## References

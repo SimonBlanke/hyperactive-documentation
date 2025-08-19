@@ -34,41 +34,7 @@ Key features:
 ## Usage Example
 
 ```python
-from hyperactive.opt.optuna import GPOptimizer
-from hyperactive.experiment.integrations import SklearnCvExperiment
-from sklearn.svm import SVR
-from sklearn.datasets import load_diabetes
-
-# Load dataset
-X, y = load_diabetes(return_X_y=True)
-
-# Define search space (works best with continuous parameters)
-param_grid = {
-    "C": [0.1, 1.0, 10.0, 100.0, 1000.0],
-    "epsilon": [0.001, 0.01, 0.1, 1.0],
-    "gamma": [0.001, 0.01, 0.1, 1.0, 10.0]
-}
-
-# Create experiment
-experiment = SklearnCvExperiment(
-    estimator=SVR(kernel='rbf'),
-    param_grid=param_grid,
-    X=X, y=y,
-    cv=5,
-    scoring="neg_mean_squared_error"
-)
-
-# Create GP optimizer
-optimizer = GPOptimizer(
-    experiment=experiment,
-    n_startup_trials=15,
-    acquisition_func="ei"
-)
-
-# Run optimization
-best_params = optimizer.solve()
-print("Best parameters:", best_params)
-print("Best score:", experiment.score(best_params)[0])
+--8<-- "optimizers_optuna_gp_optimizer_example.py"
 ```
 
 ## When to Use GP Optimizer
@@ -108,39 +74,13 @@ print("Best score:", experiment.score(best_params)[0])
 ### Custom Acquisition Function
 
 ```python
-# Expected Improvement (default)
-optimizer = GPOptimizer(
-    experiment=experiment,
-    acquisition_func="ei"
-)
-
-# Lower Confidence Bound for conservative search
-optimizer = GPOptimizer(
-    experiment=experiment,
-    acquisition_func="lcb"
-)
-
-# Probability of Improvement for high-confidence improvements
-optimizer = GPOptimizer(
-    experiment=experiment,
-    acquisition_func="pi"
-)
+--8<-- "optimizers_optuna_gp_optimizer_example_2.py"
 ```
 
 ### Startup Trials Tuning
 
 ```python
-# More exploration before GP starts
-optimizer = GPOptimizer(
-    experiment=experiment,
-    n_startup_trials=20  # More random samples for better initial model
-)
-
-# Quick start with minimal exploration
-optimizer = GPOptimizer(
-    experiment=experiment,
-    n_startup_trials=5  # Fewer random samples, faster GP start
-)
+--8<-- "optimizers_optuna_gp_optimizer_example_3.py"
 ```
 
 ## Comparison with Other Algorithms
@@ -181,31 +121,19 @@ The acquisition function uses both $\mu_n(x)$ (predicted value) and $\sigma_n(x)
 ### Neural Network Hyperparameters
 
 ```python
-param_grid = {
-    "learning_rate": [1e-5, 1e-4, 1e-3, 1e-2, 1e-1],
-    "weight_decay": [1e-6, 1e-5, 1e-4, 1e-3, 1e-2],
-    "dropout_rate": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
-}
+--8<-- "optimizers_optuna_gp_optimizer_example_4.py"
 ```
 
 ### Scientific Simulation Parameters
 
 ```python
-param_grid = {
-    "temperature": [273.15, 300.0, 350.0, 400.0, 500.0],
-    "pressure": [1.0, 10.0, 100.0, 1000.0],
-    "concentration": [0.01, 0.1, 1.0, 10.0]
-}
+--8<-- "optimizers_optuna_gp_optimizer_example_5.py"
 ```
 
 ### Model Regularization
 
 ```python
-param_grid = {
-    "alpha": [1e-4, 1e-3, 1e-2, 1e-1, 1.0],
-    "l1_ratio": [0.0, 0.1, 0.5, 0.9, 1.0],
-    "tol": [1e-5, 1e-4, 1e-3, 1e-2]
-}
+--8<-- "optimizers_optuna_gp_optimizer_example_6.py"
 ```
 
 ## Limitations

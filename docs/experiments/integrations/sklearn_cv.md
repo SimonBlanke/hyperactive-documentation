@@ -16,16 +16,7 @@ SklearnCvExperiment automatically:
 ## Class Signature
 
 ```python
-from hyperactive.experiment.integrations import SklearnCvExperiment
-
-experiment = SklearnCvExperiment(
-    estimator,           # sklearn estimator
-    param_grid,          # parameter search space
-    X, y,               # training data
-    cv=5,               # cross-validation strategy
-    scoring='accuracy',  # scoring metric
-    n_jobs=1            # parallel jobs for CV
-)
+--8<-- "experiments_integrations_sklearn_cv_example.py"
 ```
 
 ## Parameters
@@ -68,86 +59,13 @@ experiment = SklearnCvExperiment(
 ### Classification
 
 ```python
-from hyperactive.experiment.integrations import SklearnCvExperiment
-from hyperactive.opt.gfo import BayesianOptimizer
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_wine
-from sklearn.model_selection import train_test_split
-
-# Load and split data
-X, y = load_wine(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Define hyperparameter search space
-param_grid = {
-    "n_estimators": [50, 100, 150, 200],
-    "max_depth": [3, 5, 7, 10, None],
-    "min_samples_split": [2, 5, 10],
-    "min_samples_leaf": [1, 2, 4]
-}
-
-# Create experiment
-experiment = SklearnCvExperiment(
-    estimator=RandomForestClassifier(random_state=42),
-    param_grid=param_grid,
-    X=X_train, y=y_train,
-    cv=5,
-    scoring='f1_weighted'  # Good for potentially imbalanced data
-)
-
-# Optimize
-optimizer = BayesianOptimizer(experiment=experiment)
-best_params = optimizer.solve()
-
-print("Best parameters:", best_params)
-print("Best CV score:", experiment.score(best_params)[0])
-
-# Train final model with best parameters
-final_model = RandomForestClassifier(**best_params, random_state=42)
-final_model.fit(X_train, y_train)
-test_score = final_model.score(X_test, y_test)
-print("Test score:", test_score)
+--8<-- "experiments_integrations_sklearn_cv_example_2.py"
 ```
 
 ### Regression
 
 ```python
-from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.datasets import load_diabetes
-from sklearn.metrics import mean_squared_error, make_scorer
-
-# Load regression dataset
-X, y = load_diabetes(return_X_y=True)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Define search space for regression
-param_grid = {
-    "n_estimators": [50, 100, 150, 200],
-    "learning_rate": [0.01, 0.05, 0.1, 0.2],
-    "max_depth": [3, 4, 5, 6],
-    "subsample": [0.8, 0.9, 1.0]
-}
-
-# Create regression experiment
-experiment = SklearnCvExperiment(
-    estimator=GradientBoostingRegressor(random_state=42),
-    param_grid=param_grid,
-    X=X_train, y=y_train,
-    cv=5,
-    scoring='neg_mean_squared_error',  # Standard regression metric
-    n_jobs=-1  # Use all available cores
-)
-
-# Optimize
-optimizer = BayesianOptimizer(experiment=experiment)
-best_params = optimizer.solve()
-
-# Evaluate
-final_model = GradientBoostingRegressor(**best_params, random_state=42)
-final_model.fit(X_train, y_train)
-predictions = final_model.predict(X_test)
-mse = mean_squared_error(y_test, predictions)
-print(f"Test MSE: {mse:.4f}")
+--8<-- "experiments_integrations_sklearn_cv_example_3.py"
 ```
 
 ## Advanced Usage
@@ -155,147 +73,25 @@ print(f"Test MSE: {mse:.4f}")
 ### Custom Cross-Validation Strategies
 
 ```python
-from sklearn.model_selection import StratifiedKFold, TimeSeriesSplit, GroupKFold
-import numpy as np
-
-# Stratified K-Fold for imbalanced datasets
-stratified_cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
-
-experiment = SklearnCvExperiment(
-    estimator=RandomForestClassifier(random_state=42),
-    param_grid=param_grid,
-    X=X_train, y=y_train,
-    cv=stratified_cv,
-    scoring='f1_weighted'
-)
-
-# Time Series Cross-Validation
-ts_cv = TimeSeriesSplit(n_splits=5)
-
-experiment_ts = SklearnCvExperiment(
-    estimator=GradientBoostingRegressor(random_state=42),
-    param_grid=param_grid,
-    X=X_time_series, y=y_time_series,  # Time series data
-    cv=ts_cv,
-    scoring='neg_mean_absolute_error'
-)
-
-# Group K-Fold for grouped data
-groups = np.array([...])  # Group labels for each sample
-group_cv = GroupKFold(n_splits=5)
-
-experiment_group = SklearnCvExperiment(
-    estimator=RandomForestClassifier(random_state=42),
-    param_grid=param_grid,
-    X=X_grouped, y=y_grouped,
-    cv=group_cv,
-    scoring='accuracy'
-)
+--8<-- "experiments_integrations_sklearn_cv_example_4.py"
 ```
 
 ### Custom Scoring Functions
 
 ```python
-from sklearn.metrics import make_scorer, precision_recall_fscore_support
-
-# Custom scoring function
-def custom_f1_score(y_true, y_pred):
-    precision, recall, f1, _ = precision_recall_fscore_support(
-        y_true, y_pred, average='weighted'
-    )
-    return f1.mean()
-
-custom_scorer = make_scorer(custom_f1_score)
-
-experiment = SklearnCvExperiment(
-    estimator=RandomForestClassifier(random_state=42),
-    param_grid=param_grid,
-    X=X_train, y=y_train,
-    cv=5,
-    scoring=custom_scorer
-)
-
-# Multiple metrics evaluation (for analysis, not optimization)
-from sklearn.metrics import classification_report
-
-def evaluate_model_comprehensively(estimator, X_test, y_test):
-    predictions = estimator.predict(X_test)
-    report = classification_report(y_test, predictions, output_dict=True)
-    return report
-
-# After optimization
-final_model = RandomForestClassifier(**best_params, random_state=42)
-final_model.fit(X_train, y_train)
-comprehensive_results = evaluate_model_comprehensively(final_model, X_test, y_test)
+--8<-- "experiments_integrations_sklearn_cv_example_5.py"
 ```
 
 ### Pipeline Optimization
 
 ```python
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler, SelectKBest, f_classif
-from sklearn.svm import SVC
-
-# Create preprocessing and model pipeline
-pipeline = Pipeline([
-    ('scaler', StandardScaler()),
-    ('feature_selection', SelectKBest(f_classif)),
-    ('classifier', SVC(random_state=42))
-])
-
-# Define parameter grid for entire pipeline
-param_grid = {
-    # Scaler parameters
-    'scaler__with_mean': [True, False],
-    'scaler__with_std': [True, False],
-    
-    # Feature selection parameters
-    'feature_selection__k': [5, 10, 15, 20],
-    
-    # Classifier parameters
-    'classifier__C': [0.1, 1, 10, 100],
-    'classifier__gamma': ['scale', 'auto', 0.001, 0.01, 0.1],
-    'classifier__kernel': ['rbf', 'linear']
-}
-
-# Create experiment with pipeline
-experiment = SklearnCvExperiment(
-    estimator=pipeline,
-    param_grid=param_grid,
-    X=X_train, y=y_train,
-    cv=5,
-    scoring='f1_weighted',
-    n_jobs=-1
-)
-
-# Optimize pipeline
-optimizer = BayesianOptimizer(experiment=experiment)
-best_params = optimizer.solve()
-
-print("Best pipeline parameters:", best_params)
+--8<-- "experiments_integrations_sklearn_cv_example_6.py"
 ```
 
 ### Early Stopping and Budget Management
 
 ```python
-# For algorithms that support early stopping
-from sklearn.ensemble import GradientBoostingClassifier
-
-# Include validation_fraction and n_iter_no_change in search
-param_grid = {
-    "n_estimators": [100, 200, 500, 1000],  # Large values for early stopping
-    "learning_rate": [0.01, 0.05, 0.1],
-    "validation_fraction": [0.1, 0.2],
-    "n_iter_no_change": [5, 10, 15]
-}
-
-experiment = SklearnCvExperiment(
-    estimator=GradientBoostingClassifier(random_state=42),
-    param_grid=param_grid,
-    X=X_train, y=y_train,
-    cv=3,  # Fewer folds due to early stopping
-    scoring='f1_weighted'
-)
+--8<-- "experiments_integrations_sklearn_cv_example_7.py"
 ```
 
 ## Common Patterns
@@ -303,111 +99,13 @@ experiment = SklearnCvExperiment(
 ### Multi-Algorithm Comparison
 
 ```python
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.svm import SVC
-from sklearn.neural_network import MLPClassifier
-
-# Define algorithms and their search spaces
-algorithms = {
-    'Random Forest': {
-        'estimator': RandomForestClassifier(random_state=42),
-        'param_grid': {
-            'n_estimators': [100, 200, 300],
-            'max_depth': [5, 10, None],
-            'min_samples_split': [2, 5, 10]
-        }
-    },
-    'Gradient Boosting': {
-        'estimator': GradientBoostingClassifier(random_state=42),
-        'param_grid': {
-            'n_estimators': [100, 200],
-            'learning_rate': [0.05, 0.1, 0.2],
-            'max_depth': [3, 5, 7]
-        }
-    },
-    'SVM': {
-        'estimator': SVC(random_state=42),
-        'param_grid': {
-            'C': [0.1, 1, 10],
-            'gamma': ['scale', 'auto', 0.01, 0.1],
-            'kernel': ['rbf', 'linear']
-        }
-    }
-}
-
-# Compare algorithms
-results = {}
-for name, config in algorithms.items():
-    experiment = SklearnCvExperiment(
-        estimator=config['estimator'],
-        param_grid=config['param_grid'],
-        X=X_train, y=y_train,
-        cv=5,
-        scoring='f1_weighted'
-    )
-    
-    optimizer = BayesianOptimizer(experiment=experiment)
-    best_params = optimizer.solve()
-    best_score = experiment.score(best_params)[0]
-    
-    results[name] = {
-        'best_params': best_params,
-        'best_score': best_score
-    }
-    
-    print(f"{name}: {best_score:.4f}")
-
-# Find best algorithm
-best_algorithm = max(results.items(), key=lambda x: x[1]['best_score'])
-print(f"Best algorithm: {best_algorithm[0]} with score {best_algorithm[1]['best_score']:.4f}")
+--8<-- "experiments_integrations_sklearn_cv_example_8.py"
 ```
 
 ### Nested Cross-Validation
 
 ```python
-# Proper evaluation with nested CV (conceptual - requires custom implementation)
-from sklearn.model_selection import cross_val_score
-
-def nested_cv_evaluation(estimator, param_grid, X, y, inner_cv=5, outer_cv=3):
-    """
-    Perform nested cross-validation for unbiased performance estimation
-    """
-    outer_scores = []
-    
-    # Outer CV loop
-    outer_cv_splitter = StratifiedKFold(n_splits=outer_cv, shuffle=True, random_state=42)
-    
-    for train_idx, test_idx in outer_cv_splitter.split(X, y):
-        X_train_outer, X_test_outer = X[train_idx], X[test_idx]
-        y_train_outer, y_test_outer = y[train_idx], y[test_idx]
-        
-        # Inner optimization
-        experiment = SklearnCvExperiment(
-            estimator=estimator,
-            param_grid=param_grid,
-            X=X_train_outer, y=y_train_outer,
-            cv=inner_cv,
-            scoring='f1_weighted'
-        )
-        
-        optimizer = BayesianOptimizer(experiment=experiment)
-        best_params = optimizer.solve()
-        
-        # Evaluate on outer test set
-        final_model = estimator.__class__(**best_params)
-        final_model.fit(X_train_outer, y_train_outer)
-        outer_score = final_model.score(X_test_outer, y_test_outer)
-        outer_scores.append(outer_score)
-    
-    return np.mean(outer_scores), np.std(outer_scores)
-
-# Use nested CV
-mean_score, std_score = nested_cv_evaluation(
-    RandomForestClassifier(random_state=42),
-    param_grid,
-    X, y
-)
-print(f"Nested CV Score: {mean_score:.4f} ± {std_score:.4f}")
+--8<-- "experiments_integrations_sklearn_cv_example_9.py"
 ```
 
 ## Best Practices
@@ -424,77 +122,29 @@ print(f"Nested CV Score: {mean_score:.4f} ± {std_score:.4f}")
 
 ### Memory Issues
 ```python
-# Reduce memory usage
-experiment = SklearnCvExperiment(
-    estimator=estimator,
-    param_grid=param_grid,
-    X=X_train, y=y_train,
-    cv=3,     # Fewer folds
-    n_jobs=2  # Fewer parallel jobs
-)
+--8<-- "experiments_integrations_sklearn_cv_example_10.py"
 ```
 
 ### Imbalanced Datasets
 ```python
-# Use stratified CV and appropriate metrics
-from sklearn.model_selection import StratifiedKFold
-
-experiment = SklearnCvExperiment(
-    estimator=RandomForestClassifier(random_state=42, class_weight='balanced'),
-    param_grid=param_grid,
-    X=X_train, y=y_train,
-    cv=StratifiedKFold(n_splits=5, shuffle=True, random_state=42),
-    scoring='f1_weighted'  # Or 'roc_auc' for binary classification
-)
+--8<-- "experiments_integrations_sklearn_cv_example_11.py"
 ```
 
 ### Time Series Data
 ```python
-# Use time series CV
-from sklearn.model_selection import TimeSeriesSplit
-
-experiment = SklearnCvExperiment(
-    estimator=estimator,
-    param_grid=param_grid,
-    X=X_time_series, y=y_time_series,
-    cv=TimeSeriesSplit(n_splits=5),
-    scoring='neg_mean_absolute_error'
-)
+--8<-- "experiments_integrations_sklearn_cv_example_12.py"
 ```
 
 ## Integration with Other Hyperactive Components
 
 ### With OptCV Interface
 ```python
-from hyperactive.integrations.sklearn import OptCV
-
-# Use SklearnCvExperiment through OptCV
-opt_cv = OptCV(
-    estimator=RandomForestClassifier(random_state=42),
-    optimizer=BayesianOptimizer(experiment=experiment),
-    cv=5
-)
-
-opt_cv.fit(X_train, y_train)
+--8<-- "experiments_integrations_sklearn_cv_example_13.py"
 ```
 
 ### With Different Optimizers
 ```python
-# Compare different optimizers on the same experiment
-from hyperactive.opt.gfo import RandomSearch, ParticleSwarmOptimizer
-from hyperactive.opt.optuna import TPEOptimizer
-
-optimizers = [
-    BayesianOptimizer(experiment=experiment),
-    RandomSearch(experiment=experiment),
-    TPEOptimizer(experiment=experiment),
-    ParticleSwarmOptimizer(experiment=experiment, population=20)
-]
-
-for optimizer in optimizers:
-    best_params = optimizer.solve()
-    score = experiment.score(best_params)[0]
-    print(f"{optimizer.__class__.__name__}: {score:.4f}")
+--8<-- "experiments_integrations_sklearn_cv_example_14.py"
 ```
 
 ## References

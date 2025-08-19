@@ -7,16 +7,7 @@ NSGA-III (Non-dominated Sorting Genetic Algorithm III) is an advanced multi-obje
 ## Usage Example
 
 ```python
-from hyperactive.opt.optuna import NSGAIIIOptimizer
-
-# Create optimizer
-optimizer = NSGAIIIOptimizer(
-    experiment=experiment,
-    population_size=50
-)
-
-# Run optimization
-best_params = optimizer.solve()
+--8<-- "optimizers_optuna_nsga_iii_optimizer_example.py"
 ```
 
 ## When to Use NSGA-III

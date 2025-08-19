@@ -47,47 +47,7 @@ This optimizer leverages sklearn's RandomizedSearchCV implementation, offering:
 ## Usage Example
 
 ```python
-from hyperactive.opt import RandomSearchSk
-from hyperactive.experiment.integrations import SklearnCvExperiment
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.datasets import load_diabetes
-from scipy.stats import randint, uniform
-
-# Load dataset
-X, y = load_diabetes(return_X_y=True)
-
-# Define search space with distributions
-param_distributions = {
-    "n_estimators": randint(50, 300),  # Random integers between 50-299
-    "max_depth": randint(3, 20),       # Random integers between 3-19
-    "min_samples_split": uniform(0.01, 0.19),  # Uniform float between 0.01-0.2
-    "min_samples_leaf": uniform(0.01, 0.09),   # Uniform float between 0.01-0.1
-    "max_features": ["sqrt", "log2", None]  # Discrete choices
-}
-
-# Create experiment
-experiment = SklearnCvExperiment(
-    estimator=RandomForestRegressor(random_state=42),
-    param_grid=param_distributions,  # Can use distributions
-    X=X, y=y,
-    cv=5,
-    scoring="neg_mean_squared_error"
-)
-
-# Create random search optimizer
-optimizer = RandomSearchSk(
-    experiment=experiment,
-    n_iter=200,  # Number of random samples
-    n_jobs=-1,   # Use all available cores
-    cv=5,
-    random_state=42,
-    verbose=1
-)
-
-# Run optimization
-best_params = optimizer.solve()
-print("Best parameters:", best_params)
-print("Best score:", experiment.score(best_params)[0])
+--8<-- "optimizers_sklearn_random_search_sk_example.py"
 ```
 
 ## When to Use Random Search SK
@@ -109,34 +69,19 @@ print("Best score:", experiment.score(best_params)[0])
 ### Discrete Uniform (Choice from List)
 
 ```python
-param_distributions = {
-    "kernel": ["linear", "rbf", "poly"],  # Choose randomly from list
-    "degree": [2, 3, 4, 5],              # Choose randomly from integers
-}
+--8<-- "optimizers_sklearn_random_search_sk_example_2.py"
 ```
 
 ### Continuous Distributions
 
 ```python
-from scipy.stats import uniform, loguniform, randint
-
-param_distributions = {
-    "C": loguniform(1e-3, 1e3),          # Log-uniform between 0.001 and 1000
-    "gamma": loguniform(1e-4, 1e1),      # Log-uniform between 0.0001 and 10
-    "tol": uniform(1e-5, 1e-3),          # Uniform between 0.00001 and 0.001
-    "max_iter": randint(100, 2000),      # Random integers 100-1999
-}
+--8<-- "optimizers_sklearn_random_search_sk_example_3.py"
 ```
 
 ### Custom Distributions
 
 ```python
-from scipy.stats import norm, expon
-
-param_distributions = {
-    "learning_rate": expon(scale=0.01),   # Exponential distribution
-    "weight_decay": norm(0.001, 0.0005), # Normal distribution (mean=0.001, std=0.0005)
-}
+--8<-- "optimizers_sklearn_random_search_sk_example_4.py"
 ```
 
 ## Advanced Usage
@@ -144,70 +89,19 @@ param_distributions = {
 ### Budget Management
 
 ```python
-# Quick exploration
-optimizer = RandomSearchSk(
-    experiment=experiment,
-    n_iter=50,    # Fewer iterations for quick results
-    n_jobs=-1,
-    random_state=42
-)
-
-# Thorough search
-optimizer = RandomSearchSk(
-    experiment=experiment,
-    n_iter=500,   # More iterations for thorough exploration
-    n_jobs=-1,
-    random_state=42
-)
+--8<-- "optimizers_sklearn_random_search_sk_example_5.py"
 ```
 
 ### Reproducible Results
 
 ```python
-# Set random state for reproducibility
-optimizer = RandomSearchSk(
-    experiment=experiment,
-    n_iter=100,
-    random_state=42  # Fixed seed
-)
-
-# Multiple runs with different seeds
-seeds = [42, 123, 456, 789]
-results = []
-
-for seed in seeds:
-    optimizer = RandomSearchSk(
-        experiment=experiment,
-        n_iter=100,
-        random_state=seed
-    )
-    best_params = optimizer.solve()
-    score = experiment.score(best_params)[0]
-    results.append((seed, best_params, score))
-
-# Find best across all runs
-best_result = max(results, key=lambda x: x[2])
+--8<-- "optimizers_sklearn_random_search_sk_example_6.py"
 ```
 
 ### Progressive Search
 
 ```python
-# Coarse search first
-coarse_distributions = {
-    "n_estimators": randint(50, 200),
-    "max_depth": randint(3, 15),
-    "learning_rate": uniform(0.01, 0.19)  # 0.01 to 0.2
-}
-
-coarse_optimizer = RandomSearchSk(
-    experiment=experiment,
-    n_iter=50,
-    random_state=42
-)
-coarse_best = coarse_optimizer.solve()
-
-# Then refine around promising regions
-# (This requires manual implementation based on coarse_best results)
+--8<-- "optimizers_sklearn_random_search_sk_example_7.py"
 ```
 
 ## Comparison with Grid Search
@@ -226,48 +120,19 @@ coarse_best = coarse_optimizer.solve()
 ### Parallel Execution
 
 ```python
-# Maximize parallelization
-optimizer = RandomSearchSk(
-    experiment=experiment,
-    n_iter=200,
-    n_jobs=-1,      # Use all cores
-    cv=3            # Balance CV folds with parallelization
-)
+--8<-- "optimizers_sklearn_random_search_sk_example_8.py"
 ```
 
 ### Memory Management
 
 ```python
-# For memory-constrained environments
-optimizer = RandomSearchSk(
-    experiment=experiment,
-    n_iter=100,
-    n_jobs=2,       # Limit parallel jobs
-    cv=3,           # Fewer CV folds
-    verbose=0       # Reduce output
-)
+--8<-- "optimizers_sklearn_random_search_sk_example_9.py"
 ```
 
 ### Search Space Design
 
 ```python
-# Effective parameter space design
-from scipy.stats import loguniform, uniform, randint
-
-param_distributions = {
-    # Log scale for parameters spanning orders of magnitude
-    "learning_rate": loguniform(1e-5, 1e-1),
-    "regularization": loguniform(1e-6, 1e-2),
-    
-    # Linear scale for bounded parameters
-    "dropout_rate": uniform(0.0, 0.5),
-    
-    # Integer ranges for discrete parameters
-    "hidden_units": randint(32, 512),
-    
-    # Discrete choices for categorical parameters
-    "activation": ["relu", "tanh", "sigmoid"]
-}
+--8<-- "optimizers_sklearn_random_search_sk_example_10.py"
 ```
 
 ## Common Use Cases
@@ -275,59 +140,25 @@ param_distributions = {
 ### Neural Network Hyperparameters
 
 ```python
-from sklearn.neural_network import MLPRegressor
-
-param_distributions = {
-    "hidden_layer_sizes": [(50,), (100,), (50, 50), (100, 50)],
-    "learning_rate_init": loguniform(1e-4, 1e-1),
-    "alpha": loguniform(1e-6, 1e-2),
-    "batch_size": randint(32, 256)
-}
+--8<-- "optimizers_sklearn_random_search_sk_example_11.py"
 ```
 
 ### Ensemble Method Tuning
 
 ```python
-from sklearn.ensemble import GradientBoostingClassifier
-
-param_distributions = {
-    "n_estimators": randint(50, 300),
-    "learning_rate": uniform(0.01, 0.3),
-    "max_depth": randint(3, 10),
-    "subsample": uniform(0.8, 0.2)  # 0.8 to 1.0
-}
+--8<-- "optimizers_sklearn_random_search_sk_example_12.py"
 ```
 
 ### SVM Optimization
 
 ```python
-from sklearn.svm import SVC
-
-param_distributions = {
-    "C": loguniform(1e-2, 1e2),
-    "gamma": loguniform(1e-4, 1e-1),
-    "kernel": ["rbf", "linear", "poly"]
-}
+--8<-- "optimizers_sklearn_random_search_sk_example_13.py"
 ```
 
 ## Integration with Experiment Pipeline
 
 ```python
-# Multi-stage optimization
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import StandardScaler
-
-pipeline = Pipeline([
-    ('scaler', StandardScaler()),
-    ('regressor', RandomForestRegressor(random_state=42))
-])
-
-param_distributions = {
-    'scaler__with_mean': [True, False],
-    'scaler__with_std': [True, False],
-    'regressor__n_estimators': randint(50, 200),
-    'regressor__max_depth': randint(5, 20)
-}
+--8<-- "optimizers_sklearn_random_search_sk_example_14.py"
 ```
 
 ## Best Practices

@@ -42,41 +42,7 @@ Key features:
 ## Usage Example
 
 ```python
-from hyperactive.opt.optuna import CmaEsOptimizer
-from hyperactive.experiment.integrations import SklearnCvExperiment
-from sklearn.svm import SVR
-from sklearn.datasets import load_diabetes
-
-# Load dataset
-X, y = load_diabetes(return_X_y=True)
-
-# Define continuous search space (CMA-ES works best with continuous parameters)
-param_grid = {
-    "C": [0.01, 0.1, 1.0, 10.0, 100.0],
-    "epsilon": [0.001, 0.01, 0.1, 1.0],
-    "gamma": [0.001, 0.01, 0.1, 1.0]  # assuming RBF kernel
-}
-
-# Create experiment
-experiment = SklearnCvExperiment(
-    estimator=SVR(kernel='rbf'),
-    param_grid=param_grid,
-    X=X, y=y,
-    cv=5,
-    scoring="neg_mean_squared_error"
-)
-
-# Create CMA-ES optimizer
-optimizer = CmaEsOptimizer(
-    experiment=experiment,
-    sigma0=0.5,  # Initial step size
-    population_size=20  # Custom population size
-)
-
-# Run optimization
-best_params = optimizer.solve()
-print("Best parameters:", best_params)
-print("Best score:", experiment.score(best_params)[0])
+--8<-- "optimizers_optuna_cmaes_optimizer_example.py"
 ```
 
 ## When to Use CMA-ES
@@ -108,39 +74,19 @@ print("Best score:", experiment.score(best_params)[0])
 ### Custom Population Size
 
 ```python
-# For high-dimensional problems
-n_dimensions = len(param_grid)
-custom_pop_size = 4 + int(3 * np.log(n_dimensions))
-
-optimizer = CmaEsOptimizer(
-    experiment=experiment,
-    population_size=custom_pop_size * 2  # Larger population for difficult problems
-)
+--8<-- "optimizers_optuna_cmaes_optimizer_example_2.py"
 ```
 
 ### Step Size Tuning
 
 ```python
-# For narrow search ranges
-optimizer = CmaEsOptimizer(
-    experiment=experiment,
-    sigma0=0.1  # Smaller steps for fine-tuning
-)
-
-# For wide search ranges
-optimizer = CmaEsOptimizer(
-    experiment=experiment,
-    sigma0=2.0  # Larger steps for exploration
-)
+--8<-- "optimizers_optuna_cmaes_optimizer_example_3.py"
 ```
 
 ### Reproducible Results
 
 ```python
-optimizer = CmaEsOptimizer(
-    experiment=experiment,
-    seed=42  # For reproducible optimization runs
-)
+--8<-- "optimizers_optuna_cmaes_optimizer_example_4.py"
 ```
 
 ## Mathematical Background
@@ -170,22 +116,13 @@ The algorithm updates these parameters based on the success of sampled points:
 ### Neural Network Hyperparameters
 
 ```python
-param_grid = {
-    "learning_rate": [0.0001, 0.001, 0.01, 0.1],
-    "batch_size": [16, 32, 64, 128, 256],  # Can be treated as continuous
-    "dropout_rate": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5],
-    "weight_decay": [1e-6, 1e-5, 1e-4, 1e-3, 1e-2]
-}
+--8<-- "optimizers_optuna_cmaes_optimizer_example_5.py"
 ```
 
 ### Regression Model Tuning
 
 ```python
-param_grid = {
-    "alpha": [1e-4, 1e-3, 1e-2, 1e-1, 1.0, 10.0],
-    "l1_ratio": [0.0, 0.1, 0.2, 0.5, 0.8, 0.9, 1.0],
-    "max_iter": [100, 500, 1000, 2000, 5000]
-}
+--8<-- "optimizers_optuna_cmaes_optimizer_example_6.py"
 ```
 
 ## References

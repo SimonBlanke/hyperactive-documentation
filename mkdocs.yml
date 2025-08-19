@@ -8,7 +8,9 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets
+  - pymdownx.snippets:
+      base_path: ["docs", "docs/code_examples"]
+      check_paths: true
   - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true
@@ -73,10 +75,10 @@ nav:
       - Quick Start Guide: tutorials/quickstart_v5.md
       - Migration Guide: tutorials/migration_guide.md
 
-  - API Reference:
-      - Base Classes: api/base_classes.md
-      - Optimization Algorithms: api/optimizers.md
-      - Experiments & Integrations: api/experiments.md
+  - Base Classes:
+      - api/index.md
+      - Base Optimizer: api/base_optimizer.md
+      - Base Experiment: api/base_experiment.md
 
   - Optimization Algorithms:
       - GFO Backend:
@@ -125,15 +127,3 @@ nav:
         - Sktime Forecasting: experiments/integrations/sktime_forecasting.md
       - Custom Experiments: experiments/custom_experiments.md
 
-  - Examples:
-      - Basic Usage Examples: examples/basic_usage.md
-      - Machine Learning Examples: examples/machine_learning.md
-      - Custom Objective Functions: examples/custom_objectives.md
-      - Multi-Backend Comparison: examples/backend_comparison.md
-      - Advanced Patterns: examples/advanced_patterns.md
-
-  - Advanced Topics:
-      - Multi-Objective Optimization: advanced_topics/multi_objective.md
-      - Custom Algorithm Development: advanced_topics/custom_algorithms.md
-      - Performance Optimization: advanced_topics/performance_tips.md
-      - Extension Development: advanced_topics/extensions.md

@@ -7,21 +7,7 @@ NSGA-II (Non-dominated Sorting Genetic Algorithm II) is a multi-objective evolut
 ## Usage Example
 
 ```python
-from hyperactive.opt.optuna import NSGAIIOptimizer
-from hyperactive.experiment.integrations import SklearnCvExperiment
-
-# Note: Multi-objective optimization requires special experiment setup
-# This is a simplified example - actual multi-objective experiments
-# would return multiple objectives
-
-# Create optimizer
-optimizer = NSGAIIOptimizer(
-    experiment=experiment,
-    population_size=50
-)
-
-# Run optimization
-best_params = optimizer.solve()
+--8<-- "optimizers_optuna_nsga_ii_optimizer_example.py"
 ```
 
 ## When to Use NSGA-II

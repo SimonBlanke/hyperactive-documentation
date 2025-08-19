@@ -24,31 +24,7 @@ pip install hyperactive
 ## Quick Start
 
 ```python
-from hyperactive.opt.gfo import BayesianOptimizer
-from hyperactive.experiment.integrations import SklearnCvExperiment
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_wine
-
-# Load dataset
-X, y = load_wine(return_X_y=True)
-
-# Create experiment
-experiment = SklearnCvExperiment(
-    estimator=RandomForestClassifier(random_state=42),
-    param_grid={
-        "n_estimators": [10, 50, 100, 200],
-        "max_depth": [3, 5, 7, 10],
-        "min_samples_split": [2, 5, 10]
-    },
-    X=X, y=y
-)
-
-# Create optimizer
-optimizer = BayesianOptimizer(experiment=experiment)
-
-# Run optimization
-best_params = optimizer.solve()
-print("Best parameters:", best_params)
+--8<-- "index_example.py"
 ```
 
 ## Key Features

@@ -27,39 +27,7 @@ Random search uniformly samples from the defined parameter space without using i
 ## Usage Example
 
 ```python
-from hyperactive.opt.optuna import RandomOptimizer
-from hyperactive.experiment.integrations import SklearnCvExperiment
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.datasets import load_diabetes
-
-# Load dataset
-X, y = load_diabetes(return_X_y=True)
-
-# Define search space
-param_grid = {
-    "n_estimators": [50, 100, 150, 200, 300, 400, 500],
-    "max_depth": [3, 5, 7, 10, 15, 20, None],
-    "min_samples_split": [2, 5, 10, 15, 20],
-    "min_samples_leaf": [1, 2, 4, 8, 12],
-    "max_features": ["sqrt", "log2", None, 0.5, 0.7, 0.9]
-}
-
-# Create experiment
-experiment = SklearnCvExperiment(
-    estimator=RandomForestRegressor(random_state=42),
-    param_grid=param_grid,
-    X=X, y=y,
-    cv=5,
-    scoring="neg_mean_squared_error"
-)
-
-# Create random optimizer
-optimizer = RandomOptimizer(experiment=experiment, seed=42)
-
-# Run optimization
-best_params = optimizer.solve()
-print("Best parameters:", best_params)
-print("Best score:", experiment.score(best_params)[0])
+--8<-- "optimizers_optuna_random_optimizer_example.py"
 ```
 
 ## When to Use Random Search
@@ -92,49 +60,13 @@ print("Best score:", experiment.score(best_params)[0])
 ### Reproducible Results
 
 ```python
-# For reproducible random sampling
-optimizer = RandomOptimizer(experiment=experiment, seed=42)
-
-# Run multiple times with different seeds
-seeds = [42, 123, 456, 789, 999]
-results = []
-
-for seed in seeds:
-    optimizer = RandomOptimizer(experiment=experiment, seed=seed)
-    best_params = optimizer.solve()
-    score = experiment.score(best_params)[0]
-    results.append((seed, best_params, score))
-
-# Find best across all runs
-best_run = max(results, key=lambda x: x[2])
-print(f"Best result from seed {best_run[0]}: {best_run[2]}")
+--8<-- "optimizers_optuna_random_optimizer_example_2.py"
 ```
 
 ### Parallel Evaluation Strategy
 
 ```python
-# Random search is naturally parallel
-# You can run multiple optimizers simultaneously
-
-import concurrent.futures
-from functools import partial
-
-def run_random_optimization(seed, experiment):
-    optimizer = RandomOptimizer(experiment=experiment, seed=seed)
-    return optimizer.solve()
-
-# Run multiple random searches in parallel
-seeds = range(10)
-with concurrent.futures.ProcessPoolExecutor() as executor:
-    results = list(executor.map(
-        partial(run_random_optimization, experiment=experiment),
-        seeds
-    ))
-
-# Evaluate all results
-scores = [experiment.score(params)[0] for params in results]
-best_idx = max(range(len(scores)), key=lambda i: scores[i])
-best_params = results[best_idx]
+--8<-- "optimizers_optuna_random_optimizer_example_3.py"
 ```
 
 ## Mathematical Properties
@@ -163,57 +95,19 @@ Random search provides uniform coverage of the parameter space, avoiding bias to
 ### Warm-up Phase
 
 ```python
-# Use random search to explore, then switch to sophisticated methods
-random_optimizer = RandomOptimizer(experiment=experiment, seed=42)
-random_best = random_optimizer.solve()
-
-# Use random results to inform more sophisticated search
-# (This pattern requires manual implementation)
+--8<-- "optimizers_optuna_random_optimizer_example_4.py"
 ```
 
 ### Multi-Resolution Search
 
 ```python
-# Coarse random search first
-coarse_param_grid = {
-    "n_estimators": [50, 100, 200, 500],  # Fewer options
-    "max_depth": [5, 10, None],
-    "min_samples_split": [2, 10, 20]
-}
-
-coarse_experiment = SklearnCvExperiment(
-    estimator=RandomForestRegressor(random_state=42),
-    param_grid=coarse_param_grid,
-    X=X, y=y, cv=3  # Faster CV
-)
-
-coarse_optimizer = RandomOptimizer(experiment=coarse_experiment)
-coarse_best = coarse_optimizer.solve()
-
-# Then refine around promising regions
+--8<-- "optimizers_optuna_random_optimizer_example_5.py"
 ```
 
 ### Evaluation Budget Management
 
 ```python
-# For limited budgets, track progress
-class BudgetTracker:
-    def __init__(self, max_evals=100):
-        self.max_evals = max_evals
-        self.current_evals = 0
-        self.best_score = float('-inf')
-        self.best_params = None
-    
-    def should_continue(self):
-        return self.current_evals < self.max_evals
-    
-    def update(self, params, score):
-        self.current_evals += 1
-        if score > self.best_score:
-            self.best_score = score
-            self.best_params = params
-
-# Use with manual evaluation loop if needed
+--8<-- "optimizers_optuna_random_optimizer_example_6.py"
 ```
 
 ## Research Applications

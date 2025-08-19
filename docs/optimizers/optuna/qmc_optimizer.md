@@ -7,38 +7,7 @@ Quasi-Monte Carlo (QMC) Optimizer uses low-discrepancy sequences instead of rand
 ## Usage Example
 
 ```python
-from hyperactive.opt.optuna import QMCOptimizer
-from hyperactive.experiment.integrations import SklearnCvExperiment
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_wine
-
-# Load dataset
-X, y = load_wine(return_X_y=True)
-
-# Define search space
-param_grid = {
-    "n_estimators": [50, 100, 150, 200, 300],
-    "max_depth": [3, 5, 7, 10, None],
-    "min_samples_split": [2, 5, 10, 20]
-}
-
-# Create experiment
-experiment = SklearnCvExperiment(
-    estimator=RandomForestClassifier(random_state=42),
-    param_grid=param_grid,
-    X=X, y=y,
-    cv=5
-)
-
-# Create QMC optimizer
-optimizer = QMCOptimizer(
-    experiment=experiment,
-    qmc_type="sobol"
-)
-
-# Run optimization
-best_params = optimizer.solve()
-print("Best parameters:", best_params)
+--8<-- "optimizers_optuna_qmc_optimizer_example.py"
 ```
 
 ## When to Use QMC Optimizer

@@ -30,14 +30,7 @@ Direct integration with scikit-learn's optimization tools for familiar workflows
 Basic hill climbing with local search.
 
 ```python
-from hyperactive.opt.gfo import HillClimbing
-
-optimizer = HillClimbing(
-    experiment=experiment,
-    epsilon=0.1,              # Step size
-    distribution="normal",    # Step distribution
-    n_neighbours=4           # Number of neighbors to try
-)
+--8<-- "api_optimizers_example.py"
 ```
 
 **Properties:**
@@ -49,39 +42,21 @@ optimizer = HillClimbing(
 Hill climbing with random steps.
 
 ```python
-from hyperactive.opt.gfo import StochasticHillClimbing
-
-optimizer = StochasticHillClimbing(
-    experiment=experiment,
-    p_accept=0.1,            # Acceptance probability
-    norm_factor=1.0          # Normalization factor
-)
+--8<-- "api_optimizers_example_2.py"
 ```
 
 #### RepulsingHillClimbing
 Hill climbing with repulsion mechanism to avoid local minima.
 
 ```python
-from hyperactive.opt.gfo import RepulsingHillClimbing
-
-optimizer = RepulsingHillClimbing(
-    experiment=experiment,
-    repulsion_factor=3,      # Strength of repulsion
-    n_neighbours=4           # Number of neighbors
-)
+--8<-- "api_optimizers_example_3.py"
 ```
 
 #### RandomRestartHillClimbing
 Hill climbing with periodic random restarts.
 
 ```python
-from hyperactive.opt.gfo import RandomRestartHillClimbing
-
-optimizer = RandomRestartHillClimbing(
-    experiment=experiment,
-    n_iter_restart=100,      # Iterations before restart
-    rand_rest_p=0.1         # Probability of random restart
-)
+--8<-- "api_optimizers_example_4.py"
 ```
 
 ### Annealing Methods
@@ -90,14 +65,7 @@ optimizer = RandomRestartHillClimbing(
 Classical simulated annealing algorithm.
 
 ```python
-from hyperactive.opt.gfo import SimulatedAnnealing
-
-optimizer = SimulatedAnnealing(
-    experiment=experiment,
-    start_temp=10.0,         # Initial temperature
-    annealing_rate=0.98,     # Temperature decay rate
-    min_temp=0.01           # Minimum temperature
-)
+--8<-- "api_optimizers_example_5.py"
 ```
 
 **Properties:**
@@ -111,40 +79,21 @@ optimizer = SimulatedAnnealing(
 Nelder-Mead simplex method for derivative-free optimization.
 
 ```python
-from hyperactive.opt.gfo import DownhillSimplexOptimizer
-
-optimizer = DownhillSimplexOptimizer(
-    experiment=experiment,
-    alpha=1.0,               # Reflection coefficient
-    gamma=2.0,               # Expansion coefficient
-    rho=0.5,                 # Contraction coefficient
-    sigma=0.5               # Shrink coefficient
-)
+--8<-- "api_optimizers_example_6.py"
 ```
 
 #### PowellsMethod
 Powell's conjugate direction method.
 
 ```python
-from hyperactive.opt.gfo import PowellsMethod
-
-optimizer = PowellsMethod(
-    experiment=experiment,
-    iters_p_dim=10          # Iterations per dimension
-)
+--8<-- "api_optimizers_example_7.py"
 ```
 
 #### PatternSearch
 Pattern search optimization.
 
 ```python
-from hyperactive.opt.gfo import PatternSearch
-
-optimizer = PatternSearch(
-    experiment=experiment,
-    pattern_size=0.1,        # Size of search pattern
-    reduction=0.9           # Pattern size reduction factor
-)
+--8<-- "api_optimizers_example_8.py"
 ```
 
 ### Sampling Methods
@@ -153,9 +102,7 @@ optimizer = PatternSearch(
 Pure random sampling of the search space.
 
 ```python
-from hyperactive.opt.gfo import RandomSearch
-
-optimizer = RandomSearch(experiment=experiment)
+--8<-- "api_optimizers_example_9.py"
 ```
 
 **Properties:**
@@ -167,12 +114,7 @@ optimizer = RandomSearch(experiment=experiment)
 Systematic grid search over parameter space.
 
 ```python
-from hyperactive.opt.gfo import GridSearch
-
-optimizer = GridSearch(
-    experiment=experiment,
-    step_size=0.1           # Grid step size
-)
+--8<-- "api_optimizers_example_10.py"
 ```
 
 ### Advanced Methods
@@ -181,25 +123,14 @@ optimizer = GridSearch(
 DIRECT (Dividing Rectangles) global optimization.
 
 ```python
-from hyperactive.opt.gfo import DirectAlgorithm
-
-optimizer = DirectAlgorithm(
-    experiment=experiment,
-    epsilon=0.01,            # Convergence tolerance
-    n_positions=100         # Number of positions to evaluate
-)
+--8<-- "api_optimizers_example_11.py"
 ```
 
 #### LipschitzOptimizer
 Optimization using Lipschitz constraint.
 
 ```python
-from hyperactive.opt.gfo import LipschitzOptimizer
-
-optimizer = LipschitzOptimizer(
-    experiment=experiment,
-    lip_const=1.0           # Lipschitz constant
-)
+--8<-- "api_optimizers_example_12.py"
 ```
 
 ### Population-Based Methods
@@ -208,15 +139,7 @@ optimizer = LipschitzOptimizer(
 Particle swarm optimization algorithm.
 
 ```python
-from hyperactive.opt.gfo import ParticleSwarmOptimizer
-
-optimizer = ParticleSwarmOptimizer(
-    experiment=experiment,
-    population=20,           # Swarm size
-    inertia=0.9,            # Inertia weight
-    cognitive_weight=2.0,    # Cognitive parameter
-    social_weight=2.0       # Social parameter
-)
+--8<-- "api_optimizers_example_13.py"
 ```
 
 **Properties:**
@@ -228,69 +151,35 @@ optimizer = ParticleSwarmOptimizer(
 Spiral-based optimization algorithm.
 
 ```python
-from hyperactive.opt.gfo import SpiralOptimization
-
-optimizer = SpiralOptimization(
-    experiment=experiment,
-    population=10,           # Population size
-    decay_rate=0.99         # Spiral decay rate
-)
+--8<-- "api_optimizers_example_14.py"
 ```
 
 #### GeneticAlgorithm
 Classical genetic algorithm.
 
 ```python
-from hyperactive.opt.gfo import GeneticAlgorithm
-
-optimizer = GeneticAlgorithm(
-    experiment=experiment,
-    population=20,           # Population size
-    mutation_rate=0.1,       # Mutation probability
-    crossover_rate=0.9      # Crossover probability
-)
+--8<-- "api_optimizers_example_15.py"
 ```
 
 #### EvolutionStrategy
 Evolution strategy optimization.
 
 ```python
-from hyperactive.opt.gfo import EvolutionStrategy
-
-optimizer = EvolutionStrategy(
-    experiment=experiment,
-    population=15,           # Population size
-    mutation_rate=0.2,       # Mutation rate
-    selection_rate=0.5      # Selection rate
-)
+--8<-- "api_optimizers_example_16.py"
 ```
 
 #### DifferentialEvolution
 Differential evolution algorithm.
 
 ```python
-from hyperactive.opt.gfo import DifferentialEvolution
-
-optimizer = DifferentialEvolution(
-    experiment=experiment,
-    population=20,           # Population size
-    mutation_rate=0.8,       # Differential weight
-    crossover_rate=0.9      # Crossover probability
-)
+--8<-- "api_optimizers_example_17.py"
 ```
 
 #### ParallelTempering
 Parallel tempering/replica exchange method.
 
 ```python
-from hyperactive.opt.gfo import ParallelTempering
-
-optimizer = ParallelTempering(
-    experiment=experiment,
-    population=10,           # Number of replicas
-    n_iter_swap=100,        # Swap attempt frequency
-    temp_weight=0.1         # Temperature scaling
-)
+--8<-- "api_optimizers_example_18.py"
 ```
 
 ### Surrogate-Based Methods
@@ -299,14 +188,7 @@ optimizer = ParallelTempering(
 Bayesian optimization with Gaussian processes.
 
 ```python
-from hyperactive.opt.gfo import BayesianOptimizer
-
-optimizer = BayesianOptimizer(
-    experiment=experiment,
-    gpr=None,               # Custom Gaussian process regressor
-    xi=0.01,                # Exploration parameter
-    warm_start_smbo=None    # Warm start points
-)
+--8<-- "api_optimizers_example_19.py"
 ```
 
 **Properties:**
@@ -318,26 +200,14 @@ optimizer = BayesianOptimizer(
 Tree-structured Parzen Estimator (TPE) algorithm.
 
 ```python
-from hyperactive.opt.gfo import TreeStructuredParzenEstimators
-
-optimizer = TreeStructuredParzenEstimators(
-    experiment=experiment,
-    gamma_tpe=0.25,         # Quantile for good/bad split
-    warm_start_smbo=None    # Warm start points
-)
+--8<-- "api_optimizers_example_20.py"
 ```
 
 #### ForestOptimizer  
 Random forest-based optimization.
 
 ```python
-from hyperactive.opt.gfo import ForestOptimizer
-
-optimizer = ForestOptimizer(
-    experiment=experiment,
-    xi=0.01,                # Exploration parameter
-    tree_regressor="extra_tree"  # Tree regressor type
-)
+--8<-- "api_optimizers_example_21.py"
 ```
 
 ## Optuna Backend
@@ -348,53 +218,35 @@ The Optuna backend provides modern optimization algorithms with advanced feature
 Tree-structured Parzen Estimator via Optuna.
 
 ```python
-from hyperactive.opt.optuna import TPEOptimizer
-
-optimizer = TPEOptimizer(
-    experiment=experiment,
-    n_startup_trials=10,     # Random trials before TPE
-    n_ei_candidates=24      # Expected improvement candidates
-)
+--8<-- "api_optimizers_example_22.py"
 ```
 
 ### RandomOptimizer
 Random sampling via Optuna.
 
 ```python
-from hyperactive.opt.optuna import RandomOptimizer
-
-optimizer = RandomOptimizer(experiment=experiment)
+--8<-- "api_optimizers_example_23.py"
 ```
 
 ### CmaEsOptimizer
 Covariance Matrix Adaptation Evolution Strategy.
 
 ```python
-from hyperactive.opt.optuna import CmaEsOptimizer
-
-optimizer = CmaEsOptimizer(
-    experiment=experiment,
-    sigma0=1.0,             # Initial step size
-    population_size=None    # Population size (auto if None)
-)
+--8<-- "api_optimizers_example_24.py"
 ```
 
 ### GPOptimizer
 Gaussian Process optimization via Optuna.
 
 ```python
-from hyperactive.opt.optuna import GPOptimizer
-
-optimizer = GPOptimizer(experiment=experiment)
+--8<-- "api_optimizers_example_25.py"
 ```
 
 ### GridOptimizer
 Grid search via Optuna.
 
 ```python
-from hyperactive.opt.optuna import GridOptimizer
-
-optimizer = GridOptimizer(experiment=experiment)
+--8<-- "api_optimizers_example_26.py"
 ```
 
 ### Multi-Objective Optimization
@@ -403,38 +255,21 @@ optimizer = GridOptimizer(experiment=experiment)
 NSGA-II multi-objective optimization.
 
 ```python
-from hyperactive.opt.optuna import NSGAIIOptimizer
-
-optimizer = NSGAIIOptimizer(
-    experiment=experiment,  # Must return multiple objectives
-    population_size=50,     # Population size
-    mutation_prob=0.1      # Mutation probability
-)
+--8<-- "api_optimizers_example_27.py"
 ```
 
 #### NSGAIIIOptimizer
 NSGA-III multi-objective optimization.
 
 ```python
-from hyperactive.opt.optuna import NSGAIIIOptimizer
-
-optimizer = NSGAIIIOptimizer(
-    experiment=experiment,
-    population_size=50,
-    mutation_prob=0.1
-)
+--8<-- "api_optimizers_example_28.py"
 ```
 
 ### QMCOptimizer
 Quasi-Monte Carlo sampling.
 
 ```python
-from hyperactive.opt.optuna import QMCOptimizer
-
-optimizer = QMCOptimizer(
-    experiment=experiment,
-    qmc_type="sobol"        # QMC sequence type
-)
+--8<-- "api_optimizers_example_29.py"
 ```
 
 ## Scikit-learn Backend
@@ -445,27 +280,14 @@ Direct integration with scikit-learn optimization tools.
 Direct sklearn GridSearchCV integration.
 
 ```python
-from hyperactive.opt import GridSearchSk
-
-optimizer = GridSearchSk(
-    experiment=experiment,
-    n_jobs=1,               # Parallel jobs
-    cv=3                   # Cross-validation folds
-)
+--8<-- "api_optimizers_example_30.py"
 ```
 
 ### RandomSearchSk
 Direct sklearn RandomizedSearchCV integration.
 
 ```python
-from hyperactive.opt import RandomSearchSk
-
-optimizer = RandomSearchSk(
-    experiment=experiment,
-    n_jobs=1,
-    cv=3,
-    n_iter=100             # Number of random samples
-)
+--8<-- "api_optimizers_example_31.py"
 ```
 
 ## Choosing the Right Algorithm
@@ -495,37 +317,11 @@ optimizer = RandomSearchSk(
 ### Basic Usage Pattern
 
 ```python
-from hyperactive.opt.gfo import BayesianOptimizer
-from hyperactive.experiment.bench import Ackley
-
-# Create experiment
-experiment = Ackley(dimensions=2, bounds=(-5, 5))
-
-# Create and run optimizer
-optimizer = BayesianOptimizer(experiment=experiment)
-best_params = optimizer.solve()
-
-print("Best parameters:", best_params)
-print("Best score:", experiment.score(best_params)[0])
+--8<-- "api_optimizers_example_32.py"
 ```
 
 ### Comparing Multiple Algorithms
 
 ```python
-from hyperactive.opt.gfo import BayesianOptimizer, RandomSearch, ParticleSwarmOptimizer
-
-algorithms = [
-    BayesianOptimizer(experiment=experiment),
-    RandomSearch(experiment=experiment), 
-    ParticleSwarmOptimizer(experiment=experiment, population=20)
-]
-
-results = {}
-for optimizer in algorithms:
-    best_params = optimizer.solve()
-    score = experiment.score(best_params)[0]
-    results[optimizer.__class__.__name__] = (best_params, score)
-
-for name, (params, score) in results.items():
-    print(f"{name}: {score}")
+--8<-- "api_optimizers_example_33.py"
 ```

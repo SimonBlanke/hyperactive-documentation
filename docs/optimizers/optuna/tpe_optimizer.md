@@ -43,41 +43,7 @@ Key features:
 ## Usage Example
 
 ```python
-from hyperactive.opt.optuna import TPEOptimizer
-from hyperactive.experiment.integrations import SklearnCvExperiment
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import load_wine
-
-# Load dataset
-X, y = load_wine(return_X_y=True)
-
-# Define search space
-param_grid = {
-    "n_estimators": [50, 100, 150, 200, 300],
-    "max_depth": [3, 5, 7, 10, 15, None],
-    "min_samples_split": [2, 5, 10, 20],
-    "min_samples_leaf": [1, 2, 4, 8]
-}
-
-# Create experiment
-experiment = SklearnCvExperiment(
-    estimator=RandomForestClassifier(random_state=42),
-    param_grid=param_grid,
-    X=X, y=y,
-    cv=5
-)
-
-# Create TPE optimizer with custom parameters
-optimizer = TPEOptimizer(
-    experiment=experiment,
-    n_startup_trials=15,  # More random trials for better initialization
-    gamma=0.2  # More selective good/bad split
-)
-
-# Run optimization
-best_params = optimizer.solve()
-print("Best parameters:", best_params)
-print("Best score:", experiment.score(best_params)[0])
+--8<-- "optimizers_optuna_tpe_optimizer_example.py"
 ```
 
 ## When to Use TPE
@@ -107,21 +73,13 @@ print("Best score:", experiment.score(best_params)[0])
 ### Custom Gamma Values
 
 ```python
-# More exploitation (smaller good group)
-optimizer = TPEOptimizer(experiment=experiment, gamma=0.1)
-
-# More exploration (larger good group) 
-optimizer = TPEOptimizer(experiment=experiment, gamma=0.4)
+--8<-- "optimizers_optuna_tpe_optimizer_example_2.py"
 ```
 
 ### Warm Starting
 
 ```python
-# For sequential optimization runs
-optimizer = TPEOptimizer(
-    experiment=experiment,
-    n_startup_trials=5  # Fewer random trials if you have prior knowledge
-)
+--8<-- "optimizers_optuna_tpe_optimizer_example_3.py"
 ```
 
 ## Performance Tips

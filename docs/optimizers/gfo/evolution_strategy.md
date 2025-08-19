@@ -28,10 +28,7 @@ $$
 $$
 
 ```python
-if R <= mutation-rate:
-    do mutation
-else:
-    do crossover
+--8<-- "optimizers_gfo_evolution_strategy_example.py"
 ```
 
 
