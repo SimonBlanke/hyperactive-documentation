@@ -6,9 +6,7 @@ The Grid Optimizer provides systematic grid search through Optuna's interface. I
 
 ## Usage Example
 
-```python
---8<-- "optimizers_optuna_grid_optimizer_example.py"
-```
+
 
 ## When to Use Grid Optimizer
 

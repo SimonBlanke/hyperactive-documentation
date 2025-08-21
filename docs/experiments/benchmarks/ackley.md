@@ -30,9 +30,7 @@ Where:
 
 ## Usage Example
 
-```python
---8<-- "experiments_benchmarks_ackley_example.py"
-```
+
 
 ## Characteristics for Algorithm Testing
 
@@ -53,9 +51,7 @@ Where:
 
 ## Multi-Dimensional Usage
 
-```python
---8<-- "experiments_benchmarks_ackley_example_2.py"
-```
+
 
 ## Visualization
 
@@ -67,17 +63,13 @@ The Ackley function in 2D shows:
 
 ## Algorithm Comparison Example
 
-```python
---8<-- "experiments_benchmarks_ackley_example_3.py"
-```
+
 
 ## Parameter Sensitivity
 
 The Ackley function parameters affect difficulty:
 
-```python
---8<-- "experiments_benchmarks_ackley_example_4.py"
-```
+
 
 ## References
 

@@ -5,9 +5,7 @@ The `BaseOptimizer` class is the foundation for all optimization algorithms in H
 
 ### Class Signature
 
-```python
---8<-- "api_base_classes_example.py"
-```
+
 
 ### Key Methods
 
@@ -19,9 +17,7 @@ Run the optimization search process to maximize the experiment's score.
 - `best_params` (dict): The best parameters found during optimization
 
 **Example:**
-```python
---8<-- "api_base_classes_example_2.py"
-```
+
 
 #### `get_search_config()`
 
@@ -49,9 +45,7 @@ The best parameters found after calling `solve()`.
 
 BaseOptimizer uses a comprehensive tag system to provide metadata about algorithm properties:
 
-```python
---8<-- "api_base_classes_example_3.py"
-```
+
 
 **Tag Meanings:**
 - **local_vs_global**: Whether the algorithm focuses on local or global search

@@ -6,9 +6,7 @@ NSGA-III (Non-dominated Sorting Genetic Algorithm III) is an advanced multi-obje
 
 ## Usage Example
 
-```python
---8<-- "optimizers_optuna_nsga_iii_optimizer_example.py"
-```
+
 
 ## When to Use NSGA-III
 

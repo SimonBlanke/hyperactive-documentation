@@ -12,9 +12,7 @@ These experiments implement standard optimization test functions commonly used f
 
 The Ackley function is a widely used multimodal test function.
 
-```python
---8<-- "api_experiments_example.py"
-```
+
 
 **Properties:**
 - **Global minimum**: f(0, 0, ..., 0) = 0
@@ -26,9 +24,7 @@ The Ackley function is a widely used multimodal test function.
 
 Simple quadratic function for testing convergence.
 
-```python
---8<-- "api_experiments_example_2.py"
-```
+
 
 **Properties:**
 - **Global minimum**: f(0, 0, ..., 0) = 0  
@@ -40,9 +36,7 @@ Simple quadratic function for testing convergence.
 
 Basic parabolic test function.
 
-```python
---8<-- "api_experiments_example_3.py"
-```
+
 
 ### Framework Integration Experiments  
 
@@ -54,9 +48,7 @@ These experiments integrate optimization with machine learning frameworks.
 
 Cross-validation based hyperparameter optimization for scikit-learn estimators.
 
-```python
---8<-- "api_experiments_example_4.py"
-```
+
 
 **Parameters:**
 - **estimator**: Scikit-learn estimator to optimize
@@ -70,9 +62,7 @@ Cross-validation based hyperparameter optimization for scikit-learn estimators.
 
 For users who prefer the familiar scikit-learn interface, `OptCV` provides a drop-in replacement for `GridSearchCV` and `RandomizedSearchCV`.
 
-```python
---8<-- "api_experiments_example_5.py"
-```
+
 
 **Key Features:**
 - **Familiar Interface**: Drop-in replacement for GridSearchCV
@@ -86,9 +76,7 @@ For users who prefer the familiar scikit-learn interface, `OptCV` provides a dro
 
 Specialized experiment for time series forecasting with sktime.
 
-```python
---8<-- "api_experiments_example_6.py"
-```
+
 
 ## Creating Custom Experiments
 
@@ -96,35 +84,25 @@ You can create custom experiments by inheriting from `BaseExperiment`.
 
 ### Basic Custom Experiment
 
-```python
---8<-- "api_experiments_example_7.py"
-```
+
 
 ### Machine Learning Custom Experiment
 
-```python
---8<-- "api_experiments_example_8.py"
-```
+
 
 ### Experiment with External Dependencies
 
-```python
---8<-- "api_experiments_example_9.py"
-```
+
 
 ## Advanced Usage Patterns
 
 ### Multi-Objective Experiments
 
-```python
---8<-- "api_experiments_example_10.py"
-```
+
 
 ### Experiment Composition
 
-```python
---8<-- "api_experiments_example_11.py"
-```
+
 
 ## Best Practices
 

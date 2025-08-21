@@ -33,9 +33,7 @@ Key features:
 
 ## Usage Example
 
-```python
---8<-- "optimizers_optuna_gp_optimizer_example.py"
-```
+
 
 ## When to Use GP Optimizer
 
@@ -73,15 +71,11 @@ Key features:
 
 ### Custom Acquisition Function
 
-```python
---8<-- "optimizers_optuna_gp_optimizer_example_2.py"
-```
+
 
 ### Startup Trials Tuning
 
-```python
---8<-- "optimizers_optuna_gp_optimizer_example_3.py"
-```
+
 
 ## Comparison with Other Algorithms
 
@@ -120,21 +114,15 @@ The acquisition function uses both $\mu_n(x)$ (predicted value) and $\sigma_n(x)
 
 ### Neural Network Hyperparameters
 
-```python
---8<-- "optimizers_optuna_gp_optimizer_example_4.py"
-```
+
 
 ### Scientific Simulation Parameters
 
-```python
---8<-- "optimizers_optuna_gp_optimizer_example_5.py"
-```
+
 
 ### Model Regularization
 
-```python
---8<-- "optimizers_optuna_gp_optimizer_example_6.py"
-```
+
 
 ## Limitations
 

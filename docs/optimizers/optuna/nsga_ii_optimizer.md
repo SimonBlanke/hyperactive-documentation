@@ -6,9 +6,7 @@ NSGA-II (Non-dominated Sorting Genetic Algorithm II) is a multi-objective evolut
 
 ## Usage Example
 
-```python
---8<-- "optimizers_optuna_nsga_ii_optimizer_example.py"
-```
+
 
 ## When to Use NSGA-II
 

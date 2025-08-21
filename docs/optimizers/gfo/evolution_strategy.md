@@ -27,9 +27,7 @@ $$
 \text{total-rate} = \text{mutation-rate} + \text{crossover-rate}
 $$
 
-```python
---8<-- "optimizers_gfo_evolution_strategy_example.py"
-```
+
 
 
 ## Parameters

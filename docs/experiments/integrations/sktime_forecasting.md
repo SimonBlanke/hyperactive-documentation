@@ -13,27 +13,19 @@ The Sktime Forecasting integration provides specialized optimization capabilitie
 
 ## Basic Usage
 
-```python
---8<-- "experiments_integrations_sktime_forecasting_example.py"
-```
+
 
 ## Time Series Cross-Validation
 
-```python
---8<-- "experiments_integrations_sktime_forecasting_example_2.py"
-```
+
 
 ## Seasonal Model Optimization
 
-```python
---8<-- "experiments_integrations_sktime_forecasting_example_3.py"
-```
+
 
 ## Multi-Step Forecasting
 
-```python
---8<-- "experiments_integrations_sktime_forecasting_example_4.py"
-```
+
 
 ## References
 

@@ -14,68 +14,46 @@ All experiments inherit from `BaseExperiment`, which provides:
 
 ## Basic Custom Experiment
 
-```python
---8<-- "experiments_custom_experiments_example.py"
-```
+
 
 ## Advanced Custom Experiment
 
-```python
---8<-- "experiments_custom_experiments_example_2.py"
-```
+
 
 ## Machine Learning Custom Experiment
 
-```python
---8<-- "experiments_custom_experiments_example_3.py"
-```
+
 
 ## Multi-Objective Custom Experiment
 
-```python
---8<-- "experiments_custom_experiments_example_4.py"
-```
+
 
 ## Simulation-Based Experiment
 
-```python
---8<-- "experiments_custom_experiments_example_5.py"
-```
+
 
 ## Experiment with External Data
 
-```python
---8<-- "experiments_custom_experiments_example_6.py"
-```
+
 
 ## Best Practices for Custom Experiments
 
 ### Error Handling
-```python
---8<-- "experiments_custom_experiments_example_7.py"
-```
+
 
 ### Parameter Validation
-```python
---8<-- "experiments_custom_experiments_example_8.py"
-```
+
 
 ### Caching and Memoization
-```python
---8<-- "experiments_custom_experiments_example_9.py"
-```
+
 
 ## Testing Custom Experiments
 
-```python
---8<-- "experiments_custom_experiments_example_10.py"
-```
+
 
 ## Integration with Different Optimizers
 
-```python
---8<-- "experiments_custom_experiments_example_11.py"
-```
+
 
 ## References
 

@@ -14,9 +14,7 @@ OptCV maintains complete compatibility with sklearn's search interfaces while pr
 
 ## Class Signature
 
-```python
---8<-- "experiments_integrations_opt_cv_example.py"
-```
+
 
 ## Parameters
 
@@ -54,126 +52,86 @@ OptCV maintains complete compatibility with sklearn's search interfaces while pr
 
 ### Simple Classification Example
 
-```python
---8<-- "experiments_integrations_opt_cv_example_2.py"
-```
+
 
 ### Regression Example
 
-```python
---8<-- "experiments_integrations_opt_cv_example_3.py"
-```
+
 
 ## Advanced Usage
 
 ### Different Optimizers Comparison
 
-```python
---8<-- "experiments_integrations_opt_cv_example_4.py"
-```
+
 
 ### Pipeline Integration
 
-```python
---8<-- "experiments_integrations_opt_cv_example_5.py"
-```
+
 
 ### Custom Cross-Validation
 
-```python
---8<-- "experiments_integrations_opt_cv_example_6.py"
-```
+
 
 ## Integration with Existing Workflows
 
 ### Drop-in Replacement for GridSearchCV
 
-```python
---8<-- "experiments_integrations_opt_cv_example_7.py"
-```
+
 
 ### With sklearn Model Selection
 
-```python
---8<-- "experiments_integrations_opt_cv_example_8.py"
-```
+
 
 ## Attributes (Same as GridSearchCV)
 
 After fitting, OptCV provides the same attributes as sklearn's search objects:
 
 ### `best_params_`
-```python
---8<-- "experiments_integrations_opt_cv_example_9.py"
-```
+
 
 ### `best_score_`
-```python
---8<-- "experiments_integrations_opt_cv_example_10.py"
-```
+
 
 ### `best_estimator_`
-```python
---8<-- "experiments_integrations_opt_cv_example_11.py"
-```
+
 
 ### `cv_results_` (Limited)
-```python
---8<-- "experiments_integrations_opt_cv_example_12.py"
-```
+
 
 ## Methods (Same as GridSearchCV)
 
 ### `fit(X, y)`
-```python
---8<-- "experiments_integrations_opt_cv_example_13.py"
-```
+
 
 ### `predict(X)`
-```python
---8<-- "experiments_integrations_opt_cv_example_14.py"
-```
+
 
 ### `predict_proba(X)`
-```python
---8<-- "experiments_integrations_opt_cv_example_15.py"
-```
+
 
 ### `score(X, y)`
-```python
---8<-- "experiments_integrations_opt_cv_example_16.py"
-```
+
 
 ### `decision_function(X)`
-```python
---8<-- "experiments_integrations_opt_cv_example_17.py"
-```
+
 
 ## Performance Considerations
 
 ### Memory Usage
-```python
---8<-- "experiments_integrations_opt_cv_example_18.py"
-```
+
 
 ### Computational Efficiency
-```python
---8<-- "experiments_integrations_opt_cv_example_19.py"
-```
+
 
 ## Common Patterns
 
 ### Ensemble of Optimized Models
 
-```python
---8<-- "experiments_integrations_opt_cv_example_20.py"
-```
+
 
 ### Hyperparameter Analysis
 
-```python
---8<-- "experiments_integrations_opt_cv_example_21.py"
-```
+
 
 ## Best Practices
 
@@ -187,14 +145,10 @@ After fitting, OptCV provides the same attributes as sklearn's search objects:
 ## Migration from sklearn
 
 ### From GridSearchCV
-```python
---8<-- "experiments_integrations_opt_cv_example_22.py"
-```
+
 
 ### From RandomizedSearchCV
-```python
---8<-- "experiments_integrations_opt_cv_example_23.py"
-```
+
 
 ## References
 

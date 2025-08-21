@@ -24,55 +24,39 @@ Where $c_i$ are offset constants (often set to 0 for centered parabola).
 
 ## Usage Example
 
-```python
---8<-- "experiments_benchmarks_parabola_example.py"
-```
+
 
 ## Algorithm Testing
 
 ### Convergence Speed Comparison
 
-```python
---8<-- "experiments_benchmarks_parabola_example_2.py"
-```
+
 
 ### Precision Testing
 
-```python
---8<-- "experiments_benchmarks_parabola_example_3.py"
-```
+
 
 ### Scalability Analysis
 
-```python
---8<-- "experiments_benchmarks_parabola_example_4.py"
-```
+
 
 ## Custom Parabola Variations
 
-```python
---8<-- "experiments_benchmarks_parabola_example_5.py"
-```
+
 
 ## Rotated Parabola
 
-```python
---8<-- "experiments_benchmarks_parabola_example_6.py"
-```
+
 
 ## Educational Use Cases
 
 ### Teaching Optimization Basics
 
-```python
---8<-- "experiments_benchmarks_parabola_example_7.py"
-```
+
 
 ### Convergence Visualization
 
-```python
---8<-- "experiments_benchmarks_parabola_example_8.py"
-```
+
 
 ## Performance Characteristics
 

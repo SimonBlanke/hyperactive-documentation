@@ -36,9 +36,7 @@ This optimizer leverages sklearn's mature and optimized GridSearchCV implementat
 
 ## Usage Example
 
-```python
---8<-- "optimizers_sklearn_grid_search_sk_example.py"
-```
+
 
 ## When to Use Grid Search SK
 
@@ -67,69 +65,49 @@ This optimizer leverages sklearn's mature and optimized GridSearchCV implementat
 
 ### Custom Cross-Validation
 
-```python
---8<-- "optimizers_sklearn_grid_search_sk_example_2.py"
-```
+
 
 ### Different Scoring Metrics
 
-```python
---8<-- "optimizers_sklearn_grid_search_sk_example_3.py"
-```
+
 
 ### Verbose Output
 
-```python
---8<-- "optimizers_sklearn_grid_search_sk_example_4.py"
-```
+
 
 ## Performance Optimization
 
 ### Parallel Processing
 
-```python
---8<-- "optimizers_sklearn_grid_search_sk_example_5.py"
-```
+
 
 ### Memory Management
 
-```python
---8<-- "optimizers_sklearn_grid_search_sk_example_6.py"
-```
+
 
 ## Common Use Cases
 
 ### Classification Hyperparameter Tuning
 
-```python
---8<-- "optimizers_sklearn_grid_search_sk_example_7.py"
-```
+
 
 ### Regression Model Tuning
 
-```python
---8<-- "optimizers_sklearn_grid_search_sk_example_8.py"
-```
+
 
 ### Pipeline Optimization
 
-```python
---8<-- "optimizers_sklearn_grid_search_sk_example_9.py"
-```
+
 
 ## Integration Patterns
 
 ### With Hyperactive Experiments
 
-```python
---8<-- "optimizers_sklearn_grid_search_sk_example_10.py"
-```
+
 
 ### With OptCV Interface
 
-```python
---8<-- "optimizers_sklearn_grid_search_sk_example_11.py"
-```
+
 
 ## Best Practices
 

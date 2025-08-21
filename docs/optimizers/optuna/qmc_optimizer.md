@@ -6,9 +6,7 @@ Quasi-Monte Carlo (QMC) Optimizer uses low-discrepancy sequences instead of rand
 
 ## Usage Example
 
-```python
---8<-- "optimizers_optuna_qmc_optimizer_example.py"
-```
+
 
 ## When to Use QMC Optimizer
 

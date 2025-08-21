@@ -15,9 +15,7 @@ SklearnCvExperiment automatically:
 
 ## Class Signature
 
-```python
---8<-- "experiments_integrations_sklearn_cv_example.py"
-```
+
 
 ## Parameters
 
@@ -58,55 +56,39 @@ SklearnCvExperiment automatically:
 
 ### Classification
 
-```python
---8<-- "experiments_integrations_sklearn_cv_example_2.py"
-```
+
 
 ### Regression
 
-```python
---8<-- "experiments_integrations_sklearn_cv_example_3.py"
-```
+
 
 ## Advanced Usage
 
 ### Custom Cross-Validation Strategies
 
-```python
---8<-- "experiments_integrations_sklearn_cv_example_4.py"
-```
+
 
 ### Custom Scoring Functions
 
-```python
---8<-- "experiments_integrations_sklearn_cv_example_5.py"
-```
+
 
 ### Pipeline Optimization
 
-```python
---8<-- "experiments_integrations_sklearn_cv_example_6.py"
-```
+
 
 ### Early Stopping and Budget Management
 
-```python
---8<-- "experiments_integrations_sklearn_cv_example_7.py"
-```
+
 
 ## Common Patterns
 
 ### Multi-Algorithm Comparison
 
-```python
---8<-- "experiments_integrations_sklearn_cv_example_8.py"
-```
+
 
 ### Nested Cross-Validation
 
-```python
---8<-- "experiments_integrations_sklearn_cv_example_9.py"
-```
+
 
 ## Best Practices
 
@@ -121,31 +103,21 @@ SklearnCvExperiment automatically:
 ## Common Issues and Solutions
 
 ### Memory Issues
-```python
---8<-- "experiments_integrations_sklearn_cv_example_10.py"
-```
+
 
 ### Imbalanced Datasets
-```python
---8<-- "experiments_integrations_sklearn_cv_example_11.py"
-```
+
 
 ### Time Series Data
-```python
---8<-- "experiments_integrations_sklearn_cv_example_12.py"
-```
+
 
 ## Integration with Other Hyperactive Components
 
 ### With OptCV Interface
-```python
---8<-- "experiments_integrations_sklearn_cv_example_13.py"
-```
+
 
 ### With Different Optimizers
-```python
---8<-- "experiments_integrations_sklearn_cv_example_14.py"
-```
+
 
 ## References
 

@@ -2,15 +2,11 @@
 
 The access to the surrogate model. To pass a surrogate model it must be similar to the following code: 
 
-```python
---8<-- "parameters_gpr_example.py"
-```
+
 
 The `predict`-method returns only $\mu$ if `return_std=False` and returns $\mu$ and $\sigma$ if `return_std=True`. Note that you have to pass the instantiated class to the `gpr`-parameter:
 
-```python
---8<-- "parameters_gpr_example_2.py"
-```
+
 
   - **type**: class
   - **default**: -

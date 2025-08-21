@@ -23,9 +23,7 @@ pip install hyperactive
 
 ## Quick Start
 
-```python
---8<-- "index_example.py"
-```
+
 
 ## Key Features
 

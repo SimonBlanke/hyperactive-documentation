@@ -41,9 +41,7 @@ Key features:
 
 ## Usage Example
 
-```python
---8<-- "optimizers_optuna_cmaes_optimizer_example.py"
-```
+
 
 ## When to Use CMA-ES
 
@@ -73,21 +71,15 @@ Key features:
 
 ### Custom Population Size
 
-```python
---8<-- "optimizers_optuna_cmaes_optimizer_example_2.py"
-```
+
 
 ### Step Size Tuning
 
-```python
---8<-- "optimizers_optuna_cmaes_optimizer_example_3.py"
-```
+
 
 ### Reproducible Results
 
-```python
---8<-- "optimizers_optuna_cmaes_optimizer_example_4.py"
-```
+
 
 ## Mathematical Background
 
@@ -115,15 +107,11 @@ The algorithm updates these parameters based on the success of sampled points:
 
 ### Neural Network Hyperparameters
 
-```python
---8<-- "optimizers_optuna_cmaes_optimizer_example_5.py"
-```
+
 
 ### Regression Model Tuning
 
-```python
---8<-- "optimizers_optuna_cmaes_optimizer_example_6.py"
-```
+
 
 ## References
 

@@ -19,41 +19,31 @@ Hyperactive is built around two main concepts:
 
 Let's start with a simple mathematical optimization problem:
 
-```python
---8<-- "tutorials_quickstart_v5_example.py"
-```
+
 
 ## Machine Learning Hyperparameter Optimization
 
 The most common use case is optimizing ML model hyperparameters:
 
-```python
---8<-- "tutorials_quickstart_v5_example_2.py"
-```
+
 
 ## Using Different Optimization Algorithms
 
 Hyperactive v5 provides 25+ optimization algorithms. Here's how to try different ones:
 
-```python
---8<-- "tutorials_quickstart_v5_example_3.py"
-```
+
 
 ## Sklearn-Compatible Interface
 
 If you prefer the familiar scikit-learn interface:
 
-```python
---8<-- "tutorials_quickstart_v5_example_4.py"
-```
+
 
 ## Advanced Parameter Spaces
 
 For more complex parameter spaces with different data types:
 
-```python
---8<-- "tutorials_quickstart_v5_example_5.py"
-```
+
 
 ## Working with Different Backends
 
@@ -61,23 +51,17 @@ Hyperactive supports multiple optimization backends:
 
 ### Optuna Backend
 
-```python
---8<-- "tutorials_quickstart_v5_example_6.py"
-```
+
 
 ### Scikit-learn Backend
 
-```python
---8<-- "tutorials_quickstart_v5_example_7.py"
-```
+
 
 ## Custom Optimization Problems
 
 Create your own optimization experiment:
 
-```python
---8<-- "tutorials_quickstart_v5_example_8.py"
-```
+
 
 ## Performance Tips
 
@@ -90,35 +74,25 @@ Create your own optimization experiment:
 
 ### 2. Algorithm-Specific Tips
 
-```python
---8<-- "tutorials_quickstart_v5_example_9.py"
-```
+
 
 ### 3. Cross-Validation Strategy
 
-```python
---8<-- "tutorials_quickstart_v5_example_10.py"
-```
+
 
 ### 4. Parallel Processing
 
-```python
---8<-- "tutorials_quickstart_v5_example_11.py"
-```
+
 
 ## Common Patterns
 
 ### Comparing Multiple Models
 
-```python
---8<-- "tutorials_quickstart_v5_example_12.py"
-```
+
 
 ### Early Stopping for Time-Limited Optimization
 
-```python
---8<-- "tutorials_quickstart_v5_example_13.py"
-```
+
 
 ## Next Steps
 

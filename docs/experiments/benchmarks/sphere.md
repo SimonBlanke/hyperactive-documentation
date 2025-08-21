@@ -24,9 +24,7 @@ Where $d$ is the dimensionality of the problem.
 
 ## Usage Example
 
-```python
---8<-- "experiments_benchmarks_sphere_example.py"
-```
+
 
 ## Characteristics for Algorithm Testing
 
@@ -48,33 +46,23 @@ Where $d$ is the dimensionality of the problem.
 
 ## Multi-Dimensional Scaling
 
-```python
---8<-- "experiments_benchmarks_sphere_example_2.py"
-```
+
 
 ## Convergence Analysis
 
-```python
---8<-- "experiments_benchmarks_sphere_example_3.py"
-```
+
 
 ## Algorithm Comparison
 
-```python
---8<-- "experiments_benchmarks_sphere_example_4.py"
-```
+
 
 ## Parameter Space Exploration
 
-```python
---8<-- "experiments_benchmarks_sphere_example_5.py"
-```
+
 
 ## Custom Sphere Variations
 
-```python
---8<-- "experiments_benchmarks_sphere_example_6.py"
-```
+
 
 ## Theoretical Properties
 

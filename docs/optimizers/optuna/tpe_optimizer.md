@@ -42,9 +42,7 @@ Key features:
 
 ## Usage Example
 
-```python
---8<-- "optimizers_optuna_tpe_optimizer_example.py"
-```
+
 
 ## When to Use TPE
 
@@ -72,15 +70,11 @@ Key features:
 
 ### Custom Gamma Values
 
-```python
---8<-- "optimizers_optuna_tpe_optimizer_example_2.py"
-```
+
 
 ### Warm Starting
 
-```python
---8<-- "optimizers_optuna_tpe_optimizer_example_3.py"
-```
+
 
 ## Performance Tips
 

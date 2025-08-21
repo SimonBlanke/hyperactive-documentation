@@ -46,9 +46,7 @@ This optimizer leverages sklearn's RandomizedSearchCV implementation, offering:
 
 ## Usage Example
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example.py"
-```
+
 
 ## When to Use Random Search SK
 
@@ -68,41 +66,29 @@ This optimizer leverages sklearn's RandomizedSearchCV implementation, offering:
 
 ### Discrete Uniform (Choice from List)
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_2.py"
-```
+
 
 ### Continuous Distributions
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_3.py"
-```
+
 
 ### Custom Distributions
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_4.py"
-```
+
 
 ## Advanced Usage
 
 ### Budget Management
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_5.py"
-```
+
 
 ### Reproducible Results
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_6.py"
-```
+
 
 ### Progressive Search
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_7.py"
-```
+
 
 ## Comparison with Grid Search
 
@@ -119,47 +105,33 @@ This optimizer leverages sklearn's RandomizedSearchCV implementation, offering:
 
 ### Parallel Execution
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_8.py"
-```
+
 
 ### Memory Management
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_9.py"
-```
+
 
 ### Search Space Design
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_10.py"
-```
+
 
 ## Common Use Cases
 
 ### Neural Network Hyperparameters
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_11.py"
-```
+
 
 ### Ensemble Method Tuning
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_12.py"
-```
+
 
 ### SVM Optimization
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_13.py"
-```
+
 
 ## Integration with Experiment Pipeline
 
-```python
---8<-- "optimizers_sklearn_random_search_sk_example_14.py"
-```
+
 
 ## Best Practices
 

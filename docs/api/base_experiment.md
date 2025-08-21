@@ -5,9 +5,7 @@ The `BaseExperiment` class defines the optimization problem and objective functi
 
 ### Class Signature
 
-```python
---8<-- "api_base_classes_example_4.py"
-```
+
 
 ### Key Methods
 
@@ -23,9 +21,7 @@ Evaluate the given parameters and return the objective value.
 - `dict`: Additional metadata about the evaluation
 
 **Example:**
-```python
---8<-- "api_base_classes_example_5.py"
-```
+
 
 #### `score(params)`
 
@@ -49,9 +45,7 @@ Get the parameter names for the search space.
 
 BaseExperiment uses tags to specify optimization properties:
 
-```python
---8<-- "api_base_classes_example_6.py"
-```
+
 
 ### Abstract Methods
 
@@ -69,18 +63,11 @@ Implement the actual objective function evaluation.
 
 ### Basic Optimizer Usage
 
-```python
---8<-- "api_base_classes_example_7.py"
-```
+
 
 ### Custom Experiment Creation
 
-```python
---8<-- "api_base_classes_example_8.py"
-```
+
 
 ### Tag Inspection
 
-```python
---8<-- "api_base_classes_example_9.py"
-```

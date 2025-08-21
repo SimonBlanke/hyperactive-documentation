@@ -26,9 +26,7 @@ Random search uniformly samples from the defined parameter space without using i
 
 ## Usage Example
 
-```python
---8<-- "optimizers_optuna_random_optimizer_example.py"
-```
+
 
 ## When to Use Random Search
 
@@ -59,15 +57,11 @@ Random search uniformly samples from the defined parameter space without using i
 
 ### Reproducible Results
 
-```python
---8<-- "optimizers_optuna_random_optimizer_example_2.py"
-```
+
 
 ### Parallel Evaluation Strategy
 
-```python
---8<-- "optimizers_optuna_random_optimizer_example_3.py"
-```
+
 
 ## Mathematical Properties
 
@@ -94,21 +88,15 @@ Random search provides uniform coverage of the parameter space, avoiding bias to
 
 ### Warm-up Phase
 
-```python
---8<-- "optimizers_optuna_random_optimizer_example_4.py"
-```
+
 
 ### Multi-Resolution Search
 
-```python
---8<-- "optimizers_optuna_random_optimizer_example_5.py"
-```
+
 
 ### Evaluation Budget Management
 
-```python
---8<-- "optimizers_optuna_random_optimizer_example_6.py"
-```
+
 
 ## Research Applications
 

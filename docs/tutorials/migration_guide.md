@@ -31,53 +31,37 @@ pip install gradient-free-optimizers>=1.2.4
 
 ### v4 Pattern
 
-```python
---8<-- "tutorials_migration_guide_example.py"
-```
+
 
 ### v5 Pattern
 
-```python
---8<-- "tutorials_migration_guide_example_2.py"
-```
+
 
 ## Migration Examples
 
 ### Example 1: Basic Hyperparameter Optimization
 
 **v4 Code:**
-```python
---8<-- "tutorials_migration_guide_example_3.py"
-```
+
 
 **v5 Code:**
-```python
---8<-- "tutorials_migration_guide_example_4.py"
-```
+
 
 ### Example 2: Custom Objective Function
 
 **v4 Code:**
-```python
---8<-- "tutorials_migration_guide_example_5.py"
-```
+
 
 **v5 Code:**
-```python
---8<-- "tutorials_migration_guide_example_6.py"
-```
+
 
 ### Example 3: Multiple Search Runs
 
 **v4 Code:**
-```python
---8<-- "tutorials_migration_guide_example_7.py"
-```
+
 
 **v5 Code:**
-```python
---8<-- "tutorials_migration_guide_example_8.py"
-```
+
 
 ## Algorithm Name Mapping
 
@@ -97,63 +81,45 @@ Many algorithm names have changed between versions:
 
 V5 adds many new algorithms not available in v4:
 
-```python
---8<-- "tutorials_migration_guide_example_9.py"
-```
+
 
 ## Parameter Configuration
 
 ### v4 Parameter Passing
 
-```python
---8<-- "tutorials_migration_guide_example_10.py"
-```
+
 
 ### v5 Parameter Passing
 
-```python
---8<-- "tutorials_migration_guide_example_11.py"
-```
+
 
 ## Advanced Migration Patterns
 
 ### Memory and Warm Starting
 
 **v4 Code:**
-```python
---8<-- "tutorials_migration_guide_example_12.py"
-```
+
 
 **v5 Code:**
-```python
---8<-- "tutorials_migration_guide_example_13.py"
-```
+
 
 ### Parallel Processing
 
 **v4 Code:**
-```python
---8<-- "tutorials_migration_guide_example_14.py"
-```
+
 
 **v5 Code:**
-```python
---8<-- "tutorials_migration_guide_example_15.py"
-```
+
 
 ## Integration with ML Frameworks
 
 ### Scikit-learn Integration
 
 **v4 Approach:**
-```python
---8<-- "tutorials_migration_guide_example_16.py"
-```
+
 
 **v5 Approach:**
-```python
---8<-- "tutorials_migration_guide_example_17.py"
-```
+
 
 ## Common Migration Issues
 
@@ -162,35 +128,27 @@ V5 adds many new algorithms not available in v4:
 **Problem:** v4 used various formats for search spaces.
 
 **Solution:** v5 uses consistent dict format:
-```python
---8<-- "tutorials_migration_guide_example_18.py"
-```
+
 
 ### 2. Result Access
 
 **Problem:** Different result access patterns.
 
 **Solution:**
-```python
---8<-- "tutorials_migration_guide_example_19.py"
-```
+
 
 ### 3. Progress Monitoring
 
 **Problem:** v5 doesn't have built-in progress bars.
 
 **Solution:** Implement custom monitoring:
-```python
---8<-- "tutorials_migration_guide_example_20.py"
-```
+
 
 ## Testing Your Migration
 
 Create a simple test to verify your migration:
 
-```python
---8<-- "tutorials_migration_guide_example_21.py"
-```
+
 
 ## Performance Considerations
 
