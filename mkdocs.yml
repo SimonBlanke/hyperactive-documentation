@@ -81,7 +81,9 @@ nav:
       - Base Experiment: api/base_experiment.md
 
   - Optimization Algorithms:
+      - optimizers/index.md
       - GFO Backend:
+        - optimizers/gfo/index.md
         - Hill Climbing: optimizers/gfo/hill_climbing.md
         - Stochastic Hill Climbing: optimizers/gfo/stochastic_hill_climbing.md
         - Repulsing Hill Climbing: optimizers/gfo/repulsing_hill_climbing.md
@@ -104,6 +106,7 @@ nav:
         - Tree Structured Parzen Estimators: optimizers/gfo/tree_structured_parzen_estimators.md
         - Forest Optimization: optimizers/gfo/forest_optimization.md
       - Optuna Backend:
+        - optimizers/optuna/index.md
         - TPE Optimizer: optimizers/optuna/tpe_optimizer.md
         - Random Optimizer: optimizers/optuna/random_optimizer.md
         - CMA-ES Optimizer: optimizers/optuna/cmaes_optimizer.md
@@ -113,6 +116,7 @@ nav:
         - NSGA-III Optimizer: optimizers/optuna/nsga_iii_optimizer.md
         - QMC Optimizer: optimizers/optuna/qmc_optimizer.md
       - Scikit-learn Backend:
+        - optimizers/sklearn/index.md
         - Grid Search SK: optimizers/sklearn/grid_search_sk.md
         - Random Search SK: optimizers/sklearn/random_search_sk.md
 
