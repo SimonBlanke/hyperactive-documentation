@@ -1,9 +1,10 @@
-# Optimization Algorithms
+# Gradient-Free-Optimizers
 
+The GFO backend is Hyperactive's primary optimization engine with 20+ algorithms spanning the complete spectrum of optimization methods. This is your go-to choice for maximum algorithmic flexibility and research applications.
 
-This package provides a variety of algorithms specialized to different types of optimization problems. Finding an optimization algorithm that fits the problem well can be difficult. The following page tries to assist with this choice.
+## Why Choose GFO?
 
-{% include 'optimization_categories.md' %}
-
-
+- **Largest Algorithm Collection**: 20+ methods from simple hill climbing to advanced Bayesian optimization
+- **Full Customization**: Direct access to all algorithm parameters and settings
+- **Research-Friendly**: Perfect for experimenting with different optimization strategies
 
