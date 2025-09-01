@@ -121,11 +121,14 @@ nav:
         - Random Search SK: optimizers/sklearn/random_search_sk.md
 
   - Experiments:
+      - experiments/index.md
       - Built-in Benchmarks:
+        - experiments/benchmarks/index.md
         - Ackley Function: experiments/benchmarks/ackley.md
         - Sphere Function: experiments/benchmarks/sphere.md
         - Parabola Function: experiments/benchmarks/parabola.md
       - Integrations:
+        - experiments/integrations/index.md
         - Scikit-learn CV: experiments/integrations/sklearn_cv.md
         - OptCV Interface: experiments/integrations/opt_cv.md
         - Sktime Forecasting: experiments/integrations/sktime_forecasting.md
