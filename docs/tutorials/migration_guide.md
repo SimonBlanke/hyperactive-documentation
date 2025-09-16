@@ -31,11 +31,40 @@ pip install gradient-free-optimizers>=1.2.4
 
 ### v4 Pattern
 
-
+Replace prior monolithic usage with experiment + optimizer composition.
 
 ### v5 Pattern
 
+Example patterns with v5 components:
 
+Sklearn cross‑validation + sklearn-style randomized search:
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.svm import SVC
+from hyperactive.experiment.integrations import SklearnCvExperiment
+from hyperactive.opt import RandomSearchSk
+
+X, y = load_iris(return_X_y=True)
+exp = SklearnCvExperiment(estimator=SVC(), X=X, y=y)
+
+opt = RandomSearchSk(
+    param_distributions={"C": [0.1, 1, 10], "gamma": ["scale", "auto", 0.01]},
+    n_iter=20,
+    experiment=exp,
+)
+best = opt.solve()
+```
+
+Optuna TPE with mixed parameter spaces:
+
+```python
+from hyperactive.opt.optuna import TPEOptimizer
+
+space = {"C": (1e-2, 100), "kernel": ["rbf", "poly"], "gamma": (1e-6, 1e-1)}
+opt = TPEOptimizer(param_space=space, n_trials=25, experiment=exp)
+best = opt.solve()
+```
 
 ## Migration Examples
 
@@ -45,7 +74,7 @@ pip install gradient-free-optimizers>=1.2.4
 
 
 **v5 Code:**
-
+As above: combine `SklearnCvExperiment` with any optimizer (e.g., `RandomSearchSk`).
 
 ### Example 2: Custom Objective Function
 
@@ -53,7 +82,18 @@ pip install gradient-free-optimizers>=1.2.4
 
 
 **v5 Code:**
+Wrap a callable using `FunctionExperiment`:
 
+```python
+from hyperactive.experiment.func import FunctionExperiment
+from hyperactive.opt.gfo import RandomSearch
+
+def obj(x, y):
+    return -(x**2 + y**2), {}
+
+exp = FunctionExperiment(obj, parametrization="kwargs")
+best = RandomSearch(experiment=exp).solve()
+```
 
 ### Example 3: Multiple Search Runs
 
@@ -109,7 +149,19 @@ V5 adds many new algorithms not available in v4:
 
 
 **v5 Code:**
+Use sklearn-style optimizers with backends:
 
+```python
+from hyperactive.opt import GridSearchSk as GridSearch
+
+opt = GridSearch(
+    param_grid={"C": [0.1, 1, 10]},
+    backend="joblib",
+    backend_params={"n_jobs": -1},
+    experiment=exp,
+)
+best = opt.solve()
+```
 
 ## Integration with ML Frameworks
 

@@ -39,7 +39,12 @@ Score the parameters with sign adjustment for maximization.
 Get the parameter names for the search space.
 
 **Returns:**
-- `list`: List of parameter names
+- `list[str] | None`: Parameter names. If `None`, any parameter keys are accepted.
+- `__call__(params)` is provided as shorthand for `score(params)` and returns only the score (float).
+- Score sign follows the tag `property:higher_or_lower_is_better`:
+  - `"higher"`: score equals evaluate (higher-is-better)
+  - `"lower"`: score is `-evaluate` (converted to higher-is-better)
+  - `"mixed"`: not supported by default; override `score` for custom behavior
 
 ### Tags System
 
@@ -70,4 +75,3 @@ Implement the actual objective function evaluation.
 
 
 ### Tag Inspection
-

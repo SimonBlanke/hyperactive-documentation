@@ -18,7 +18,7 @@ The Optuna backend provides 8 modern optimization algorithms with advanced featu
 
 ### Scikit-learn Backend
 
-Direct integration with scikit-learn's optimization tools for familiar workflows.
+Sklearn-style search using `ParameterGrid` / `ParameterSampler`, with evaluation handled by Hyperactive experiments.
 
 **Import from:** `hyperactive.opt.gridsearch` and `hyperactive.opt`
 
@@ -216,15 +216,15 @@ Quasi-Monte Carlo sampling.
 
 ## Scikit-learn Backend
 
-Direct integration with scikit-learn optimization tools.
+Sklearn-style search; not thin wrappers over sklearn CV utilities. Evaluation is performed by a `SklearnCvExperiment` and parallelization by Hyperactive backends.
 
 ### GridSearchSk
-Direct sklearn GridSearchCV integration.
+Sklearn-style exhaustive grid evaluation (evaluation via `SklearnCvExperiment`).
 
 
 
 ### RandomSearchSk
-Direct sklearn RandomizedSearchCV integration.
+Sklearn-style randomized search (evaluation via `SklearnCvExperiment`).
 
 
 

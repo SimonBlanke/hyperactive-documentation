@@ -21,6 +21,13 @@ The most recent version of Hyperactive is available on PyPi:
 pip install hyperactive
 ```
 
+Optional integrations and backends:
+
+- Optuna adapters: `pip install optuna<5`
+- Sktime integrations: `pip install hyperactive[sktime-integration]`
+- Parallel backends (as needed): `pip install joblib dask ray`
+  - Note: ray support depends on your Python version; see `pyproject.toml` constraints.
+
 ## Quick Start
 
 
