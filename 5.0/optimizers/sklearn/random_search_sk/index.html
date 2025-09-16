@@ -2558,6 +2558,26 @@
 <li><strong>Description</strong>: Experiment used to evaluate candidates (e.g., <code>SklearnCvExperiment</code>)</li>
 </ul>
 <h2 id="usage-example">Usage Example</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">hyperactive.experiment.integrations</span> <span class="kn">import</span> <span class="n">SklearnCvExperiment</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span> <span class="nn">hyperactive.opt</span> <span class="kn">import</span> <span class="n">RandomSearchSk</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">exp</span> <span class="o">=</span> <span class="n">SklearnCvExperiment</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">SVC</span><span class="p">(),</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">opt</span> <span class="o">=</span> <span class="n">RandomSearchSk</span><span class="p">(</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">param_distributions</span><span class="o">=</span><span class="p">{</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;scale&quot;</span><span class="p">,</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="p">},</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">n_iter</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;threading&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    <span class="n">backend_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n_jobs&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">experiment</span><span class="o">=</span><span class="n">exp</span><span class="p">,</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="p">)</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">best_params</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</code></pre></div>
 <h2 id="when-to-use-random-search-sk">When to Use Random Search SK</h2>
 <p><strong>Best for:</strong>
 - <strong>Large parameter spaces</strong>: More efficient than grid search for high-dimensional spaces
@@ -2575,7 +2595,9 @@
 <h3 id="custom-distributions">Custom Distributions</h3>
 <h2 id="advanced-usage">Advanced Usage</h2>
 <h3 id="budget-management">Budget Management</h3>
+<p>Control evaluations via <code>n_iter</code>; use <code>backend_params</code> to scale out across cores.</p>
 <h3 id="reproducible-results">Reproducible Results</h3>
+<p>Set <code>random_state</code> on the optimizer and estimators.</p>
 <h3 id="progressive-search">Progressive Search</h3>
 <h2 id="comparison-with-grid-search">Comparison with Grid Search</h2>
 <table>

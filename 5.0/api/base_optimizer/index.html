@@ -540,20 +540,14 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Properties">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#best_params_" class="md-nav__link">
-    <span class="md-ellipsis">
-      best_params_
-    </span>
-  </a>
-  
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#minimal-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal Example
+    </span>
+  </a>
   
 </li>
         
@@ -2020,20 +2014,14 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Properties">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#best_params_" class="md-nav__link">
-    <span class="md-ellipsis">
-      best_params_
-    </span>
-  </a>
-  
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#minimal-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimal Example
+    </span>
+  </a>
   
 </li>
         
@@ -2071,30 +2059,46 @@
 <h2 id="baseoptimizer">BaseOptimizer</h2>
 <p>The <code>BaseOptimizer</code> class is the foundation for all optimization algorithms in Hyperactive v5.</p>
 <h3 id="class-signature">Class Signature</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">BaseOptimizer</span><span class="p">(</span><span class="n">BaseObject</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span> <span class="nf">get_search_config</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">def</span> <span class="nf">get_experiment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;BaseExperiment&quot;</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span> <span class="o">...</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">def</span> <span class="nf">_solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">experiment</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span> <span class="o">...</span>  <span class="c1"># to override</span>
+</code></pre></div>
 <h3 id="key-methods">Key Methods</h3>
 <h4 id="solve"><code>solve()</code></h4>
-<p>Run the optimization search process to maximize the experiment's score.</p>
+<p>Run the optimization to maximize the experiment’s score (higher-is-better convention). Sets <code>best_params_</code> and may set additional attributes depending on the optimizer.</p>
 <p><strong>Returns:</strong>
-- <code>best_params</code> (dict): The best parameters found during optimization</p>
-<p><strong>Example:</strong></p>
+- <code>dict</code>: Best parameters found</p>
 <h4 id="get_search_config"><code>get_search_config()</code></h4>
-<p>Get the search configuration parameters for the optimizer.</p>
+<p>Returns the optimizer’s configuration, excluding the experiment object (useful to introspect/store settings).</p>
 <p><strong>Returns:</strong>
-- <code>dict</code>: Configuration dictionary with optimizer-specific parameters</p>
+- <code>dict</code>: Optimizer-specific parameters</p>
 <h4 id="get_experiment"><code>get_experiment()</code></h4>
-<p>Get the associated experiment object.</p>
+<p>Returns the associated experiment. If a plain callable was provided, it is wrapped as a <code>FunctionExperiment</code> automatically.</p>
 <p><strong>Returns:</strong>
-- <code>BaseExperiment</code>: The experiment to optimize parameters for</p>
+- <code>BaseExperiment</code>: Experiment to optimize</p>
 <h3 id="properties">Properties</h3>
-<h4 id="best_params_"><code>best_params_</code></h4>
-<p>The best parameters found after calling <code>solve()</code>.</p>
-<p><strong>Type:</strong> <code>dict</code></p>
+<ul>
+<li><code>best_params_</code> (<code>dict</code>): Best parameters found (set by <code>solve()</code>)</li>
+<li><code>best_score_</code> (<code>float</code>, optional): Signed score per higher-is-better convention (set by some optimizers, e.g., <code>GridSearchSk</code>, <code>RandomSearchSk</code>)</li>
+<li><code>best_index_</code> (<code>int</code>, optional): Index of the best candidate in the evaluated sequence (set by some optimizers)</li>
+</ul>
+<h3 id="minimal-example">Minimal Example</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">hyperactive.experiment.integrations</span> <span class="kn">import</span> <span class="n">SklearnCvExperiment</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span> <span class="nn">hyperactive.opt</span> <span class="kn">import</span> <span class="n">GridSearchSk</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">exp</span> <span class="o">=</span> <span class="n">SklearnCvExperiment</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">opt</span> <span class="o">=</span> <span class="n">GridSearchSk</span><span class="p">(</span><span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]},</span> <span class="n">experiment</span><span class="o">=</span><span class="n">exp</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">best</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</code></pre></div>
 <h3 id="tags-system">Tags System</h3>
-<p>BaseOptimizer uses a comprehensive tag system to provide metadata about algorithm properties:</p>
-<p><strong>Tag Meanings:</strong>
-- <strong>local_vs_global</strong>: Whether the algorithm focuses on local or global search
-- <strong>explore_vs_exploit</strong>: Balance between exploration and exploitation
-- <strong>compute</strong>: Computational cost category</p>
+<p>BaseOptimizer uses tags to describe algorithm properties:</p>
+<ul>
+<li><code>info:local_vs_global</code>: local | mixed | global</li>
+<li><code>info:explore_vs_exploit</code>: explore | exploit | mixed</li>
+<li><code>info:compute</code>: low | middle | high</li>
+</ul>
 
 
 
