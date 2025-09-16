@@ -16,9 +16,13 @@ Key features:
 
 ## Parameters
 
-### `experiment`
-- **Type**: `BaseExperiment`
-- **Description**: The experiment object defining the optimization problem
+### Common (via Base Optuna Adapter)
+- `param_space` (dict): parameter space; tuples/lists treated as ranges/choices
+- `n_trials` (int): number of trials to run
+- `initialize` (dict | None): optional warm start/grid/vertices/random init
+- `early_stopping` (int | None): stop if no improvement after N trials
+- `max_score` (float | None): stop when reaching threshold
+- `experiment` (BaseExperiment): the experiment to optimize
 
 ### `n_startup_trials`
 - **Type**: `int`
@@ -30,15 +34,15 @@ Key features:
 - **Default**: `24`
 - **Description**: Number of candidate points to evaluate when computing Expected Improvement
 
-### `gamma`
-- **Type**: `float`
-- **Default**: `0.25`
-- **Description**: Quantile for splitting observations into good/bad groups. Lower values create more selective "good" groups.
+### `weights`
+- **Type**: `callable | None`
+- **Default**: `None`
+- **Description**: Optional weighting function passed to Optuna's TPESampler.
 
-### `prior_weight`
-- **Type**: `float`
-- **Default**: `1.0`
-- **Description**: Prior weight for the Parzen estimators
+### `random_state`
+- **Type**: `int | None`
+- **Default**: `None`
+- **Description**: Seed for reproducibility (sets `seed` in the underlying TPESampler).
 
 ## Usage Example
 

@@ -16,20 +16,28 @@ Key features:
 
 ## Parameters
 
-### `experiment`
-- **Type**: `BaseExperiment`
-- **Description**: The experiment object defining the optimization problem
+### Common (via Base Optuna Adapter)
+- `param_space` (dict): parameter space; tuples/lists treated as ranges/choices
+- `n_trials` (int): number of trials to run
+- `initialize` (dict | None): optional warm start/grid/vertices/random init
+- `early_stopping` (int | None): stop if no improvement after N trials
+- `max_score` (float | None): stop when reaching threshold
+- `experiment` (BaseExperiment): the experiment to optimize
 
 ### `n_startup_trials`
 - **Type**: `int`
 - **Default**: `10`
 - **Description**: Number of random trials before GP optimization starts
 
-### `acquisition_func`
-- **Type**: `str`
-- **Default**: `"ei"` (Expected Improvement)
-- **Options**: `"ei"`, `"lcb"` (Lower Confidence Bound), `"pi"` (Probability of Improvement)
-- **Description**: Acquisition function for selecting next evaluation point
+### `deterministic_objective`
+- **Type**: `bool`
+- **Default**: `False`
+- **Description**: Whether the objective function is deterministic (passes through to Optuna's GPSampler).
+
+### `random_state`
+- **Type**: `int | None`
+- **Default**: `None`
+- **Description**: Seed for reproducibility (sets `seed` in the underlying GPSampler).
 
 ## Usage Example
 
@@ -52,20 +60,16 @@ Key features:
 
 ## Acquisition Functions
 
+Note: The specific acquisition function is handled internally by the Optuna sampler used by this adapter and is not user-configurable via this API. The following concepts are provided for background only.
+
 ### Expected Improvement (EI)
-- **Best for**: Balanced exploration-exploitation
-- **Formula**: $EI(x) = \sigma(x) \cdot \phi(Z) + (\mu(x) - f_{best}) \cdot \Phi(Z)$
-- **Use when**: General-purpose optimization
+Balanced exploration-exploitation using improvement probability and magnitude.
 
 ### Lower Confidence Bound (LCB)
-- **Best for**: Conservative optimization with uncertainty consideration
-- **Formula**: $LCB(x) = \mu(x) - \kappa \cdot \sigma(x)$
-- **Use when**: You want to avoid risky evaluations
+Conservative trade-off between mean prediction and uncertainty.
 
 ### Probability of Improvement (PI)
-- **Best for**: When you want high probability of improvement
-- **Formula**: $PI(x) = \Phi(\frac{\mu(x) - f_{best}}{\sigma(x)})$
-- **Use when**: Conservative improvement is preferred
+Focuses on points with high probability of improving over current best.
 
 ## Advanced Usage
 
