@@ -1285,9 +1285,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#experiment" class="md-nav__link">
+  <a href="#common-via-base-optuna-adapter" class="md-nav__link">
     <span class="md-ellipsis">
-      experiment
+      Common (via Base Optuna Adapter)
     </span>
   </a>
   
@@ -1303,9 +1303,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#acquisition_func" class="md-nav__link">
+  <a href="#deterministic_objective" class="md-nav__link">
     <span class="md-ellipsis">
-      acquisition_func
+      deterministic_objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      random_state
     </span>
   </a>
   
@@ -2139,9 +2148,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#experiment" class="md-nav__link">
+  <a href="#common-via-base-optuna-adapter" class="md-nav__link">
     <span class="md-ellipsis">
-      experiment
+      Common (via Base Optuna Adapter)
     </span>
   </a>
   
@@ -2157,9 +2166,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#acquisition_func" class="md-nav__link">
+  <a href="#deterministic_objective" class="md-nav__link">
     <span class="md-ellipsis">
-      acquisition_func
+      deterministic_objective
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#random_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      random_state
     </span>
   </a>
   
@@ -2385,10 +2403,14 @@
 - <strong>Principled exploration</strong>: Uses uncertainty to guide search
 - <strong>Non-parametric</strong>: Adapts to complex function shapes</p>
 <h2 id="parameters">Parameters</h2>
-<h3 id="experiment"><code>experiment</code></h3>
+<h3 id="common-via-base-optuna-adapter">Common (via Base Optuna Adapter)</h3>
 <ul>
-<li><strong>Type</strong>: <code>BaseExperiment</code></li>
-<li><strong>Description</strong>: The experiment object defining the optimization problem</li>
+<li><code>param_space</code> (dict): parameter space; tuples/lists treated as ranges/choices</li>
+<li><code>n_trials</code> (int): number of trials to run</li>
+<li><code>initialize</code> (dict | None): optional warm start/grid/vertices/random init</li>
+<li><code>early_stopping</code> (int | None): stop if no improvement after N trials</li>
+<li><code>max_score</code> (float | None): stop when reaching threshold</li>
+<li><code>experiment</code> (BaseExperiment): the experiment to optimize</li>
 </ul>
 <h3 id="n_startup_trials"><code>n_startup_trials</code></h3>
 <ul>
@@ -2396,12 +2418,17 @@
 <li><strong>Default</strong>: <code>10</code></li>
 <li><strong>Description</strong>: Number of random trials before GP optimization starts</li>
 </ul>
-<h3 id="acquisition_func"><code>acquisition_func</code></h3>
+<h3 id="deterministic_objective"><code>deterministic_objective</code></h3>
 <ul>
-<li><strong>Type</strong>: <code>str</code></li>
-<li><strong>Default</strong>: <code>"ei"</code> (Expected Improvement)</li>
-<li><strong>Options</strong>: <code>"ei"</code>, <code>"lcb"</code> (Lower Confidence Bound), <code>"pi"</code> (Probability of Improvement)</li>
-<li><strong>Description</strong>: Acquisition function for selecting next evaluation point</li>
+<li><strong>Type</strong>: <code>bool</code></li>
+<li><strong>Default</strong>: <code>False</code></li>
+<li><strong>Description</strong>: Whether the objective function is deterministic (passes through to Optuna's GPSampler).</li>
+</ul>
+<h3 id="random_state"><code>random_state</code></h3>
+<ul>
+<li><strong>Type</strong>: <code>int | None</code></li>
+<li><strong>Default</strong>: <code>None</code></li>
+<li><strong>Description</strong>: Seed for reproducibility (sets <code>seed</code> in the underlying GPSampler).</li>
 </ul>
 <h2 id="usage-example">Usage Example</h2>
 <h2 id="when-to-use-gp-optimizer">When to Use GP Optimizer</h2>
@@ -2417,24 +2444,13 @@
 - <strong>Very noisy objectives</strong>: More robust methods might be needed
 - <strong>Cheap evaluations</strong>: Random search might be sufficient</p>
 <h2 id="acquisition-functions">Acquisition Functions</h2>
+<p>Note: The specific acquisition function is handled internally by the Optuna sampler used by this adapter and is not user-configurable via this API. The following concepts are provided for background only.</p>
 <h3 id="expected-improvement-ei">Expected Improvement (EI)</h3>
-<ul>
-<li><strong>Best for</strong>: Balanced exploration-exploitation</li>
-<li><strong>Formula</strong>: <span class="arithmatex">\(EI(x) = \sigma(x) \cdot \phi(Z) + (\mu(x) - f_{best}) \cdot \Phi(Z)\)</span></li>
-<li><strong>Use when</strong>: General-purpose optimization</li>
-</ul>
+<p>Balanced exploration-exploitation using improvement probability and magnitude.</p>
 <h3 id="lower-confidence-bound-lcb">Lower Confidence Bound (LCB)</h3>
-<ul>
-<li><strong>Best for</strong>: Conservative optimization with uncertainty consideration</li>
-<li><strong>Formula</strong>: <span class="arithmatex">\(LCB(x) = \mu(x) - \kappa \cdot \sigma(x)\)</span></li>
-<li><strong>Use when</strong>: You want to avoid risky evaluations</li>
-</ul>
+<p>Conservative trade-off between mean prediction and uncertainty.</p>
 <h3 id="probability-of-improvement-pi">Probability of Improvement (PI)</h3>
-<ul>
-<li><strong>Best for</strong>: When you want high probability of improvement</li>
-<li><strong>Formula</strong>: <span class="arithmatex">\(PI(x) = \Phi(\frac{\mu(x) - f_{best}}{\sigma(x)})\)</span></li>
-<li><strong>Use when</strong>: Conservative improvement is preferred</li>
-</ul>
+<p>Focuses on points with high probability of improving over current best.</p>
 <h2 id="advanced-usage">Advanced Usage</h2>
 <h3 id="custom-acquisition-function">Custom Acquisition Function</h3>
 <h3 id="startup-trials-tuning">Startup Trials Tuning</h3>

@@ -2415,7 +2415,7 @@
 <p>The Optuna backend provides 8 modern optimization algorithms with advanced features like multi-objective optimization.</p>
 <p><strong>Import from:</strong> <code>hyperactive.opt.optuna</code> (also re-exported in <code>hyperactive.opt</code>)</p>
 <h3 id="scikit-learn-backend">Scikit-learn Backend</h3>
-<p>Direct integration with scikit-learn's optimization tools for familiar workflows.</p>
+<p>Sklearn-style search using <code>ParameterGrid</code> / <code>ParameterSampler</code>, with evaluation handled by Hyperactive experiments.</p>
 <p><strong>Import from:</strong> <code>hyperactive.opt.gridsearch</code> and <code>hyperactive.opt</code></p>
 <h2 id="gradient-free-optimizers-backend">Gradient-Free-Optimizers Backend</h2>
 <h3 id="hill-climbing-variants">Hill Climbing Variants</h3>
@@ -2507,11 +2507,11 @@
 <h3 id="qmcoptimizer">QMCOptimizer</h3>
 <p>Quasi-Monte Carlo sampling.</p>
 <h2 id="scikit-learn-backend_1">Scikit-learn Backend</h2>
-<p>Direct integration with scikit-learn optimization tools.</p>
+<p>Sklearn-style search; not thin wrappers over sklearn CV utilities. Evaluation is performed by a <code>SklearnCvExperiment</code> and parallelization by Hyperactive backends.</p>
 <h3 id="gridsearchsk">GridSearchSk</h3>
-<p>Direct sklearn GridSearchCV integration.</p>
+<p>Sklearn-style exhaustive grid evaluation (evaluation via <code>SklearnCvExperiment</code>).</p>
 <h3 id="randomsearchsk">RandomSearchSk</h3>
-<p>Direct sklearn RandomizedSearchCV integration.</p>
+<p>Sklearn-style randomized search (evaluation via <code>SklearnCvExperiment</code>).</p>
 <h2 id="choosing-the-right-algorithm">Choosing the Right Algorithm</h2>
 <h3 id="for-quick-prototyping">For Quick Prototyping</h3>
 <ul>

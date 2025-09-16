@@ -2192,7 +2192,14 @@
 <h4 id="paramnames"><code>paramnames()</code></h4>
 <p>Get the parameter names for the search space.</p>
 <p><strong>Returns:</strong>
-- <code>list</code>: List of parameter names</p>
+- <code>list[str] | None</code>: Parameter names. If <code>None</code>, any parameter keys are accepted.</p>
+<p>Notes:
+- When <code>paramnames()</code> returns a list, <code>params</code> passed to <code>evaluate/score</code> must be a subset of that list; otherwise a <code>ValueError</code> is raised.
+- <code>__call__(params)</code> is provided as shorthand for <code>score(params)</code> and returns only the score (float).
+- Score sign follows the tag <code>property:higher_or_lower_is_better</code>:
+  - <code>"higher"</code>: score equals evaluate (higher-is-better)
+  - <code>"lower"</code>: score is <code>-evaluate</code> (converted to higher-is-better)
+  - <code>"mixed"</code>: not supported by default; override <code>score</code> for custom behavior</p>
 <h3 id="tags-system">Tags System</h3>
 <p>BaseExperiment uses tags to specify optimization properties:</p>
 <h3 id="abstract-methods">Abstract Methods</h3>

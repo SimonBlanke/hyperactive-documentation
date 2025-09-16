@@ -1951,6 +1951,13 @@
 <p>The most recent version of Hyperactive is available on PyPi:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="go">pip install hyperactive</span>
 </code></pre></div>
+<p>Optional integrations and backends:</p>
+<ul>
+<li>Optuna adapters: <code>pip install optuna&lt;5</code></li>
+<li>Sktime integrations: <code>pip install hyperactive[sktime-integration]</code></li>
+<li>Parallel backends (as needed): <code>pip install joblib dask ray</code></li>
+<li>Note: ray support depends on your Python version; see <code>pyproject.toml</code> constraints.</li>
+</ul>
 <h2 id="quick-start">Quick Start</h2>
 <h2 id="key-features_1">Key Features</h2>
 <h3 id="complete-architecture-design">Complete Architecture Design</h3>

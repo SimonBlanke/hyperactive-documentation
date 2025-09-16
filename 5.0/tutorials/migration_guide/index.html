@@ -2527,14 +2527,50 @@
 </code></pre></div>
 <h2 id="basic-api-migration">Basic API Migration</h2>
 <h3 id="v4-pattern">v4 Pattern</h3>
+<p>Replace prior monolithic usage with experiment + optimizer composition.</p>
 <h3 id="v5-pattern">v5 Pattern</h3>
+<p>Example patterns with v5 components:</p>
+<p>Sklearn cross‑validation + sklearn-style randomized search:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">from</span> <span class="nn">hyperactive.experiment.integrations</span> <span class="kn">import</span> <span class="n">SklearnCvExperiment</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="kn">from</span> <span class="nn">hyperactive.opt</span> <span class="kn">import</span> <span class="n">RandomSearchSk</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">exp</span> <span class="o">=</span> <span class="n">SklearnCvExperiment</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">SVC</span><span class="p">(),</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">opt</span> <span class="o">=</span> <span class="n">RandomSearchSk</span><span class="p">(</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="n">param_distributions</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;scale&quot;</span><span class="p">,</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]},</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">n_iter</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">experiment</span><span class="o">=</span><span class="n">exp</span><span class="p">,</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">best</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</code></pre></div>
+<p>Optuna TPE with mixed parameter spaces:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">hyperactive.opt.optuna</span> <span class="kn">import</span> <span class="n">TPEOptimizer</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">space</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1e-2</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rbf&quot;</span><span class="p">,</span> <span class="s2">&quot;poly&quot;</span><span class="p">],</span> <span class="s2">&quot;gamma&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">)}</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">opt</span> <span class="o">=</span> <span class="n">TPEOptimizer</span><span class="p">(</span><span class="n">param_space</span><span class="o">=</span><span class="n">space</span><span class="p">,</span> <span class="n">n_trials</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">experiment</span><span class="o">=</span><span class="n">exp</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">best</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</code></pre></div>
 <h2 id="migration-examples">Migration Examples</h2>
 <h3 id="example-1-basic-hyperparameter-optimization">Example 1: Basic Hyperparameter Optimization</h3>
 <p><strong>v4 Code:</strong></p>
-<p><strong>v5 Code:</strong></p>
+<p><strong>v5 Code:</strong>
+As above: combine <code>SklearnCvExperiment</code> with any optimizer (e.g., <code>RandomSearchSk</code>).</p>
 <h3 id="example-2-custom-objective-function">Example 2: Custom Objective Function</h3>
 <p><strong>v4 Code:</strong></p>
-<p><strong>v5 Code:</strong></p>
+<p><strong>v5 Code:</strong>
+Wrap a callable using <code>FunctionExperiment</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">hyperactive.experiment.func</span> <span class="kn">import</span> <span class="n">FunctionExperiment</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span> <span class="nn">hyperactive.opt.gfo</span> <span class="kn">import</span> <span class="n">RandomSearch</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">def</span> <span class="nf">obj</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="k">return</span> <span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="p">{}</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">exp</span> <span class="o">=</span> <span class="n">FunctionExperiment</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">parametrization</span><span class="o">=</span><span class="s2">&quot;kwargs&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">best</span> <span class="o">=</span> <span class="n">RandomSearch</span><span class="p">(</span><span class="n">experiment</span><span class="o">=</span><span class="n">exp</span><span class="p">)</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</code></pre></div>
 <h3 id="example-3-multiple-search-runs">Example 3: Multiple Search Runs</h3>
 <p><strong>v4 Code:</strong></p>
 <p><strong>v5 Code:</strong></p>
@@ -2597,7 +2633,18 @@
 <p><strong>v5 Code:</strong></p>
 <h3 id="parallel-processing">Parallel Processing</h3>
 <p><strong>v4 Code:</strong></p>
-<p><strong>v5 Code:</strong></p>
+<p><strong>v5 Code:</strong>
+Use sklearn-style optimizers with backends:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">hyperactive.opt</span> <span class="kn">import</span> <span class="n">GridSearchSk</span> <span class="k">as</span> <span class="n">GridSearch</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">opt</span> <span class="o">=</span> <span class="n">GridSearch</span><span class="p">(</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">param_grid</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]},</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">backend</span><span class="o">=</span><span class="s2">&quot;joblib&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">backend_params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n_jobs&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">},</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="n">experiment</span><span class="o">=</span><span class="n">exp</span><span class="p">,</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">)</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">best</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</code></pre></div>
 <h2 id="integration-with-ml-frameworks">Integration with ML Frameworks</h2>
 <h3 id="scikit-learn-integration">Scikit-learn Integration</h3>
 <p><strong>v4 Approach:</strong></p>

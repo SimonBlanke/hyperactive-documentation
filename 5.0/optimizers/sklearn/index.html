@@ -1827,14 +1827,15 @@
 
 
 <h1 id="scikit-learnstyled-optimizers">Scikit-learn–Styled Optimizers</h1>
-<p>Hyperactive provides scikit-learn–styled optimizers that use sklearn-style parameter grids and distributions while running through Hyperactive’s optimization and experiment abstractions. These are designed for users who prefer sklearn-like configuration but want to stay within the Hyperactive v5 architecture.</p>
+<p>Hyperactive provides sklearn-style search using <code>ParameterGrid</code> / <code>ParameterSampler</code>, with evaluation routed through Hyperactive experiments. This preserves familiar configuration while keeping the v5 architecture’s separation between search (optimizer) and evaluation (experiment).</p>
 <p>Key characteristics:</p>
 <ul>
 <li>Sklearn-style search spaces via <code>ParameterGrid</code> / <code>ParameterSampler</code></li>
 <li>Evaluation via a Hyperactive <code>Experiment</code> (typically <code>SklearnCvExperiment</code>)</li>
-<li>Parallelism via Hyperactive backends (<code>backend</code>, <code>backend_params</code>)</li>
+<li>Parallelism via optimizer backends (<code>backend</code>, <code>backend_params</code>)</li>
 <li>Results exposed on the optimizer (<code>best_params_</code>, <code>best_score_</code>, etc.)</li>
 </ul>
+<p>Note: These are not thin wrappers over <code>GridSearchCV</code> / <code>RandomizedSearchCV</code>. Cross‑validation is handled by the experiment (<code>SklearnCvExperiment</code>), and parallelization is controlled by Hyperactive’s backends.</p>
 
 
 
