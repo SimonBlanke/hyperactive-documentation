@@ -131,6 +131,6 @@ nav:
         - experiments/integrations/index.md
         - Scikit-learn CV: experiments/integrations/sklearn_cv.md
         - OptCV Interface: experiments/integrations/opt_cv.md
+        - Sktime Classification: experiments/integrations/sktime_classification.md
         - Sktime Forecasting: experiments/integrations/sktime_forecasting.md
       - Custom Experiments: experiments/custom_experiments.md
-

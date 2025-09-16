@@ -1,12 +1,11 @@
-# Scikit-learn Backend
+# Scikit-learn–Styled Optimizers
 
-The Scikit-learn backend provides direct integration with sklearn's trusted optimization methods. If you're already using sklearn workflows, this backend offers the familiar GridSearchCV and RandomizedSearchCV through Hyperactive's consistent interface.
+Hyperactive provides scikit-learn–styled optimizers that use sklearn-style parameter grids and distributions while running through Hyperactive’s optimization and experiment abstractions. These are designed for users who prefer sklearn-like configuration but want to stay within the Hyperactive v5 architecture.
 
-## Why Choose Sklearn?
+Key characteristics:
 
-- **Zero Learning Curve**: Same GridSearchCV and RandomizedSearchCV you already know
-- **Perfect Sklearn Integration**: Native compatibility with all sklearn estimators and pipelines
-- **Battle-Tested Reliability**: Leverage sklearn's mature, well-tested implementations
-- **Familiar Parameter Syntax**: Use the same parameter specifications you're used to
-- **Built-in Cross-Validation**: Native CV integration without additional setup
+- Sklearn-style search spaces via `ParameterGrid` / `ParameterSampler`
+- Evaluation via a Hyperactive `Experiment` (typically `SklearnCvExperiment`)
+- Parallelism via Hyperactive backends (`backend`, `backend_params`)
+- Results exposed on the optimizer (`best_params_`, `best_score_`, etc.)
 

@@ -103,7 +103,5 @@ Create your own optimization experiment:
 5. **Scaling**: Learn about distributed optimization for large-scale problems
 
 For more advanced topics, check out:
-- [Advanced Optimization Strategies](optimization_strategies.md)
-- [Creating Custom Experiments](custom_experiments.md)
-- [Multi-Objective Optimization](multi_objective.md)
-- [Performance Optimization](performance_tips.md)
+- [Optimization Algorithms Overview](../optimizers/index.md)
+- [Creating Custom Experiments](../experiments/custom_experiments.md)

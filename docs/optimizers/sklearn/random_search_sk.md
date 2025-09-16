@@ -1,48 +1,44 @@
-# Random Search SK
+# RandomSearchSk
 
 ## Introduction
 
-Random Search SK provides direct integration with scikit-learn's RandomizedSearchCV, combining the efficiency of random sampling with sklearn's mature cross-validation infrastructure. This optimizer randomly samples parameter combinations from specified distributions.
+`RandomSearchSk` randomly samples parameter combinations from specified distributions or lists using `sklearn.model_selection.ParameterSampler`, and evaluates them through a Hyperactive `Experiment` (e.g., `SklearnCvExperiment`).
 
 ## About the Implementation
 
-This optimizer leverages sklearn's RandomizedSearchCV implementation, offering:
-
-- **Native sklearn integration**: Uses sklearn's RandomizedSearchCV under the hood
-- **Distribution sampling**: Can sample from probability distributions, not just discrete lists
-- **Parallel execution**: Full support for sklearn's n_jobs parameter
-- **Proven efficiency**: Often matches or outperforms grid search with fewer evaluations
+- Uses `ParameterSampler` to draw candidate configurations
+- Uses the provided `experiment` to evaluate each candidate (e.g., CV via `SklearnCvExperiment`)
+- Parallelism controlled via Hyperactive backends (`backend`, `backend_params`)
 
 ## Parameters
 
-### `experiment`
-- **Type**: `BaseExperiment`
-- **Description**: The experiment object defining the optimization problem
+### `param_distributions`
+- **Type**: `dict[str, list | numpy.ndarray | scipy.stats.rv_frozen]`
+- **Description**: Distributions or lists to sample from
 
 ### `n_iter`
-- **Type**: `int`
-- **Default**: `100`
-- **Description**: Number of parameter combinations to evaluate
-
-### `n_jobs`
-- **Type**: `int`
-- **Default**: `1`
-- **Description**: Number of parallel jobs for cross-validation. -1 uses all processors.
-
-### `cv`
-- **Type**: `int` or cross-validation generator
-- **Default**: `3`
-- **Description**: Cross-validation strategy
+- **Type**: `int`, default `10`
+- **Description**: Number of sampled configurations
 
 ### `random_state`
-- **Type**: `int` or `None`
-- **Default**: `None`
-- **Description**: Random seed for reproducible results
+- **Type**: `int | None`
+- **Description**: Random seed for sampling
 
-### `verbose`
-- **Type**: `int`
-- **Default**: `0`
-- **Description**: Verbosity level
+### `error_score`
+- **Type**: `float`, default `np.nan`
+- **Description**: Score to assign if evaluation raises
+
+### `backend`
+- **Type**: `{"None","loky","multiprocessing","threading","joblib","dask","ray"}`
+- **Description**: Parallel backend used by Hyperactive
+
+### `backend_params`
+- **Type**: `dict` or `None`
+- **Description**: Backend configuration
+
+### `experiment`
+- **Type**: `BaseExperiment`
+- **Description**: Experiment used to evaluate candidates (e.g., `SklearnCvExperiment`)
 
 ## Usage Example
 
@@ -139,7 +135,7 @@ This optimizer leverages sklearn's RandomizedSearchCV implementation, offering:
 2. **Sample size**: Use n_iter ≥ 10 × number of parameters as a rule of thumb
 3. **Random seeds**: Set random_state for reproducible results
 4. **Cross-validation**: Choose appropriate CV strategy for your data
-5. **Parallel processing**: Leverage n_jobs for faster execution
+5. **Parallel processing**: Use `backend_params` (e.g., `{"n_jobs": -1}` with joblib)
 6. **Progressive refinement**: Start broad, then narrow down promising regions
 
 ## References

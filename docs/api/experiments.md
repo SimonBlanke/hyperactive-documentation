@@ -52,11 +52,13 @@ Cross-validation based hyperparameter optimization for scikit-learn estimators.
 
 **Parameters:**
 - **estimator**: Scikit-learn estimator to optimize
-- **param_grid**: Dictionary defining the search space
-- **X, y**: Training data
-- **cv**: Cross-validation strategy (int or CV object)
-- **scoring**: Scoring function or string
-- **n_jobs**: Number of parallel jobs for cross-validation
+- **X, y**: Training data arrays
+- **cv**: Cross-validation strategy (int or CV object). If `None`, defaults to `KFold(n_splits=3, shuffle=True)`.
+- **scoring**: Scoring function or string. If `None`, uses the estimator’s default `score`.
+
+Notes:
+- Parallelization is controlled by the optimizer via `backend` and `backend_params` (e.g., `GridSearchSk`, `RandomSearchSk`), not by `SklearnCvExperiment`.
+- Define your search space (e.g., grids, distributions) on the optimizer; the experiment only encapsulates data, estimator, CV, and scoring.
 
 ### OptCV - Scikit-learn Compatible Optimizer
 
@@ -116,7 +118,7 @@ You can create custom experiments by inheriting from `BaseExperiment`.
 ### Performance Optimization
 1. **Caching**: Cache expensive computations when possible
 2. **Early stopping**: Return early for obviously poor parameters
-3. **Parallel evaluation**: Use n_jobs for cross-validation
+3. **Parallel evaluation**: Use optimizer `backend`/`backend_params` for CV parallelization
 4. **Memory management**: Clean up resources in long-running experiments
 
 ### Integration Guidelines

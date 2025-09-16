@@ -11,8 +11,6 @@ SklearnCvExperiment automatically:
 - Handles parameter validation and conversion
 - Supports all sklearn estimators and pipelines
 - Provides comprehensive scoring options
-- Enables parallel cross-validation execution
-
 ## Class Signature
 
 
@@ -21,36 +19,19 @@ SklearnCvExperiment automatically:
 
 ### `estimator`
 - **Type**: sklearn estimator or pipeline
-- **Description**: The machine learning model to optimize
-- **Examples**: Any sklearn estimator (classifiers, regressors, clusterers)
-
-### `param_grid`
-- **Type**: `dict`
-- **Description**: Dictionary defining the hyperparameter search space
-- **Format**: `{"param_name": [value1, value2, ...]}`
+- **Description**: The model to optimize
 
 ### `X, y`
 - **Type**: array-like
 - **Description**: Training features and target values
-- **Note**: Must be compatible with the chosen estimator
 
 ### `cv`
-- **Type**: `int` or sklearn CV object
-- **Default**: `5`
+- **Type**: `int` or sklearn CV object, default `KFold(n_splits=3, shuffle=True)`
 - **Description**: Cross-validation strategy
-- **Options**: Integer (K-fold), or sklearn CV objects
 
 ### `scoring`
-- **Type**: `str` or callable
-- **Default**: Depends on estimator type
+- **Type**: `str` or callable, default depends on estimator
 - **Description**: Scoring function for evaluation
-- **Options**: sklearn scoring strings or custom scorer functions
-
-### `n_jobs`
-- **Type**: `int`
-- **Default**: `1`
-- **Description**: Number of parallel jobs for cross-validation
-- **Options**: `1` (sequential), `-1` (all cores), or specific number
 
 ## Basic Usage Examples
 
@@ -96,7 +77,7 @@ SklearnCvExperiment automatically:
 2. **CV Strategy**: Choose appropriate cross-validation for your data type
 3. **Scoring Metrics**: Select metrics that align with your business objective
 4. **Parameter Ranges**: Define reasonable parameter ranges based on domain knowledge
-5. **Computational Resources**: Use n_jobs for parallel processing when available
+5. **Computational Resources**: Use optimizer `backend`/`backend_params` for parallel processing
 6. **Reproducibility**: Set random seeds in estimators and CV splitters
 7. **Evaluation**: Use nested CV for unbiased performance estimation
 

@@ -1,38 +1,36 @@
-# Grid Search SK
+# GridSearchSk
 
 ## Introduction
 
-Grid Search SK provides direct integration with scikit-learn's GridSearchCV, offering the familiar sklearn interface while working within Hyperactive's architecture. This optimizer systematically searches through all combinations of specified parameter values.
+`GridSearchSk` exhaustively evaluates a sklearn-style parameter grid using Hyperactive’s evaluation pipeline. It combines `sklearn.model_selection.ParameterGrid` with a Hyperactive `Experiment` (commonly `SklearnCvExperiment`).
 
 ## About the Implementation
 
-This optimizer leverages sklearn's mature and optimized GridSearchCV implementation, providing:
-
-- **Native sklearn integration**: Uses sklearn's GridSearchCV under the hood
-- **Parallel execution**: Supports sklearn's n_jobs parameter for parallelization
-- **Cross-validation**: Built-in cross-validation support
-- **Familiar interface**: Standard sklearn parameter handling
+- Uses `ParameterGrid` to enumerate candidate parameter sets
+- Uses the provided `experiment` to evaluate each candidate (e.g., CV via `SklearnCvExperiment`)
+- Parallelism controlled via Hyperactive backends (`backend`, `backend_params`)
 
 ## Parameters
 
+### `param_grid`
+- **Type**: `dict[str, list]`
+- **Description**: Sklearn-style parameter grid to exhaustively evaluate
+
+### `error_score`
+- **Type**: `float`, default `np.nan`
+- **Description**: Score to assign if evaluation raises
+
+### `backend`
+- **Type**: `{"None","loky","multiprocessing","threading","joblib","dask","ray"}`
+- **Description**: Parallel backend used by Hyperactive
+
+### `backend_params`
+- **Type**: `dict` or `None`
+- **Description**: Backend configuration (e.g., `{"n_jobs": -1}` for joblib)
+
 ### `experiment`
 - **Type**: `BaseExperiment`
-- **Description**: The experiment object defining the optimization problem
-
-### `n_jobs`
-- **Type**: `int`
-- **Default**: `1`
-- **Description**: Number of parallel jobs for cross-validation. -1 uses all processors.
-
-### `cv`
-- **Type**: `int` or cross-validation generator
-- **Default**: `3`
-- **Description**: Cross-validation strategy
-
-### `verbose`
-- **Type**: `int`
-- **Default**: `0`
-- **Description**: Verbosity level for sklearn's GridSearchCV
+- **Description**: Experiment used to evaluate candidates (e.g., `SklearnCvExperiment`)
 
 ## Usage Example
 
@@ -55,11 +53,11 @@ This optimizer leverages sklearn's mature and optimized GridSearchCV implementat
 
 ## Comparison with Other Grid Search Methods
 
-| Method | Backend | Parallelization | Features | Use Case |
-|--------|---------|----------------|----------|----------|
-| GridSearchSk | sklearn | Excellent | CV, scoring | sklearn workflows |
-| GridSearch (GFO) | GFO | Limited | Custom logic | General optimization |
-| GridOptimizer (Optuna) | Optuna | Good | Optuna ecosystem | Optuna workflows |
+| Method | Backend | Parallelization | Notes |
+|--------|---------|----------------|-------|
+| GridSearchSk | Hyperactive | Backends via `backend` | Sklearn-style grid + Hyperactive experiments |
+| GridSearch (GFO) | GFO | Internal to GFO | Grid traversal (step/direction), different algorithm |
+| GridOptimizer (Optuna) | Optuna | Optuna | Uses Optuna’s grid sampler |
 
 ## Advanced Usage
 
@@ -113,7 +111,7 @@ This optimizer leverages sklearn's mature and optimized GridSearchCV implementat
 
 1. **Parameter space size**: Keep total combinations reasonable (<1000)
 2. **Cross-validation**: Use appropriate CV strategy for your data
-3. **Parallelization**: Leverage n_jobs for faster execution
+3. **Parallelization**: Use `backend_params` (e.g., `{"n_jobs": -1}` with joblib)
 4. **Memory management**: Monitor memory usage with large grids
 5. **Scoring metrics**: Choose appropriate metrics for your problem
 6. **Reproducibility**: Set random seeds in estimators

@@ -2,12 +2,12 @@
 
 ## Introduction
 
-OptCV provides a drop-in replacement for scikit-learn's GridSearchCV and RandomizedSearchCV, offering the same familiar interface while enabling the use of any Hyperactive optimizer. This bridge allows sklearn users to leverage advanced optimization algorithms without changing their existing workflow.
+OptCV provides a familiar sklearn-like interface for hyperparameter search while enabling the use of any Hyperactive optimizer. This bridge lets sklearn users leverage advanced optimization algorithms without changing their workflow significantly.
 
 ## Design Philosophy
 
-OptCV maintains complete compatibility with sklearn's search interfaces while providing:
-- **Familiar API**: Same methods and attributes as GridSearchCV
+OptCV aims for close compatibility with sklearn's search interfaces while providing:
+- **Familiar API**: Similar methods and key attributes to GridSearchCV
 - **Advanced optimizers**: Access to 25+ optimization algorithms  
 - **Seamless integration**: Works with existing sklearn pipelines and workflows
 - **Enhanced performance**: Often better results than grid/random search
@@ -43,11 +43,6 @@ OptCV maintains complete compatibility with sklearn's search interfaces while pr
 - **Default**: `True`
 - **Description**: Whether to refit the best estimator on full dataset
 
-### `n_jobs`
-- **Type**: `int`
-- **Default**: `1`
-- **Description**: Number of parallel jobs for cross-validation
-
 ## Basic Usage
 
 ### Simple Classification Example
@@ -82,9 +77,9 @@ OptCV maintains complete compatibility with sklearn's search interfaces while pr
 
 
 
-## Attributes (Same as GridSearchCV)
+## Attributes
 
-After fitting, OptCV provides the same attributes as sklearn's search objects:
+After fitting, OptCV provides the following attributes:
 
 ### `best_params_`
 
@@ -95,7 +90,7 @@ After fitting, OptCV provides the same attributes as sklearn's search objects:
 ### `best_estimator_`
 
 
-### `cv_results_` (Limited)
+Note: `cv_results_` is not provided by OptCV in v5.
 
 
 ## Methods (Same as GridSearchCV)

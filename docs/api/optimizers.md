@@ -8,13 +8,13 @@ Hyperactive v5 provides 25+ optimization algorithms across three different backe
 
 The GFO backend provides 16 optimization algorithms with consistent interfaces and comprehensive parameter control.
 
-**Import from:** `hyperactive.opt.gfo`
+**Import from:** `hyperactive.opt.gfo` (also re-exported in `hyperactive.opt`)
 
 ### Optuna Backend  
 
 The Optuna backend provides 8 modern optimization algorithms with advanced features like multi-objective optimization.
 
-**Import from:** `hyperactive.opt.optuna`
+**Import from:** `hyperactive.opt.optuna` (also re-exported in `hyperactive.opt`)
 
 ### Scikit-learn Backend
 
@@ -257,4 +257,3 @@ Direct sklearn RandomizedSearchCV integration.
 
 
 ### Comparing Multiple Algorithms
-
