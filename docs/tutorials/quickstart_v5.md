@@ -191,7 +191,7 @@ best = RandomSearch(experiment=exp2).solve()
 
 1. **Explore more algorithms**: Try different optimizers for your specific problem
 2. **Custom experiments**: Create domain-specific optimization problems
-3. **Advanced features**: Multi-objective optimization, constraint handling
+3. **Advanced features**: Multi-objective optimization; constraint handling is typically implemented inside the experiment (e.g., by returning penalized scores). Hyperactive v5 does not have a first‑class constraints API.
 4. **Integration**: Use with other ML frameworks like XGBoost, LightGBM
 5. **Scaling**: Learn about distributed optimization for large-scale problems
 

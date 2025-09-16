@@ -34,7 +34,23 @@
 
 ## Usage Example
 
+```python
+from sklearn.datasets import load_iris
+from sklearn.svm import SVC
+from hyperactive.experiment.integrations import SklearnCvExperiment
+from hyperactive.opt import GridSearchSk
 
+X, y = load_iris(return_X_y=True)
+exp = SklearnCvExperiment(estimator=SVC(), X=X, y=y)
+
+opt = GridSearchSk(
+    param_grid={"C": [0.1, 1, 10], "kernel": ["linear", "rbf"]},
+    backend="joblib",
+    backend_params={"n_jobs": -1},
+    experiment=exp,
+)
+best_params = opt.solve()
+```
 
 ## When to Use Grid Search SK
 
@@ -63,11 +79,21 @@
 
 ### Custom Cross-Validation
 
+Use a custom CV splitter in the experiment:
 
+```python
+from sklearn.model_selection import StratifiedKFold
+exp = SklearnCvExperiment(estimator=SVC(), X=X, y=y, cv=StratifiedKFold(5, shuffle=True))
+```
 
 ### Different Scoring Metrics
 
+Provide a scorer string or callable to the experiment:
 
+```python
+from sklearn.metrics import f1_score
+exp = SklearnCvExperiment(estimator=SVC(), X=X, y=y, scoring=f1_score)
+```
 
 ### Verbose Output
 

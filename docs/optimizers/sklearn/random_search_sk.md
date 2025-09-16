@@ -42,7 +42,27 @@
 
 ## Usage Example
 
+```python
+from sklearn.datasets import load_iris
+from sklearn.svm import SVC
+from hyperactive.experiment.integrations import SklearnCvExperiment
+from hyperactive.opt import RandomSearchSk
 
+X, y = load_iris(return_X_y=True)
+exp = SklearnCvExperiment(estimator=SVC(), X=X, y=y)
+
+opt = RandomSearchSk(
+    param_distributions={
+        "C": [0.01, 0.1, 1, 10],
+        "gamma": ["scale", "auto", 0.001, 0.01, 0.1],
+    },
+    n_iter=20,
+    backend="threading",
+    backend_params={"n_jobs": 2},
+    experiment=exp,
+)
+best_params = opt.solve()
+```
 
 ## When to Use Random Search SK
 
@@ -76,11 +96,11 @@
 
 ### Budget Management
 
-
+Control evaluations via `n_iter`; use `backend_params` to scale out across cores.
 
 ### Reproducible Results
 
-
+Set `random_state` on the optimizer and estimators.
 
 ### Progressive Search
 

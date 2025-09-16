@@ -43,7 +43,6 @@ Direct integration with sklearn's optimization methods, offering seamless compat
 | Algorithm Count | 20+ | 8+ | 2 |
 | Parameter Types | All | All | All |
 | Multi-Objective | Limited | Yes | No |
-| Experiment Tracking | Basic | Advanced | Basic |
 | Sklearn Integration | Yes | Yes | Native |
 
 ## Getting Started
@@ -53,4 +52,3 @@ Direct integration with sklearn's optimization methods, offering seamless compat
 3. **Select an algorithm** from the backend's available options
 4. **Define your optimization experiment** with search space and objective function
 5. **Run optimization** and analyze results
-

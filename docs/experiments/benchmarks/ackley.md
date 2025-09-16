@@ -28,7 +28,14 @@ Where:
 
 ## Usage Example
 
+```python
+from hyperactive.experiment.bench import Ackley
+from hyperactive.opt.gfo import RandomSearch
 
+exp = Ackley(d=2)
+opt = RandomSearch(experiment=exp)
+best = opt.solve()
+```
 
 ## Characteristics for Algorithm Testing
 
