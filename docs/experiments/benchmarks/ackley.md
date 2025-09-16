@@ -8,9 +8,7 @@ The Ackley function is a widely used multimodal benchmark function for testing o
 
 The Ackley function is defined as:
 
-$$f(x) = -a \exp\left(-b\sqrt{rac{1}{d}\sum_{i=1}^d x_i^2}
-ight) - \exp\left(rac{1}{d}\sum_{i=1}^d \cos(c x_i)
-ight) + a + e$$
+$$f(x) = -a \exp\left(-b\sqrt{rac{1}{d}\sum_{i=1}^d x_i^2}\right) - \exp\left(rac{1}{d}\sum_{i=1}^d \cos(c x_i)\right) + a + e$$
 
 Where:
 - $a = 20$ (amplitude of exponential term)
