@@ -20,7 +20,7 @@
     
     
       
-        <title>Scikit-learn Backend - Hyperactive</title>
+        <title>Scikit-learn–Styled Optimizers - Hyperactive</title>
       
     
     
@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#scikit-learn-backend" class="md-skip">
+        <a href="#scikit-learnstyled-optimizers" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Scikit-learn Backend
+              Scikit-learn–Styled Optimizers
             
           </span>
         </div>
@@ -1631,6 +1631,8 @@
       
         
       
+        
+      
     
     
     
@@ -1702,6 +1704,27 @@
   
   <span class="md-ellipsis">
     OptCV Interface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../experiments/integrations/sktime_classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sktime Classification
   </span>
   
 
@@ -1790,23 +1813,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      On this page
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#why-choose-sklearn" class="md-nav__link">
-    <span class="md-ellipsis">
-      Why Choose Sklearn?
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1820,15 +1826,14 @@
                   
 
 
-<h1 id="scikit-learn-backend">Scikit-learn Backend</h1>
-<p>The Scikit-learn backend provides direct integration with sklearn's trusted optimization methods. If you're already using sklearn workflows, this backend offers the familiar GridSearchCV and RandomizedSearchCV through Hyperactive's consistent interface.</p>
-<h2 id="why-choose-sklearn">Why Choose Sklearn?</h2>
+<h1 id="scikit-learnstyled-optimizers">Scikit-learn–Styled Optimizers</h1>
+<p>Hyperactive provides scikit-learn–styled optimizers that use sklearn-style parameter grids and distributions while running through Hyperactive’s optimization and experiment abstractions. These are designed for users who prefer sklearn-like configuration but want to stay within the Hyperactive v5 architecture.</p>
+<p>Key characteristics:</p>
 <ul>
-<li><strong>Zero Learning Curve</strong>: Same GridSearchCV and RandomizedSearchCV you already know</li>
-<li><strong>Perfect Sklearn Integration</strong>: Native compatibility with all sklearn estimators and pipelines</li>
-<li><strong>Battle-Tested Reliability</strong>: Leverage sklearn's mature, well-tested implementations</li>
-<li><strong>Familiar Parameter Syntax</strong>: Use the same parameter specifications you're used to</li>
-<li><strong>Built-in Cross-Validation</strong>: Native CV integration without additional setup</li>
+<li>Sklearn-style search spaces via <code>ParameterGrid</code> / <code>ParameterSampler</code></li>
+<li>Evaluation via a Hyperactive <code>Experiment</code> (typically <code>SklearnCvExperiment</code>)</li>
+<li>Parallelism via Hyperactive backends (<code>backend</code>, <code>backend_params</code>)</li>
+<li>Results exposed on the optimizer (<code>best_params_</code>, <code>best_score_</code>, etc.)</li>
 </ul>
 
 

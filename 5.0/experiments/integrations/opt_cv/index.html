@@ -12,7 +12,7 @@
         <link rel="prev" href="../sklearn_cv/">
       
       
-        <link rel="next" href="../sktime_forecasting/">
+        <link rel="next" href="../sktime_classification/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -1631,6 +1631,8 @@
       
         
       
+        
+      
     
     
     
@@ -1826,15 +1828,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#n_jobs" class="md-nav__link">
-    <span class="md-ellipsis">
-      n_jobs
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1949,13 +1942,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#attributes-same-as-gridsearchcv" class="md-nav__link">
+  <a href="#attributes" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes (Same as GridSearchCV)
+      Attributes
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Attributes (Same as GridSearchCV)">
+    <nav class="md-nav" aria-label="Attributes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1980,15 +1973,6 @@
   <a href="#best_estimator_" class="md-nav__link">
     <span class="md-ellipsis">
       best_estimator_
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cv_results_-limited" class="md-nav__link">
-    <span class="md-ellipsis">
-      cv_results_ (Limited)
     </span>
   </a>
   
@@ -2192,6 +2176,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../sktime_classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sktime Classification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../sktime_forecasting/" class="md-nav__link">
         
   
@@ -2352,15 +2357,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#n_jobs" class="md-nav__link">
-    <span class="md-ellipsis">
-      n_jobs
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -2475,13 +2471,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#attributes-same-as-gridsearchcv" class="md-nav__link">
+  <a href="#attributes" class="md-nav__link">
     <span class="md-ellipsis">
-      Attributes (Same as GridSearchCV)
+      Attributes
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Attributes (Same as GridSearchCV)">
+    <nav class="md-nav" aria-label="Attributes">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2506,15 +2502,6 @@
   <a href="#best_estimator_" class="md-nav__link">
     <span class="md-ellipsis">
       best_estimator_
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cv_results_-limited" class="md-nav__link">
-    <span class="md-ellipsis">
-      cv_results_ (Limited)
     </span>
   </a>
   
@@ -2719,10 +2706,10 @@
 
 <h1 id="optcv-interface">OptCV Interface</h1>
 <h2 id="introduction">Introduction</h2>
-<p>OptCV provides a drop-in replacement for scikit-learn's GridSearchCV and RandomizedSearchCV, offering the same familiar interface while enabling the use of any Hyperactive optimizer. This bridge allows sklearn users to leverage advanced optimization algorithms without changing their existing workflow.</p>
+<p>OptCV provides a familiar sklearn-like interface for hyperparameter search while enabling the use of any Hyperactive optimizer. This bridge lets sklearn users leverage advanced optimization algorithms without changing their workflow significantly.</p>
 <h2 id="design-philosophy">Design Philosophy</h2>
-<p>OptCV maintains complete compatibility with sklearn's search interfaces while providing:
-- <strong>Familiar API</strong>: Same methods and attributes as GridSearchCV
+<p>OptCV aims for close compatibility with sklearn's search interfaces while providing:
+- <strong>Familiar API</strong>: Similar methods and key attributes to GridSearchCV
 - <strong>Advanced optimizers</strong>: Access to 25+ optimization algorithms<br />
 - <strong>Seamless integration</strong>: Works with existing sklearn pipelines and workflows
 - <strong>Enhanced performance</strong>: Often better results than grid/random search</p>
@@ -2758,12 +2745,6 @@
 <li><strong>Default</strong>: <code>True</code></li>
 <li><strong>Description</strong>: Whether to refit the best estimator on full dataset</li>
 </ul>
-<h3 id="n_jobs"><code>n_jobs</code></h3>
-<ul>
-<li><strong>Type</strong>: <code>int</code></li>
-<li><strong>Default</strong>: <code>1</code></li>
-<li><strong>Description</strong>: Number of parallel jobs for cross-validation</li>
-</ul>
 <h2 id="basic-usage">Basic Usage</h2>
 <h3 id="simple-classification-example">Simple Classification Example</h3>
 <h3 id="regression-example">Regression Example</h3>
@@ -2774,12 +2755,12 @@
 <h2 id="integration-with-existing-workflows">Integration with Existing Workflows</h2>
 <h3 id="drop-in-replacement-for-gridsearchcv">Drop-in Replacement for GridSearchCV</h3>
 <h3 id="with-sklearn-model-selection">With sklearn Model Selection</h3>
-<h2 id="attributes-same-as-gridsearchcv">Attributes (Same as GridSearchCV)</h2>
-<p>After fitting, OptCV provides the same attributes as sklearn's search objects:</p>
+<h2 id="attributes">Attributes</h2>
+<p>After fitting, OptCV provides the following attributes:</p>
 <h3 id="best_params_"><code>best_params_</code></h3>
 <h3 id="best_score_"><code>best_score_</code></h3>
 <h3 id="best_estimator_"><code>best_estimator_</code></h3>
-<h3 id="cv_results_-limited"><code>cv_results_</code> (Limited)</h3>
+<p>Note: <code>cv_results_</code> is not provided by OptCV in v5.</p>
 <h2 id="methods-same-as-gridsearchcv">Methods (Same as GridSearchCV)</h2>
 <h3 id="fitx-y"><code>fit(X, y)</code></h3>
 <h3 id="predictx"><code>predict(X)</code></h3>

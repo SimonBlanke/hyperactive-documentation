@@ -1631,6 +1631,8 @@
       
         
       
+        
+      
     
     
     
@@ -1770,15 +1772,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#param_grid" class="md-nav__link">
-    <span class="md-ellipsis">
-      param_grid
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#x-y" class="md-nav__link">
     <span class="md-ellipsis">
       X, y
@@ -1800,15 +1793,6 @@
   <a href="#scoring" class="md-nav__link">
     <span class="md-ellipsis">
       scoring
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#n_jobs" class="md-nav__link">
-    <span class="md-ellipsis">
-      n_jobs
     </span>
   </a>
   
@@ -2066,6 +2050,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../sktime_classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sktime Classification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../sktime_forecasting/" class="md-nav__link">
         
   
@@ -2191,15 +2196,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#param_grid" class="md-nav__link">
-    <span class="md-ellipsis">
-      param_grid
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#x-y" class="md-nav__link">
     <span class="md-ellipsis">
       X, y
@@ -2221,15 +2217,6 @@
   <a href="#scoring" class="md-nav__link">
     <span class="md-ellipsis">
       scoring
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#n_jobs" class="md-nav__link">
-    <span class="md-ellipsis">
-      n_jobs
     </span>
   </a>
   
@@ -2473,48 +2460,28 @@
 - Manages cross-validation splits
 - Handles parameter validation and conversion
 - Supports all sklearn estimators and pipelines
-- Provides comprehensive scoring options
-- Enables parallel cross-validation execution</p>
+- Provides comprehensive scoring options</p>
 <h2 id="class-signature">Class Signature</h2>
 <h2 id="parameters">Parameters</h2>
 <h3 id="estimator"><code>estimator</code></h3>
 <ul>
 <li><strong>Type</strong>: sklearn estimator or pipeline</li>
-<li><strong>Description</strong>: The machine learning model to optimize</li>
-<li><strong>Examples</strong>: Any sklearn estimator (classifiers, regressors, clusterers)</li>
-</ul>
-<h3 id="param_grid"><code>param_grid</code></h3>
-<ul>
-<li><strong>Type</strong>: <code>dict</code></li>
-<li><strong>Description</strong>: Dictionary defining the hyperparameter search space</li>
-<li><strong>Format</strong>: <code>{"param_name": [value1, value2, ...]}</code></li>
+<li><strong>Description</strong>: The model to optimize</li>
 </ul>
 <h3 id="x-y"><code>X, y</code></h3>
 <ul>
 <li><strong>Type</strong>: array-like</li>
 <li><strong>Description</strong>: Training features and target values</li>
-<li><strong>Note</strong>: Must be compatible with the chosen estimator</li>
 </ul>
 <h3 id="cv"><code>cv</code></h3>
 <ul>
-<li><strong>Type</strong>: <code>int</code> or sklearn CV object</li>
-<li><strong>Default</strong>: <code>5</code></li>
+<li><strong>Type</strong>: <code>int</code> or sklearn CV object, default <code>KFold(n_splits=3, shuffle=True)</code></li>
 <li><strong>Description</strong>: Cross-validation strategy</li>
-<li><strong>Options</strong>: Integer (K-fold), or sklearn CV objects</li>
 </ul>
 <h3 id="scoring"><code>scoring</code></h3>
 <ul>
-<li><strong>Type</strong>: <code>str</code> or callable</li>
-<li><strong>Default</strong>: Depends on estimator type</li>
+<li><strong>Type</strong>: <code>str</code> or callable, default depends on estimator</li>
 <li><strong>Description</strong>: Scoring function for evaluation</li>
-<li><strong>Options</strong>: sklearn scoring strings or custom scorer functions</li>
-</ul>
-<h3 id="n_jobs"><code>n_jobs</code></h3>
-<ul>
-<li><strong>Type</strong>: <code>int</code></li>
-<li><strong>Default</strong>: <code>1</code></li>
-<li><strong>Description</strong>: Number of parallel jobs for cross-validation</li>
-<li><strong>Options</strong>: <code>1</code> (sequential), <code>-1</code> (all cores), or specific number</li>
 </ul>
 <h2 id="basic-usage-examples">Basic Usage Examples</h2>
 <h3 id="classification">Classification</h3>
@@ -2533,7 +2500,7 @@
 <li><strong>CV Strategy</strong>: Choose appropriate cross-validation for your data type</li>
 <li><strong>Scoring Metrics</strong>: Select metrics that align with your business objective</li>
 <li><strong>Parameter Ranges</strong>: Define reasonable parameter ranges based on domain knowledge</li>
-<li><strong>Computational Resources</strong>: Use n_jobs for parallel processing when available</li>
+<li><strong>Computational Resources</strong>: Use optimizer <code>backend</code>/<code>backend_params</code> for parallel processing</li>
 <li><strong>Reproducibility</strong>: Set random seeds in estimators and CV splitters</li>
 <li><strong>Evaluation</strong>: Use nested CV for unbiased performance estimation</li>
 </ol>

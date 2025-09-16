@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#grid-search-sk" class="md-skip">
+        <a href="#gridsearchsk" class="md-skip">
           Skip to content
         </a>
       
@@ -1453,36 +1453,45 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#param_grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      param_grid
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error_score" class="md-nav__link">
+    <span class="md-ellipsis">
+      error_score
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend_params" class="md-nav__link">
+    <span class="md-ellipsis">
+      backend_params
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#experiment" class="md-nav__link">
     <span class="md-ellipsis">
       experiment
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#n_jobs" class="md-nav__link">
-    <span class="md-ellipsis">
-      n_jobs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cv" class="md-nav__link">
-    <span class="md-ellipsis">
-      cv
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verbose" class="md-nav__link">
-    <span class="md-ellipsis">
-      verbose
     </span>
   </a>
   
@@ -1946,6 +1955,8 @@
       
         
       
+        
+      
     
     
     
@@ -2017,6 +2028,27 @@
   
   <span class="md-ellipsis">
     OptCV Interface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../experiments/integrations/sktime_classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sktime Classification
   </span>
   
 
@@ -2140,36 +2172,45 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#param_grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      param_grid
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error_score" class="md-nav__link">
+    <span class="md-ellipsis">
+      error_score
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend_params" class="md-nav__link">
+    <span class="md-ellipsis">
+      backend_params
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#experiment" class="md-nav__link">
     <span class="md-ellipsis">
       experiment
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#n_jobs" class="md-nav__link">
-    <span class="md-ellipsis">
-      n_jobs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cv" class="md-nav__link">
-    <span class="md-ellipsis">
-      cv
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#verbose" class="md-nav__link">
-    <span class="md-ellipsis">
-      verbose
     </span>
   </a>
   
@@ -2399,40 +2440,40 @@
                   
 
 
-<h1 id="grid-search-sk">Grid Search SK</h1>
+<h1 id="gridsearchsk">GridSearchSk</h1>
 <h2 id="introduction">Introduction</h2>
-<p>Grid Search SK provides direct integration with scikit-learn's GridSearchCV, offering the familiar sklearn interface while working within Hyperactive's architecture. This optimizer systematically searches through all combinations of specified parameter values.</p>
+<p><code>GridSearchSk</code> exhaustively evaluates a sklearn-style parameter grid using Hyperactive’s evaluation pipeline. It combines <code>sklearn.model_selection.ParameterGrid</code> with a Hyperactive <code>Experiment</code> (commonly <code>SklearnCvExperiment</code>).</p>
 <h2 id="about-the-implementation">About the Implementation</h2>
-<p>This optimizer leverages sklearn's mature and optimized GridSearchCV implementation, providing:</p>
 <ul>
-<li><strong>Native sklearn integration</strong>: Uses sklearn's GridSearchCV under the hood</li>
-<li><strong>Parallel execution</strong>: Supports sklearn's n_jobs parameter for parallelization</li>
-<li><strong>Cross-validation</strong>: Built-in cross-validation support</li>
-<li><strong>Familiar interface</strong>: Standard sklearn parameter handling</li>
+<li>Uses <code>ParameterGrid</code> to enumerate candidate parameter sets</li>
+<li>Uses the provided <code>experiment</code> to evaluate each candidate (e.g., CV via <code>SklearnCvExperiment</code>)</li>
+<li>Parallelism controlled via Hyperactive backends (<code>backend</code>, <code>backend_params</code>)</li>
 </ul>
 <h2 id="parameters">Parameters</h2>
+<h3 id="param_grid"><code>param_grid</code></h3>
+<ul>
+<li><strong>Type</strong>: <code>dict[str, list]</code></li>
+<li><strong>Description</strong>: Sklearn-style parameter grid to exhaustively evaluate</li>
+</ul>
+<h3 id="error_score"><code>error_score</code></h3>
+<ul>
+<li><strong>Type</strong>: <code>float</code>, default <code>np.nan</code></li>
+<li><strong>Description</strong>: Score to assign if evaluation raises</li>
+</ul>
+<h3 id="backend"><code>backend</code></h3>
+<ul>
+<li><strong>Type</strong>: <code>{"None","loky","multiprocessing","threading","joblib","dask","ray"}</code></li>
+<li><strong>Description</strong>: Parallel backend used by Hyperactive</li>
+</ul>
+<h3 id="backend_params"><code>backend_params</code></h3>
+<ul>
+<li><strong>Type</strong>: <code>dict</code> or <code>None</code></li>
+<li><strong>Description</strong>: Backend configuration (e.g., <code>{"n_jobs": -1}</code> for joblib)</li>
+</ul>
 <h3 id="experiment"><code>experiment</code></h3>
 <ul>
 <li><strong>Type</strong>: <code>BaseExperiment</code></li>
-<li><strong>Description</strong>: The experiment object defining the optimization problem</li>
-</ul>
-<h3 id="n_jobs"><code>n_jobs</code></h3>
-<ul>
-<li><strong>Type</strong>: <code>int</code></li>
-<li><strong>Default</strong>: <code>1</code></li>
-<li><strong>Description</strong>: Number of parallel jobs for cross-validation. -1 uses all processors.</li>
-</ul>
-<h3 id="cv"><code>cv</code></h3>
-<ul>
-<li><strong>Type</strong>: <code>int</code> or cross-validation generator</li>
-<li><strong>Default</strong>: <code>3</code></li>
-<li><strong>Description</strong>: Cross-validation strategy</li>
-</ul>
-<h3 id="verbose"><code>verbose</code></h3>
-<ul>
-<li><strong>Type</strong>: <code>int</code></li>
-<li><strong>Default</strong>: <code>0</code></li>
-<li><strong>Description</strong>: Verbosity level for sklearn's GridSearchCV</li>
+<li><strong>Description</strong>: Experiment used to evaluate candidates (e.g., <code>SklearnCvExperiment</code>)</li>
 </ul>
 <h2 id="usage-example">Usage Example</h2>
 <h2 id="when-to-use-grid-search-sk">When to Use Grid Search SK</h2>
@@ -2454,31 +2495,27 @@
 <th>Method</th>
 <th>Backend</th>
 <th>Parallelization</th>
-<th>Features</th>
-<th>Use Case</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>GridSearchSk</td>
-<td>sklearn</td>
-<td>Excellent</td>
-<td>CV, scoring</td>
-<td>sklearn workflows</td>
+<td>Hyperactive</td>
+<td>Backends via <code>backend</code></td>
+<td>Sklearn-style grid + Hyperactive experiments</td>
 </tr>
 <tr>
 <td>GridSearch (GFO)</td>
 <td>GFO</td>
-<td>Limited</td>
-<td>Custom logic</td>
-<td>General optimization</td>
+<td>Internal to GFO</td>
+<td>Grid traversal (step/direction), different algorithm</td>
 </tr>
 <tr>
 <td>GridOptimizer (Optuna)</td>
 <td>Optuna</td>
-<td>Good</td>
-<td>Optuna ecosystem</td>
-<td>Optuna workflows</td>
+<td>Optuna</td>
+<td>Uses Optuna’s grid sampler</td>
 </tr>
 </tbody>
 </table>
@@ -2500,7 +2537,7 @@
 <ol>
 <li><strong>Parameter space size</strong>: Keep total combinations reasonable (&lt;1000)</li>
 <li><strong>Cross-validation</strong>: Use appropriate CV strategy for your data</li>
-<li><strong>Parallelization</strong>: Leverage n_jobs for faster execution</li>
+<li><strong>Parallelization</strong>: Use <code>backend_params</code> (e.g., <code>{"n_jobs": -1}</code> with joblib)</li>
 <li><strong>Memory management</strong>: Monitor memory usage with large grids</li>
 <li><strong>Scoring metrics</strong>: Choose appropriate metrics for your problem</li>
 <li><strong>Reproducibility</strong>: Set random seeds in estimators</li>

@@ -83,7 +83,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#random-search-sk" class="md-skip">
+        <a href="#randomsearchsk" class="md-skip">
           Skip to content
         </a>
       
@@ -1474,9 +1474,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#experiment" class="md-nav__link">
+  <a href="#param_distributions" class="md-nav__link">
     <span class="md-ellipsis">
-      experiment
+      param_distributions
     </span>
   </a>
   
@@ -1492,24 +1492,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#n_jobs" class="md-nav__link">
-    <span class="md-ellipsis">
-      n_jobs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cv" class="md-nav__link">
-    <span class="md-ellipsis">
-      cv
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#random_state" class="md-nav__link">
     <span class="md-ellipsis">
       random_state
@@ -1519,9 +1501,36 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#verbose" class="md-nav__link">
+  <a href="#error_score" class="md-nav__link">
     <span class="md-ellipsis">
-      verbose
+      error_score
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend_params" class="md-nav__link">
+    <span class="md-ellipsis">
+      backend_params
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      experiment
     </span>
   </a>
   
@@ -1982,6 +1991,8 @@
       
         
       
+        
+      
     
     
     
@@ -2053,6 +2064,27 @@
   
   <span class="md-ellipsis">
     OptCV Interface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../experiments/integrations/sktime_classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sktime Classification
   </span>
   
 
@@ -2176,9 +2208,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#experiment" class="md-nav__link">
+  <a href="#param_distributions" class="md-nav__link">
     <span class="md-ellipsis">
-      experiment
+      param_distributions
     </span>
   </a>
   
@@ -2194,24 +2226,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#n_jobs" class="md-nav__link">
-    <span class="md-ellipsis">
-      n_jobs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cv" class="md-nav__link">
-    <span class="md-ellipsis">
-      cv
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#random_state" class="md-nav__link">
     <span class="md-ellipsis">
       random_state
@@ -2221,9 +2235,36 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#verbose" class="md-nav__link">
+  <a href="#error_score" class="md-nav__link">
     <span class="md-ellipsis">
-      verbose
+      error_score
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend" class="md-nav__link">
+    <span class="md-ellipsis">
+      backend
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend_params" class="md-nav__link">
+    <span class="md-ellipsis">
+      backend_params
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      experiment
     </span>
   </a>
   
@@ -2471,52 +2512,50 @@
                   
 
 
-<h1 id="random-search-sk">Random Search SK</h1>
+<h1 id="randomsearchsk">RandomSearchSk</h1>
 <h2 id="introduction">Introduction</h2>
-<p>Random Search SK provides direct integration with scikit-learn's RandomizedSearchCV, combining the efficiency of random sampling with sklearn's mature cross-validation infrastructure. This optimizer randomly samples parameter combinations from specified distributions.</p>
+<p><code>RandomSearchSk</code> randomly samples parameter combinations from specified distributions or lists using <code>sklearn.model_selection.ParameterSampler</code>, and evaluates them through a Hyperactive <code>Experiment</code> (e.g., <code>SklearnCvExperiment</code>).</p>
 <h2 id="about-the-implementation">About the Implementation</h2>
-<p>This optimizer leverages sklearn's RandomizedSearchCV implementation, offering:</p>
 <ul>
-<li><strong>Native sklearn integration</strong>: Uses sklearn's RandomizedSearchCV under the hood</li>
-<li><strong>Distribution sampling</strong>: Can sample from probability distributions, not just discrete lists</li>
-<li><strong>Parallel execution</strong>: Full support for sklearn's n_jobs parameter</li>
-<li><strong>Proven efficiency</strong>: Often matches or outperforms grid search with fewer evaluations</li>
+<li>Uses <code>ParameterSampler</code> to draw candidate configurations</li>
+<li>Uses the provided <code>experiment</code> to evaluate each candidate (e.g., CV via <code>SklearnCvExperiment</code>)</li>
+<li>Parallelism controlled via Hyperactive backends (<code>backend</code>, <code>backend_params</code>)</li>
 </ul>
 <h2 id="parameters">Parameters</h2>
-<h3 id="experiment"><code>experiment</code></h3>
+<h3 id="param_distributions"><code>param_distributions</code></h3>
 <ul>
-<li><strong>Type</strong>: <code>BaseExperiment</code></li>
-<li><strong>Description</strong>: The experiment object defining the optimization problem</li>
+<li><strong>Type</strong>: <code>dict[str, list | numpy.ndarray | scipy.stats.rv_frozen]</code></li>
+<li><strong>Description</strong>: Distributions or lists to sample from</li>
 </ul>
 <h3 id="n_iter"><code>n_iter</code></h3>
 <ul>
-<li><strong>Type</strong>: <code>int</code></li>
-<li><strong>Default</strong>: <code>100</code></li>
-<li><strong>Description</strong>: Number of parameter combinations to evaluate</li>
-</ul>
-<h3 id="n_jobs"><code>n_jobs</code></h3>
-<ul>
-<li><strong>Type</strong>: <code>int</code></li>
-<li><strong>Default</strong>: <code>1</code></li>
-<li><strong>Description</strong>: Number of parallel jobs for cross-validation. -1 uses all processors.</li>
-</ul>
-<h3 id="cv"><code>cv</code></h3>
-<ul>
-<li><strong>Type</strong>: <code>int</code> or cross-validation generator</li>
-<li><strong>Default</strong>: <code>3</code></li>
-<li><strong>Description</strong>: Cross-validation strategy</li>
+<li><strong>Type</strong>: <code>int</code>, default <code>10</code></li>
+<li><strong>Description</strong>: Number of sampled configurations</li>
 </ul>
 <h3 id="random_state"><code>random_state</code></h3>
 <ul>
-<li><strong>Type</strong>: <code>int</code> or <code>None</code></li>
-<li><strong>Default</strong>: <code>None</code></li>
-<li><strong>Description</strong>: Random seed for reproducible results</li>
+<li><strong>Type</strong>: <code>int | None</code></li>
+<li><strong>Description</strong>: Random seed for sampling</li>
 </ul>
-<h3 id="verbose"><code>verbose</code></h3>
+<h3 id="error_score"><code>error_score</code></h3>
 <ul>
-<li><strong>Type</strong>: <code>int</code></li>
-<li><strong>Default</strong>: <code>0</code></li>
-<li><strong>Description</strong>: Verbosity level</li>
+<li><strong>Type</strong>: <code>float</code>, default <code>np.nan</code></li>
+<li><strong>Description</strong>: Score to assign if evaluation raises</li>
+</ul>
+<h3 id="backend"><code>backend</code></h3>
+<ul>
+<li><strong>Type</strong>: <code>{"None","loky","multiprocessing","threading","joblib","dask","ray"}</code></li>
+<li><strong>Description</strong>: Parallel backend used by Hyperactive</li>
+</ul>
+<h3 id="backend_params"><code>backend_params</code></h3>
+<ul>
+<li><strong>Type</strong>: <code>dict</code> or <code>None</code></li>
+<li><strong>Description</strong>: Backend configuration</li>
+</ul>
+<h3 id="experiment"><code>experiment</code></h3>
+<ul>
+<li><strong>Type</strong>: <code>BaseExperiment</code></li>
+<li><strong>Description</strong>: Experiment used to evaluate candidates (e.g., <code>SklearnCvExperiment</code>)</li>
 </ul>
 <h2 id="usage-example">Usage Example</h2>
 <h2 id="when-to-use-random-search-sk">When to Use Random Search SK</h2>
@@ -2595,7 +2634,7 @@
 <li><strong>Sample size</strong>: Use n_iter ≥ 10 × number of parameters as a rule of thumb</li>
 <li><strong>Random seeds</strong>: Set random_state for reproducible results</li>
 <li><strong>Cross-validation</strong>: Choose appropriate CV strategy for your data</li>
-<li><strong>Parallel processing</strong>: Leverage n_jobs for faster execution</li>
+<li><strong>Parallel processing</strong>: Use <code>backend_params</code> (e.g., <code>{"n_jobs": -1}</code> with joblib)</li>
 <li><strong>Progressive refinement</strong>: Start broad, then narrow down promising regions</li>
 </ol>
 <h2 id="references">References</h2>

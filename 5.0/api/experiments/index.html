@@ -1623,6 +1623,8 @@
       
         
       
+        
+      
     
     
     
@@ -1694,6 +1696,27 @@
   
   <span class="md-ellipsis">
     OptCV Interface
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../experiments/integrations/sktime_classification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sktime Classification
   </span>
   
 
@@ -2071,11 +2094,12 @@
 <p>Cross-validation based hyperparameter optimization for scikit-learn estimators.</p>
 <p><strong>Parameters:</strong>
 - <strong>estimator</strong>: Scikit-learn estimator to optimize
-- <strong>param_grid</strong>: Dictionary defining the search space
-- <strong>X, y</strong>: Training data
-- <strong>cv</strong>: Cross-validation strategy (int or CV object)
-- <strong>scoring</strong>: Scoring function or string
-- <strong>n_jobs</strong>: Number of parallel jobs for cross-validation</p>
+- <strong>X, y</strong>: Training data arrays
+- <strong>cv</strong>: Cross-validation strategy (int or CV object). If <code>None</code>, defaults to <code>KFold(n_splits=3, shuffle=True)</code>.
+- <strong>scoring</strong>: Scoring function or string. If <code>None</code>, uses the estimator’s default <code>score</code>.</p>
+<p>Notes:
+- Parallelization is controlled by the optimizer via <code>backend</code> and <code>backend_params</code> (e.g., <code>GridSearchSk</code>, <code>RandomSearchSk</code>), not by <code>SklearnCvExperiment</code>.
+- Define your search space (e.g., grids, distributions) on the optimizer; the experiment only encapsulates data, estimator, CV, and scoring.</p>
 <h3 id="optcv-scikit-learn-compatible-optimizer">OptCV - Scikit-learn Compatible Optimizer</h3>
 <p>For users who prefer the familiar scikit-learn interface, <code>OptCV</code> provides a drop-in replacement for <code>GridSearchCV</code> and <code>RandomizedSearchCV</code>.</p>
 <p><strong>Key Features:</strong>
@@ -2107,7 +2131,7 @@
 <ol>
 <li><strong>Caching</strong>: Cache expensive computations when possible</li>
 <li><strong>Early stopping</strong>: Return early for obviously poor parameters</li>
-<li><strong>Parallel evaluation</strong>: Use n_jobs for cross-validation</li>
+<li><strong>Parallel evaluation</strong>: Use optimizer <code>backend</code>/<code>backend_params</code> for CV parallelization</li>
 <li><strong>Memory management</strong>: Clean up resources in long-running experiments</li>
 </ol>
 <h3 id="integration-guidelines">Integration Guidelines</h3>
