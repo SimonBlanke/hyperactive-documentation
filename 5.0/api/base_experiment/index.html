@@ -2192,9 +2192,7 @@
 <h4 id="paramnames"><code>paramnames()</code></h4>
 <p>Get the parameter names for the search space.</p>
 <p><strong>Returns:</strong>
-- <code>list[str] | None</code>: Parameter names. If <code>None</code>, any parameter keys are accepted.</p>
-<p>Notes:
-- When <code>paramnames()</code> returns a list, <code>params</code> passed to <code>evaluate/score</code> must be a subset of that list; otherwise a <code>ValueError</code> is raised.
+- <code>list[str] | None</code>: Parameter names. If <code>None</code>, any parameter keys are accepted.
 - <code>__call__(params)</code> is provided as shorthand for <code>score(params)</code> and returns only the score (float).
 - Score sign follows the tag <code>property:higher_or_lower_is_better</code>:
   - <code>"higher"</code>: score equals evaluate (higher-is-better)
