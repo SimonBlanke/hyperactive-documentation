@@ -13,6 +13,22 @@ SklearnCvExperiment automatically:
 - Provides comprehensive scoring options
 ## Class Signature
 
+```python
+from hyperactive.base import BaseExperiment
+from sklearn.model_selection import KFold
+
+class SklearnCvExperiment(BaseExperiment):
+    def __init__(self, estimator, X, y, scoring=None, cv=None): ...
+
+    # required overrides
+    def _paramnames(self) -> list[str]: ...
+    def _evaluate(self, params: dict) -> tuple[float, dict]: ...
+
+    # convenience and derived attributes
+    # self._cv: KFold or any sklearn CV splitter
+    # self._scoring / self.scorer_: sklearn-compatible scorer
+    # tag 'property:higher_or_lower_is_better' is set based on scorer sign
+```
 
 
 ## Parameters
