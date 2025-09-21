@@ -29,7 +29,47 @@ Optional integrations and backends:
   - Note: ray support depends on your Python version; see `pyproject.toml` constraints.
 
 ## Quick Start
+Get productive in minutes with a minimal example.
 
+1) Optimize a built-in benchmark (no data required)
+
+```python
+from hyperactive.experiment.bench import Ackley
+from hyperactive.opt.gfo import RandomSearch
+
+# Define the objective (2D Ackley benchmark)
+exp = Ackley(d=2)
+
+# Pick an optimizer and run
+opt = RandomSearch(experiment=exp)
+best_params = opt.solve()
+print("Best parameters:", best_params)
+```
+
+2) Optimize a scikit-learn model with cross‑validation
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.svm import SVC
+from hyperactive.experiment.integrations import SklearnCvExperiment
+from hyperactive.opt import GridSearchSk
+
+X, y = load_iris(return_X_y=True)
+
+# Wrap your estimator + data in an experiment
+exp = SklearnCvExperiment(estimator=SVC(), X=X, y=y)
+
+# Search the hyperparameter grid and get the best params
+opt = GridSearchSk(param_grid={"C": [0.1, 1, 10], "kernel": ["linear", "rbf"]},
+                   experiment=exp)
+best_params = opt.solve()
+print("Best parameters:", best_params)
+```
+
+Next steps:
+- Check the full Quickstart: `tutorials/quickstart_v5.md`
+- Explore optimizers: `api/optimizers.md`
+- Learn experiments and integrations: `api/experiments.md`
 
 
 ## Key Features
